@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using GMS;
 
 [CustomEditor(typeof(MusicSequencer))]
 public class MusicSequencerEditor : Editor

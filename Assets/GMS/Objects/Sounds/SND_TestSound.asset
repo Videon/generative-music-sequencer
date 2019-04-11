@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
-  m_Name: SQ_TestSequence
+  m_Script: {fileID: 11500000, guid: c58a9b4c7f33ccf40acc2066a67d0c98, type: 3}
+  m_Name: SND_TestSound
   m_EditorClassIdentifier: 
+  polyphony: 1
   sounds:
-  - {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
+  - {fileID: 8300000, guid: b5a26ec11573a2c4db7f71d535f01f3e, type: 3}
+  multisample: 0
+  pitchOffset: 0
+  minPitchVar: 0
+  maxPitchVar: 0

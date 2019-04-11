@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using GMS;
 
 [System.Serializable]
 class SequencerWindow : EditorWindow
@@ -100,7 +101,9 @@ class SequencerWindow : EditorWindow
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
-                musicSequencer.SetMusicSequence(x, y, (MusicSequence)EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y), typeof(MusicSequence), true));
+                musicSequencer.InitMusicSequences
+                    
+                    (x, y, (MusicSequence)EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y), typeof(MusicSequence), true));
             }
             EditorGUILayout.EndVertical();
         }

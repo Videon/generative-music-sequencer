@@ -144,11 +144,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempo: 60
+  barLength: 64
+  sequencerPos: 0
   musicSequences:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cf0e57c102378704aa18e12163b6cbac, type: 2}
+  - {fileID: 11400000, guid: cf0e57c102378704aa18e12163b6cbac, type: 2}
+  - {fileID: 11400000, guid: cf0e57c102378704aa18e12163b6cbac, type: 2}
+  - {fileID: 11400000, guid: cf0e57c102378704aa18e12163b6cbac, type: 2}
   musicSequencesDimensions: {x: 2, y: 2}
 --- !u!4 &398498239
 Transform:
@@ -174,8 +176,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: d55b3e77d19de034a99f55db5c2f4295, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -274,8 +276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 120
   gain: 0.5
-  signatureHi: 4
-  signatureLo: 4
+  signatureHi: 16
+  signatureLo: 16
+  tickSwitch: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
