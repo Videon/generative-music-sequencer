@@ -17,11 +17,7 @@
         private float phase = 0.0F;
         private double sampleRate = 0.0F;
         private int accent;
-        private bool running = false;
-
-        double prevTime = .0d;
-        double currTime = .0d;
-        double deltaDspTime = .0d;
+        public bool running = true;
 
         double elapsedTime = .0d;
 
@@ -29,34 +25,40 @@
 
         void Start()
         {
-            accent = signatureHi;
-            double startTick = AudioSettings.dspTime;
-            sampleRate = AudioSettings.outputSampleRate;
-            nextTick = startTick * sampleRate;
-            running = true;
+            //Init variables
+            bpm = musicSequencer.bpm;
 
-            //musicSequencer = GetComponent<MusicSequencer>();
+            //Init references
+            musicSequencer = GetComponent<MusicSequencer>();
+
+            //Run methods
+            StartCoroutine(ClockTicker());
         }
 
 
         private void Update()
         {
+            /*
             if (!running)
                 return;
 
-            prevTime = currTime;
-            currTime = AudioSettings.dspTime;
-
-            deltaDspTime = currTime - prevTime;
-            elapsedTime = elapsedTime + deltaDspTime;
-
-            //print("PREV: " + prevTime + "CURR: " + currTime + "ELPSD: " + elapsedTime + "DELTA: " + deltaDspTime);
             elapsedTime += Time.deltaTime;
+
             if (elapsedTime >= 60.0d / bpm)
             {
                 if (musicSequencer)
                     musicSequencer.Tick();
                 elapsedTime = .0d;
+            }
+            */
+        }
+
+        IEnumerator ClockTicker()
+        {
+            while (running)
+            {
+                musicSequencer.Tick();
+                yield return new WaitForSeconds((float)(60.0d / musicSequencer.bpm));
             }
         }
 

@@ -8,16 +8,12 @@
     public class MusicSequencer : MonoBehaviour
     {
         [SerializeField, Tooltip("Tempo of music in BPM (beats per minute)")]
-        public int tempo = 60;
+        public double bpm = 60;
 
         [SerializeField, Tooltip("The length of all bars in ticks")]
         int barLength = 16;
 
         public int sequencerPos = 0;
-
-        private int currentBar = 0; //Current bar(column)
-        private int globalTick = 0; //The tick
-        private int localTick = 0;
 
         private static AudioSource[] audioSources;
         AudioSource audioSource;
@@ -32,7 +28,33 @@
             DontDestroyOnLoad(gameObject);
         }
 
+        public void Tick()
+        {
+            print("TICK");
+        }
 
+
+        public void InitSequences(int x, int y)
+        {
+            musicSequences = new MusicSequence[x * y];
+            musicSequencesDimensions = new Vector2Int(x, y);
+        }
+
+        public MusicSequence GetMusicSequence(int x, int y)
+        {
+            return musicSequences[y * musicSequencesDimensions.x + x];
+        }
+
+        public void InitMusicSequences(int x, int y, MusicSequence musicSequence)
+        {
+            musicSequences[y * musicSequencesDimensions.x + x] = musicSequence;
+        }
+
+        //Return the size of the 1D array as a 2D representation
+        public Vector2Int GetMusicSequencesDimensions()
+        {
+            return musicSequencesDimensions;
+        }
 
         /*
         // Start is called before the first frame update
@@ -81,28 +103,6 @@
                     audioSourceIndex++;
                 }
             }
-        }
-
-        public void InitSequences(int x, int y)
-        {
-            musicSequences = new MusicSequence[x * y];
-            musicSequencesDimensions = new Vector2Int(x, y);
-        }
-
-        public MusicSequence GetMusicSequence(int x, int y)
-        {
-            return musicSequences[y * musicSequencesDimensions.x + x];
-        }
-
-        public void InitMusicSequences(int x, int y, MusicSequence musicSequence)
-        {
-            musicSequences[y * musicSequencesDimensions.x + x] = musicSequence;
-        }
-
-        //Return the size of the 1D array as a 2D representation
-        public Vector2Int GetMusicSequencesDimensions()
-        {
-            return musicSequencesDimensions;
         }
 
         void PlayBar()
