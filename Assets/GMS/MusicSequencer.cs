@@ -10,16 +10,18 @@
         [SerializeField, Tooltip("Tempo of music in BPM (beats per minute)")]
         public double bpm = 60;
 
-        [SerializeField, Tooltip("The length of all bars in ticks")]
-        int barLength = 16;
+        [SerializeField, Tooltip("The number of all steps in a bar")]
+        int barSteps = 16;
 
-        public int sequencerPos = 0;
+        int currentBar = 1;
+
+        public int currentStep = 15;
 
         private static AudioSource[] audioSources;
         AudioSource audioSource;
 
         [SerializeField]
-        private MusicSequence[] musicSequences;
+        private SequenceData[] musicSequences;
         [SerializeField]
         private Vector2Int musicSequencesDimensions = new Vector2Int(0, 0);    //Store "dimensions" of MusicSequences array to make it usable like a 2D array.
 
@@ -28,24 +30,71 @@
             DontDestroyOnLoad(gameObject);
         }
 
-        public void Tick()
+        // Start is called before the first frame update
+        void Start()
         {
-            print("TICK");
+            audioSources = GetComponents<AudioSource>();
         }
 
+        public void Tick()
+        {
+
+            print("BAR> " + currentBar);
+            print("STEP> " + currentStep);
+
+            if (currentStep < barSteps)
+                currentStep++;
+            else
+            {
+                if (currentBar < GetMusicSequencesDimensions().x - 1)
+                    currentBar++;
+                else
+                    currentBar = 0;
+                currentStep = 0;
+
+                //Generate and schedule next sequence at the beginning of the current bar
+                for (int currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
+                {
+                    ScheduleSequence(GenerateSequence(GetMusicSequence(currentBar, currentLayer)));
+                }
+            }
+        }
+
+        Note[] GenerateSequence(SequenceData p_sequenceData)
+        {
+            string mode = p_sequenceData.sequenceMode.ToString(); ;
+            switch (mode)
+            {
+                case "Legacy":
+                    return SequenceGenerator.GenerateLegacy(p_sequenceData, barSteps);
+            }
+            return null;
+        }
+
+        //Schedule playing sounds for a given schedule
+        void ScheduleSequence(Note[] p_sequenceNotes)
+        {
+            double stepLength = 60.0d / bpm;
+            double barOffset = stepLength * barSteps;
+            for (int i = 0; i < p_sequenceNotes.Length; i++)
+            {
+                if (p_sequenceNotes[i] != null)
+                    audioSources[i].PlayScheduled((AudioSettings.dspTime + barOffset) + (stepLength * i));
+            }
+        }
 
         public void InitSequences(int x, int y)
         {
-            musicSequences = new MusicSequence[x * y];
+            musicSequences = new SequenceData[x * y];
             musicSequencesDimensions = new Vector2Int(x, y);
         }
 
-        public MusicSequence GetMusicSequence(int x, int y)
+        public SequenceData GetMusicSequence(int x, int y)
         {
             return musicSequences[y * musicSequencesDimensions.x + x];
         }
 
-        public void InitMusicSequences(int x, int y, MusicSequence musicSequence)
+        public void InitMusicSequences(int x, int y, SequenceData musicSequence)
         {
             musicSequences[y * musicSequencesDimensions.x + x] = musicSequence;
         }
@@ -57,14 +106,6 @@
         }
 
         /*
-        // Start is called before the first frame update
-        void Start()
-        {
-            audioSources = new AudioSource[DetermineAudioSources()];
-            //AddAudioSources();
-
-            audioSource = GetComponent<AudioSource>();
-        }
 
         private void FixedUpdate()
         {
@@ -131,7 +172,7 @@
 
         public void Tick()
         {
-            if (globalTick < barLength)
+            if (globalTick < barSteps)
                 globalTick++;
             else
             {

@@ -5,8 +5,8 @@
     using UnityEngine;
 
     //The MusicSequence class includes instructions for the music sequencer
-    [System.Serializable, CreateAssetMenu(fileName = "SEQ_", menuName = "MusicGenerator/Music Sequence", order = 1)]
-    public class MusicSequence : ScriptableObject
+    [System.Serializable, CreateAssetMenu(fileName = "SEQ_", menuName = "MusicGenerator/Sequence Data", order = 1)]
+    public class SequenceData : ScriptableObject
     {
         public enum SequenceMode { Solo, Chords, Legacy };
         public SequenceMode sequenceMode = SequenceMode.Legacy;
@@ -20,22 +20,6 @@
         bool quantize;
 
         bool globalPitchVar;    //Chord mode: Indicates whether the same pitch variation is applied to all notes or per note
-
-        void GenerateSequence()
-        {
-            for (int i = 0; i < notes.Length; i++)
-            {
-                notes[i] = new Note(Note.Modes.Single, Note.Length.Sixteenth, Random.Range(.5f, 2f));
-            }
-        }
-
-        public Note ReturnNoteData(int p_step)
-        {
-            if (p_step == 0)
-                GenerateSequence();
-
-            return notes[p_step];
-        }
     }
 
     public class Note
@@ -47,10 +31,18 @@
         public Length length;
         public float pitch;
 
+        public Note[] chordNotes;
+
         public Note(Modes p_mode, Length p_length, float p_pitch)
         {
             mode = p_mode;
-            length = p_length;
+            //length = p_length;
+            pitch = p_pitch;
+        }
+
+        public Note(Modes p_mode, float p_pitch)
+        {
+            mode = p_mode;
             pitch = p_pitch;
         }
     }

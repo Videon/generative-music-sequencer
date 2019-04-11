@@ -74,7 +74,7 @@ class SequencerWindow : EditorWindow
                 musicSequencer.InitSequences(bars, layers);
             }
 
-            musicSequencer.tempo = EditorGUILayout.IntField("BPM", musicSequencer.tempo);
+            musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
 
             DrawGrid();
 
@@ -102,8 +102,8 @@ class SequencerWindow : EditorWindow
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
                 musicSequencer.InitMusicSequences
-                    
-                    (x, y, (MusicSequence)EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y), typeof(MusicSequence), true));
+
+                    (x, y, (SequenceData)EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y), typeof(SequenceData), true));
             }
             EditorGUILayout.EndVertical();
         }
