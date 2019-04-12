@@ -23,13 +23,12 @@
             bpm = musicSequencer.bpm;
 
             //Run methods
-            StartCoroutine(ClockTicker());
+            //StartCoroutine(ClockTicker());
         }
 
 
-        private void Update()
+        private void FixedUpdate()
         {
-            /*
             if (!running)
                 return;
 
@@ -41,7 +40,6 @@
                     musicSequencer.Tick();
                 elapsedTime = .0d;
             }
-            */
         }
 
         IEnumerator ClockTicker()

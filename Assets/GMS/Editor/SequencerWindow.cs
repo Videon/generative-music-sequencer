@@ -6,8 +6,7 @@ using GMS;
 [System.Serializable]
 class SequencerWindow : EditorWindow
 {
-    [SerializeField]
-    private MusicSequencer musicSequencer;
+    [SerializeField] private MusicSequencer musicSequencer;
 
     Object source;
 
@@ -22,11 +21,11 @@ class SequencerWindow : EditorWindow
 
     public void Awake()
     {
-        GameObject selection = (GameObject)Selection.activeObject;
+        GameObject selection = (GameObject) Selection.activeObject;
 
         if (selection.GetType() == typeof(GameObject))
         {
-            selection = (GameObject)Selection.activeObject;
+            selection = (GameObject) Selection.activeObject;
 
             if (selection.GetComponent<MusicSequencer>() != null)
             {
@@ -35,7 +34,8 @@ class SequencerWindow : EditorWindow
                 var serializedMusicSequencer = new SerializedObject(musicSequencer);
                 serializedMusicSequencer.Update();
 
-                if (musicSequencer.GetMusicSequencesDimensions().x > 0 && musicSequencer.GetMusicSequencesDimensions().y > 0)
+                if (musicSequencer.GetMusicSequencesDimensions().x > 0 &&
+                    musicSequencer.GetMusicSequencesDimensions().y > 0)
                 {
                     bars = musicSequencer.GetMusicSequencesDimensions().x;
                     layers = musicSequencer.GetMusicSequencesDimensions().y;
@@ -58,7 +58,6 @@ class SequencerWindow : EditorWindow
     //Function to update the displayed values in this editor script.
     void UpdateValues()
     {
-
     }
 
     //Function to display the values in this editor script window.
@@ -75,12 +74,13 @@ class SequencerWindow : EditorWindow
             }
 
             musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
+            musicSequencer.barSteps = EditorGUILayout.IntField("Steps per bar", musicSequencer.barSteps);
 
             DrawGrid();
 
             if (GUI.GetNameOfFocusedControl().StartsWith("SequenceField"))
             {
-                Debug.Log("COOL");  //Insert code here to draw preview window for Sequence Element
+                Debug.Log("COOL"); //Insert code here to draw preview window for Sequence Element
             }
         }
     }
@@ -102,11 +102,14 @@ class SequencerWindow : EditorWindow
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
                 musicSequencer.InitMusicSequences
-
-                    (x, y, (SequenceData)EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y), typeof(SequenceData), true));
+                (x, y,
+                    (SequenceData) EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y),
+                        typeof(SequenceData), true));
             }
+
             EditorGUILayout.EndVertical();
         }
+
         EditorGUILayout.EndHorizontal();
     }
 }

@@ -7,23 +7,25 @@
     [System.Serializable]
     public class MusicSequencer : MonoBehaviour
     {
-        [SerializeField, Tooltip("Tempo of music in BPM (beats per minute)")]
+        ///<summary>Tempo of music in BPM (beats per minute)</summary>
         public double bpm = 60;
 
-        [SerializeField, Tooltip("The number of all steps in a bar")]
-        int barSteps = 16;
+        ///<summary>The number of all steps in a bar</summary>
+        public int barSteps = 16;
 
-        int currentBar = 1;
+        ///<summary>Currently active bar</summary>
+        int _currentBar = 0;
 
-        public int currentStep = 15;
+        public int currentStep = 0;
 
-        private static AudioSource[] audioSources;
-        AudioSource audioSource;
+        private static AudioSource[] _audioSources;
+        AudioSource _audioSource;
 
-        [SerializeField]
-        private SequenceData[] musicSequences;
-        [SerializeField]
-        private Vector2Int musicSequencesDimensions = new Vector2Int(0, 0);    //Store "dimensions" of MusicSequences array to make it usable like a 2D array.
+        [SerializeField] private SequenceData[] musicSequences;
+
+        [SerializeField] private Vector2Int
+            musicSequencesDimensions =
+                new Vector2Int(0, 0); //Store "dimensions" of MusicSequences array to make it usable like a 2D array.
 
         private void Awake()
         {
@@ -33,53 +35,61 @@
         // Start is called before the first frame update
         void Start()
         {
-            audioSources = GetComponents<AudioSource>();
+            _audioSources = GetComponents<AudioSource>();
         }
 
         public void Tick()
         {
-
-            print("BAR> " + currentBar);
+            print("BAR> " + _currentBar);
             print("STEP> " + currentStep);
 
             if (currentStep < barSteps)
                 currentStep++;
             else
             {
-                if (currentBar < GetMusicSequencesDimensions().x - 1)
-                    currentBar++;
+                if (_currentBar < GetMusicSequencesDimensions().x - 1)
+                    _currentBar++;
                 else
-                    currentBar = 0;
+                    _currentBar = 0;
                 currentStep = 0;
 
                 //Generate and schedule next sequence at the beginning of the current bar
-                for (int currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
+                for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
                 {
-                    ScheduleSequence(GenerateSequence(GetMusicSequence(currentBar, currentLayer)));
+                    ScheduleSequence(GenerateSequence(GetMusicSequence(_currentBar, currentLayer)),
+                        GetMusicSequence(_currentBar, currentLayer));
                 }
             }
         }
 
-        Note[] GenerateSequence(SequenceData p_sequenceData)
+        private Note[] GenerateSequence(SequenceData pSequenceData)
         {
-            string mode = p_sequenceData.sequenceMode.ToString(); ;
+            var mode = pSequenceData.sequenceMode.ToString();
+            ;
             switch (mode)
             {
                 case "Legacy":
-                    return SequenceGenerator.GenerateLegacy(p_sequenceData, barSteps);
+                    return SequenceGenerator.GenerateLegacy(pSequenceData, barSteps);
             }
+
             return null;
         }
 
         //Schedule playing sounds for a given schedule
-        void ScheduleSequence(Note[] p_sequenceNotes)
+        private void ScheduleSequence(Note[] pSequenceNotes, SequenceData pSequenceData)
         {
-            double stepLength = 60.0d / bpm;
-            double barOffset = stepLength * barSteps;
-            for (int i = 0; i < p_sequenceNotes.Length; i++)
+            var stepLength = 60.0d / bpm;
+            var barOffset = stepLength * barSteps;
+            var dspTime = AudioSettings.dspTime;
+
+            for (var i = 0; i < pSequenceNotes.Length; i++)
             {
-                if (p_sequenceNotes[i] != null)
-                    audioSources[i].PlayScheduled((AudioSettings.dspTime + barOffset) + (stepLength * i));
+                if (pSequenceNotes[i] != null)
+                {
+                    _audioSources[i].PlayScheduled((dspTime + 0.1f) + (stepLength * i));
+                    _audioSources[i].clip = pSequenceData.sound.sounds[0];
+                    _audioSources[i].pitch = pSequenceNotes[i].pitch;
+                }
             }
         }
 
@@ -104,93 +114,5 @@
         {
             return musicSequencesDimensions;
         }
-
-        /*
-
-        private void FixedUpdate()
-        {
-            if (localTick != globalTick)
-            {
-                localTick = globalTick;
-                //"Forward signal" to play sequences
-                PlayBar();
-            }
-        }
-
-        //Determine number of audio sources needed. Current calculation is based on number of different sounds per sequence.
-        int DetermineAudioSources()
-        {
-            int totalSoundClipsCount = 0;
-            for (int x = 0; x < musicSequences.Length; x++)
-            {
-                if (musicSequences[x] != null)
-                {
-                    //for (int i = 0; i < musicSequences[x].sounds.Length; i++)
-                    totalSoundClipsCount++;
-                }
-            }
-            return totalSoundClipsCount;
-        }
-
-        void AddAudioSources()
-        {
-            int audioSourceIndex = 0;
-
-            for (int x = 0; x < musicSequences.Length; x++)
-            {
-                if (musicSequences[x] != null)
-                {
-                    audioSources[audioSourceIndex] = gameObject.AddComponent<AudioSource>();
-                    audioSourceIndex++;
-                }
-            }
-        }
-
-        void PlayBar()
-        {
-            for (int y = 0; y < musicSequencesDimensions.y; y++)
-            {
-                PlaySequence(currentBar, y);
-            }
-        }
-
-        void PlaySequence(int x, int y)
-        {
-            if (GetMusicSequence(x, y) != null)
-            {
-                MusicSequence currentSequence = GetMusicSequence(x, y);
-                PlaySound(currentSequence.ReturnNoteData(localTick), currentSequence.sound);
-            }
-        }
-
-        void PlaySound(Note p_note, MGSound p_sound)
-        {
-
-            //audioSource.clip = p_sound.sounds[0];   //TODO: Add support for multisamples
-            audioSource.PlayScheduled(AudioSettings.dspTime);   //TODO: Schedule all sounds in sequence
-        }
-
-        public void Tick()
-        {
-            if (globalTick < barSteps)
-                globalTick++;
-            else
-            {
-                if (currentBar < musicSequencesDimensions.x)
-                    currentBar++;
-                else
-                    currentBar = 0;
-
-                globalTick = 0;
-            }
-
-            sequencerPos++;
-        }
-
-        void GenerateSequence(MusicSequence sequence)
-        {
-
-        }
-        */
     }
 }
