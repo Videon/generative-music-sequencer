@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="31d35606-899c-4a93-a50b-69a40c8f5242" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-41">
+              <caret line="105" column="66" selection-start-line="105" selection-start-column="66" selection-end-line="105" selection-end-column="66" />
+              <folding>
+                <marker date="1555178474243" expanded="false" signature="6:54" ph="..." />
+                <marker date="1555178474243" expanded="true" signature="69:4336" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="145:4334" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="900:963" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1042:1120" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1169:1221" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1244:1395" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1294:1385" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1423:2246" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="1607:2236" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="2016:2222" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="2405:2698" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="2517:2662" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="2863:3424" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="3069:3414" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="3130:3400" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="3473:3608" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="3618:3809" ph="/// Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordi ... " />
+                <marker date="1555178474243" expanded="true" signature="3868:3959" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="4041:4141" ph="{...}" />
+                <marker date="1555178474243" expanded="true" signature="4263:4328" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/Clock.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-382">
+              <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+              <folding>
+                <marker date="1555088975223" expanded="true" signature="33:2192" ph="{...}" />
+                <marker date="1555088975223" expanded="false" signature="46:88" ph="..." />
+                <marker date="1555088975223" expanded="true" signature="172:2190" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="600:1008" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="1068:2184" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="1381:2174" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="1516:1626" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="1674:2070" ph="{...}" />
+                <marker date="1555088975223" expanded="true" signature="1820:1937" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+              <folding>
+                <marker date="1555178589383" expanded="false" signature="6:78" ph="..." />
+                <marker date="1555178589383" expanded="true" signature="93:795" ph="{...}" />
+                <marker date="1555178589383" expanded="true" signature="336:793" ph="{...}" />
+                <marker date="1555178589383" expanded="true" signature="375:452" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/Note.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+              <folding>
+                <marker date="1555178635831" expanded="true" signature="17:582" ph="{...}" />
+                <marker date="1555178635831" expanded="true" signature="41:99" ph="{...}" />
+                <marker date="1555178635831" expanded="true" signature="124:216" ph="{...}" />
+                <marker date="1555178635831" expanded="true" signature="385:474" ph="{...}" />
+                <marker date="1555178635831" expanded="true" signature="520:580" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio Sequencer/Sequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Clock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Note.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Clock.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Note.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="10276">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="10276" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="11060">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="11060" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1cc7ede-72a5-408d-910c-0ceca85c8be7" name="Default Changelist" comment="" />
+      <created>1555057468991</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555057468991</updated>
+      <workItem from="1555057471906" duration="62000" />
+      <workItem from="1555057555961" duration="9153000" />
+      <workItem from="1555087612913" duration="3470000" />
+      <workItem from="1555098029440" duration="325000" />
+      <workItem from="1555176734135" duration="1797000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="17000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1933" height="1053" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.15059589" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Unity" order="11" />
+      <window_info anchor="bottom" id="Unit Tests" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="13" />
+      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.50053304" side_tool="true" weight="0.3997833" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Errors In Solution" order="4" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
+    </layout>
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+</project>
