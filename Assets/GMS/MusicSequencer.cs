@@ -49,7 +49,7 @@ namespace GMS
         {
             if (dspTime != prevDspTime)
             {
-                dspTime = prevDspTime;
+                prevDspTime = dspTime;
                 Tick();
             }
         }
@@ -103,7 +103,7 @@ namespace GMS
             {
                 if (pSequenceNotes[i] != null)
                 {
-                    _audioSources[i].PlayScheduled((currentDspTime + 0.1f) + (stepLength * i));
+                    _audioSources[i].PlayScheduled((currentDspTime) + (stepLength * i));
                     _audioSources[i].clip = pSequenceData.sound.sounds[0];
                     _audioSources[i].pitch = pSequenceNotes[i].pitch;
                 }

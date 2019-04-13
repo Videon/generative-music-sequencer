@@ -26,42 +26,4 @@ namespace GMS
         bool
             globalPitchVar; //Chord mode: Indicates whether the same pitch variation is applied to all notes or per note
     }
-
-    public class Note
-    {
-        public enum Modes
-        {
-            Single,
-            Chord,
-            Rhythm
-        };
-
-        public enum Length
-        {
-            Whole,
-            Half,
-            Quarter,
-            Eighth,
-            Sixteenth
-        };
-
-        public Modes mode;
-        public Length length;
-        public float pitch;
-
-        public Note[] chordNotes;
-
-        public Note(Modes p_mode, Length p_length, float p_pitch)
-        {
-            mode = p_mode;
-            //length = p_length;
-            pitch = p_pitch;
-        }
-
-        public Note(Modes p_mode, float p_pitch)
-        {
-            mode = p_mode;
-            pitch = p_pitch;
-        }
-    }
 }
