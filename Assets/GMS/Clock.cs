@@ -1,93 +1,79 @@
-﻿namespace GMS
+﻿using UnityEditor;
+
+namespace GMS
 {
     using UnityEngine;
     using System.Collections;
 
-    [RequireComponent(typeof(AudioSource)), RequireComponent(typeof(MusicSequencer))]
+    [RequireComponent(typeof(AudioSource))]
     public class Clock : MonoBehaviour
     {
         public double bpm = 140.0F;
+        public float gain = 0.5F;
+        public int signatureHi = 4;
+        public int signatureLo = 4;
+        private double nextTick = 0.0F;
+        private float amp = 0.0F;
+        private float phase = 0.0F;
+        private double sampleRate = 0.0F;
+        private int accent;
 
-        public bool running = true;
-
-        double elapsedTime = .0d;
+        public bool running = false;
 
         MusicSequencer musicSequencer;
 
         void Start()
         {
             //Init references
-            musicSequencer = GetComponent<MusicSequencer>();
+            musicSequencer = GetComponentInParent<MusicSequencer>();
 
             //Init variables
             bpm = musicSequencer.bpm;
 
-            //Run methods
-            //StartCoroutine(ClockTicker());
+            accent = signatureHi;
+            double startTick = AudioSettings.dspTime;
+            sampleRate = AudioSettings.outputSampleRate;
+            nextTick = startTick * sampleRate;
+            running = true;
         }
 
-
-        private void FixedUpdate()
+        void OnAudioFilterRead(float[] data, int channels)
         {
             if (!running)
                 return;
 
-            elapsedTime += Time.deltaTime;
-
-            if (elapsedTime >= 60.0d / bpm)
+            double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
+            double sample = AudioSettings.dspTime * sampleRate;
+            int dataLen = data.Length / channels;
+            int n = 0;
+            while (n < dataLen)
             {
-                if (musicSequencer)
-                    musicSequencer.Tick();
-                elapsedTime = .0d;
-            }
-        }
-
-        IEnumerator ClockTicker()
-        {
-            while (running)
-            {
-                musicSequencer.Tick();
-                yield return new WaitForSeconds((float)(60.0d / musicSequencer.bpm));
-            }
-        }
-
-        /*
-    void OnAudioFilterRead(float[] data, int channels)
-    {
-
-        if (!running)
-            return;
-
-        double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
-        double sample = AudioSettings.dspTime * sampleRate;
-        int dataLen = data.Length / channels;
-        int n = 0;
-        while (n < dataLen)
-        {
-            float x = gain * amp * Mathf.Sin(phase);
-            int i = 0;
-            while (i < channels)
-            {
-                data[n * channels + i] += x;
-                i++;
-            }
-            while (sample + n >= nextTick)
-            {
-                nextTick += samplesPerTick;
-                amp = 1.0F;
-                if (++accent > signatureHi)
+                float x = gain * amp * Mathf.Sin(phase);
+                int i = 0;
+                while (i < channels)
                 {
-                    accent = 1;
-                    amp *= 2.0F;
+                    data[n * channels + i] += x;
+                    i++;
                 }
-                //if (musicSequencer)
-                //musicSequencer.Tick();
+
+                while (sample + n >= nextTick)
+                {
+                    nextTick += samplesPerTick;
+                    amp = 1.0F;
+                    if (++accent > signatureHi)
+                    {
+                        accent = 1;
+                        amp *= 2.0F;
+                    }
+
+                    if (musicSequencer)
+                        musicSequencer.SetDspTime(AudioSettings.dspTime);
+                }
+
+                phase += amp * 0.3F;
+                amp *= 0.993F;
+                n++;
             }
-            phase += amp * 0.3F;
-            amp *= 0.993F;
-            n++;
         }
-    }
-    */
     }
 }

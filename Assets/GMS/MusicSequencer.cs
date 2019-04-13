@@ -1,9 +1,9 @@
-﻿namespace GMS
-{
-    using UnityEngine;
-    using UnityEditor;
-    using System.IO;
+﻿using UnityEngine;
+using UnityEditor;
+using System.IO;
 
+namespace GMS
+{
     [System.Serializable]
     public class MusicSequencer : MonoBehaviour
     {
@@ -11,7 +11,7 @@
         public double bpm = 60;
 
         ///<summary>The number of all steps in a bar</summary>
-        public int barSteps = 16;
+        public int barSteps = 15;
 
         ///<summary>Currently active bar</summary>
         int _currentBar = 0;
@@ -27,6 +27,8 @@
             musicSequencesDimensions =
                 new Vector2Int(0, 0); //Store "dimensions" of MusicSequences array to make it usable like a 2D array.
 
+        private double dspTime, prevDspTime;
+
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -36,6 +38,20 @@
         void Start()
         {
             _audioSources = GetComponents<AudioSource>();
+        }
+
+        public void SetDspTime(double pDspTime)
+        {
+            dspTime = pDspTime;
+        }
+
+        void Update()
+        {
+            if (dspTime != prevDspTime)
+            {
+                dspTime = prevDspTime;
+                Tick();
+            }
         }
 
         public void Tick()
@@ -62,6 +78,7 @@
             }
         }
 
+        ///<summary>Returns a new Note sequence based on the input SequenceData</summary>
         private Note[] GenerateSequence(SequenceData pSequenceData)
         {
             var mode = pSequenceData.sequenceMode.ToString();
@@ -75,18 +92,18 @@
             return null;
         }
 
-        //Schedule playing sounds for a given schedule
+        ///<summary>Schedule playing sounds for a given schedule</summary>
         private void ScheduleSequence(Note[] pSequenceNotes, SequenceData pSequenceData)
         {
             var stepLength = 60.0d / bpm;
             var barOffset = stepLength * barSteps;
-            var dspTime = AudioSettings.dspTime;
+            var currentDspTime = dspTime;
 
             for (var i = 0; i < pSequenceNotes.Length; i++)
             {
                 if (pSequenceNotes[i] != null)
                 {
-                    _audioSources[i].PlayScheduled((dspTime + 0.1f) + (stepLength * i));
+                    _audioSources[i].PlayScheduled((currentDspTime + 0.1f) + (stepLength * i));
                     _audioSources[i].clip = pSequenceData.sound.sounds[0];
                     _audioSources[i].pitch = pSequenceNotes[i].pitch;
                 }
@@ -99,6 +116,9 @@
             musicSequencesDimensions = new Vector2Int(x, y);
         }
 
+        /// <summary>
+        /// Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array
+        /// </summary>
         public SequenceData GetMusicSequence(int x, int y)
         {
             return musicSequences[y * musicSequencesDimensions.x + x];

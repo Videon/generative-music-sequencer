@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   polyphony: 1
   sounds:
-  - {fileID: 8300000, guid: b5a26ec11573a2c4db7f71d535f01f3e, type: 3}
+  - {fileID: 8300000, guid: 244d2277e84ec9644bb97fae2d7f2864, type: 3}
   multisample: 0
   pitchOffset: 0
   minPitchVar: 0
