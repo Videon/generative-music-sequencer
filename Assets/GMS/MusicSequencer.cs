@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
+using GMS.ScriptableObjects;
 
 namespace GMS
 {
@@ -11,7 +12,7 @@ namespace GMS
         public double bpm = 60;
 
         ///<summary>The number of all steps in a bar</summary>
-        public int barSteps = 15;
+        public int barSteps = 16;
 
         ///<summary>Currently active bar</summary>
         int _currentBar = 0;
@@ -32,6 +33,8 @@ namespace GMS
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            for (int i = 0; i < 256; i++)
+                gameObject.AddComponent<AudioSource>();
         }
 
         // Start is called before the first frame update
@@ -56,10 +59,10 @@ namespace GMS
 
         public void Tick()
         {
-            print("BAR> " + _currentBar);
-            print("STEP> " + currentStep);
+            print("BAR> " + (_currentBar + 1));
+            print("STEP> " + (currentStep + 1));
 
-            if (currentStep < barSteps)
+            if (currentStep < barSteps - 1)
                 currentStep++;
             else
             {
@@ -96,7 +99,7 @@ namespace GMS
         private void ScheduleSequence(Note[] pSequenceNotes, SequenceData pSequenceData)
         {
             var stepLength = 60.0d / bpm;
-            var barOffset = stepLength * barSteps;
+            var barOffset = stepLength * (barSteps - 1);
             var currentDspTime = dspTime;
 
             for (var i = 0; i < pSequenceNotes.Length; i++)
@@ -106,10 +109,14 @@ namespace GMS
                     _audioSources[i].PlayScheduled((currentDspTime) + (stepLength * i));
                     _audioSources[i].clip = pSequenceData.sound.sounds[0];
                     _audioSources[i].pitch = pSequenceNotes[i].pitch;
+                    print("scheduling " + i);
                 }
             }
         }
 
+        /// <summary>
+        /// Initialize sequences array
+        /// </summary>\
         public void InitSequences(int x, int y)
         {
             musicSequences = new SequenceData[x * y];
@@ -129,7 +136,9 @@ namespace GMS
             musicSequences[y * musicSequencesDimensions.x + x] = musicSequence;
         }
 
-        //Return the size of the 1D array as a 2D representation
+        ///<summary>
+        /// Return the size of the 1D array as a 2D representation
+        /// </summary>
         public Vector2Int GetMusicSequencesDimensions()
         {
             return musicSequencesDimensions;

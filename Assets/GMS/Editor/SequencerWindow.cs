@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections;
 using GMS;
+using GMS.ScriptableObjects;
 
 [System.Serializable]
 class SequencerWindow : EditorWindow
@@ -55,12 +56,12 @@ class SequencerWindow : EditorWindow
         RenderWindow();
     }
 
-    //Function to update the displayed values in this editor script.
+    ///<summary>Function to update the displayed values in this editor script.</summary>
     void UpdateValues()
     {
     }
 
-    //Function to display the values in this editor script window.
+    ///<summary>Function to display the values in this editor script window.</summary>
     void RenderWindow()
     {
         if (musicSequencer != null)

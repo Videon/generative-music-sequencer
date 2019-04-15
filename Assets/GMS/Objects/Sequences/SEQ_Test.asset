@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequenceMode: 2
   sound: {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
+  useGlobalScale: 1
+  globalPitchVar: 0
