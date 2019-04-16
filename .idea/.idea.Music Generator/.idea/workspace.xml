@@ -49,32 +49,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="354">
+              <caret line="141" selection-start-line="141" selection-end-line="141" />
               <folding>
-                <marker date="1555332072381" expanded="false" signature="6:83" ph="..." />
-                <marker date="1555332072381" expanded="true" signature="98:4662" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="174:4660" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="929:1090" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1169:1247" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1296:1348" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1371:1522" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1421:1512" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1550:2389" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="1750:2379" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="2159:2365" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="2548:2841" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="2660:2805" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="3006:3619" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="3218:3609" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="3279:3595" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="3629:3705" ph="/// Initialize sequences array ... " />
-                <marker date="1555332072381" expanded="true" signature="3753:3888" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="3898:4089" ph="/// Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordi ... " />
-                <marker date="1555332072381" expanded="true" signature="4148:4239" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="4321:4421" ph="{...}" />
-                <marker date="1555332072381" expanded="true" signature="4431:4533" ph="/// Return the size of the 1D array as a 2D representation ... " />
-                <marker date="1555332072381" expanded="true" signature="4589:4654" ph="{...}" />
+                <marker date="1555440098850" expanded="false" signature="6:83" ph="..." />
+                <marker date="1555440098850" expanded="true" signature="98:5162" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="174:5160" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="978:1139" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1218:1296" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1345:1397" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1420:1571" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1470:1561" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1599:2438" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="1799:2428" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="2208:2414" ph="{...}" />
+                <marker date="1555440098850" expanded="false" signature="2598:2891" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="2710:2855" ph="{...}" />
+                <marker date="1555440098850" expanded="false" signature="3056:3669" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="3268:3659" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="3329:3645" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="3861:4032" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="4269:4360" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="4514:4615" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="4727:4777" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="4892:4944" ph="{...}" />
+                <marker date="1555440098850" expanded="true" signature="5089:5154" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -99,10 +98,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="336">
               <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
               <folding>
-                <marker date="1555358883990" expanded="true" signature="6:78" ph="..." />
+                <marker date="1555358883990" expanded="false" signature="6:78" ph="..." />
                 <marker date="1555358883990" expanded="true" signature="111:1131" ph="{...}" />
                 <marker date="1555358883990" expanded="true" signature="354:1129" ph="{...}" />
                 <marker date="1555358883990" expanded="true" signature="393:470" ph="{...}" />
@@ -114,17 +113,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="176">
+              <caret line="12" column="97" selection-start-line="12" selection-start-column="97" selection-end-line="12" selection-end-column="97" />
               <folding>
-                <marker date="1555353065468" expanded="true" signature="51:1261" ph="{...}" />
-                <marker date="1555353065468" expanded="true" signature="58:147" ph="/// Class to store the enabled notes in a set scale. ... " />
-                <marker date="1555353065468" expanded="true" signature="276:1259" ph="{...}" />
-                <marker date="1555353065468" expanded="true" signature="346:412" ph="{...}" />
-                <marker date="1555353065468" expanded="true" signature="422:502" ph="/// Set individual values in scale ... " />
-                <marker date="1555353065468" expanded="true" signature="555:684" ph="{...}" />
-                <marker date="1555353065468" expanded="true" signature="694:904" ph="/// Set a range of values in scale. If input array is larger or smaller than scale array, scale will be filled as ... " />
-                <marker date="1555353065468" expanded="true" signature="950:1253" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="51:1873" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="58:147" ph="/// Class to store the enabled notes in a set scale. ... " />
+                <marker date="1555438416403" expanded="true" signature="276:1871" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="563:629" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="639:719" ph="/// Set individual values in scale. ... " />
+                <marker date="1555438416403" expanded="true" signature="772:901" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="952:1296" ph="{...}" />
+                <marker date="1555438416403" expanded="true" signature="975:1212" ph="/* A4 = 440hz ... */" />
+                <marker date="1555438416403" expanded="true" signature="1306:1516" ph="/// Set a range of values in scale. If input array is larger or smaller than scale array, scale will be filled as ... " />
+                <marker date="1555438416403" expanded="true" signature="1562:1865" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -133,56 +134,60 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="320">
               <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
               <folding>
-                <marker date="1555356884238" expanded="true" signature="6:107" ph="..." />
-                <marker date="1555356884238" expanded="true" signature="191:1514" ph="{...}" />
-                <marker date="1555356884238" expanded="true" signature="235:764" ph="{...}" />
-                <marker date="1555356884238" expanded="true" signature="432:672" ph="{...}" />
-                <marker date="1555356884238" expanded="true" signature="810:1512" ph="{...}" />
-                <marker date="1555356884238" expanded="true" signature="881:1484" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
-              <folding>
-                <marker date="1555350003324" expanded="true" signature="6:103" ph="..." />
-                <marker date="1555350003324" expanded="true" signature="163:3663" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="377:433" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="458:1516" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="588:1431" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="726:1334" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="1099:1287" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="1534:1570" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="1684:1696" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="1808:2563" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="1850:2557" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="2036:2124" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="2421:2547" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="2584:3661" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="3010:3613" ph="{...}" />
-                <marker date="1555350003324" expanded="true" signature="3230:3559" ph="{...}" />
+                <marker date="1555438424672" expanded="false" signature="6:126" ph="..." />
+                <marker date="1555438424672" expanded="true" signature="191:1514" ph="{...}" />
+                <marker date="1555438424672" expanded="true" signature="235:764" ph="{...}" />
+                <marker date="1555438424672" expanded="true" signature="432:672" ph="{...}" />
+                <marker date="1555438424672" expanded="true" signature="810:1512" ph="{...}" />
+                <marker date="1555438424672" expanded="true" signature="881:1484" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="338">
+              <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
               <folding>
-                <marker date="1554736630957" expanded="false" signature="6:108" ph="..." />
-                <marker date="1554736630957" expanded="true" signature="191:470" ph="{...}" />
-                <marker date="1554736630957" expanded="true" signature="235:468" ph="{...}" />
-                <marker date="1554736630957" expanded="true" signature="330:462" ph="{...}" />
+                <marker date="1555440521931" expanded="false" signature="6:103" ph="..." />
+                <marker date="1555440521931" expanded="true" signature="163:3887" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="377:433" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="458:1516" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="588:1431" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="726:1334" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="1099:1287" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="1534:1570" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="1684:1696" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="1808:2563" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="1850:2557" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="2036:2124" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="2421:2547" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="2584:3885" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="3092:3837" ph="{...}" />
+                <marker date="1555440521931" expanded="true" signature="3455:3783" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="33" column="93" selection-start-line="33" selection-start-column="93" selection-end-line="33" selection-end-column="93" />
+              <folding>
+                <marker date="1555441153335" expanded="true" signature="43:1189" ph="{...}" />
+                <marker date="1555441153335" expanded="false" signature="56:136" ph="..." />
+                <marker date="1555441153335" expanded="true" signature="188:1187" ph="{...}" />
+                <marker date="1555441153335" expanded="true" signature="281:534" ph="{...}" />
+                <marker date="1555441153335" expanded="true" signature="389:498" ph="{...}" />
+                <marker date="1555441153335" expanded="true" signature="636:1181" ph="{...}" />
+                <marker date="1555441153335" expanded="true" signature="964:1145" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -201,16 +206,16 @@
     </replaceStrings>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio Sequencer/Sequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Clock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/MGSound.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/AudioSourceManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/Note.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio Sequencer/Sequencer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/Clock.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/AudioSourceManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -219,15 +224,15 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/GMS/Clock.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/Note.cs" />
-        <option value="$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" />
-        <option value="$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/AudioSourceManager.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/Scale.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/ScriptableObjects/MGSound.cs" />
-        <option value="$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs" />
-        <option value="$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" />
       </list>
     </option>
   </component>
@@ -238,20 +243,10 @@
     <option name="height" value="500" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="UnityExplorer" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
-      </pane>
-      <pane id="FileSystemExplorer" />
-      <pane id="UnityExplorer">
-        <option name="show-hidden-items" value="false" />
-        <option name="show-project-names" value="true" />
-      </pane>
-      <pane id="AssemblyExplorer" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
@@ -303,11 +298,12 @@
       <workItem from="1555182475101" duration="917000" />
       <workItem from="1555233541911" duration="5338000" />
       <workItem from="1555328034894" duration="10327000" />
+      <workItem from="1555436460187" duration="4697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17263000" />
+    <option name="totallyTimeSpent" value="21960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -320,6 +316,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1933" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.13866666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -393,16 +390,15 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Assets/GMS/GMS.ScriptableObjects/SequenceData.cs" />
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/Scale.cs" />
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/MGSound.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        <state relative-caret-position="96">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="86" />
           <folding>
-            <marker date="1555332072215" expanded="true" signature="42:544" ph="{...}" />
-            <marker date="1555332072215" expanded="false" signature="55:135" ph="..." />
-            <marker date="1555332072215" expanded="true" signature="187:542" ph="{...}" />
-            <marker date="1555332072215" expanded="true" signature="282:536" ph="{...}" />
-            <marker date="1555332072215" expanded="true" signature="391:500" ph="{...}" />
+            <marker date="1555332128000" expanded="true" signature="6:78" ph="..." />
+            <marker date="1555332128000" expanded="true" signature="111:775" ph="{...}" />
+            <marker date="1555332128000" expanded="true" signature="244:773" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -453,57 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/Scale.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="30" />
-          <folding>
-            <marker date="1555332072381" expanded="false" signature="6:83" ph="..." />
-            <marker date="1555332072381" expanded="true" signature="98:4662" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="174:4660" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="929:1090" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1169:1247" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1296:1348" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1371:1522" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1421:1512" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1550:2389" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="1750:2379" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="2159:2365" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="2548:2841" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="2660:2805" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="3006:3619" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="3218:3609" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="3279:3595" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="3629:3705" ph="/// Initialize sequences array ... " />
-            <marker date="1555332072381" expanded="true" signature="3753:3888" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="3898:4089" ph="/// Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordi ... " />
-            <marker date="1555332072381" expanded="true" signature="4148:4239" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="4321:4421" ph="{...}" />
-            <marker date="1555332072381" expanded="true" signature="4431:4533" ph="/// Return the size of the 1D array as a 2D representation ... " />
-            <marker date="1555332072381" expanded="true" signature="4589:4654" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/MGSound.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="86" />
-          <folding>
-            <marker date="1555332128000" expanded="true" signature="6:78" ph="..." />
-            <marker date="1555332128000" expanded="true" signature="111:775" ph="{...}" />
-            <marker date="1555332128000" expanded="true" signature="244:773" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -516,44 +461,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="354">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
           <folding>
-            <marker date="1555356884238" expanded="true" signature="6:107" ph="..." />
-            <marker date="1555356884238" expanded="true" signature="191:1514" ph="{...}" />
-            <marker date="1555356884238" expanded="true" signature="235:764" ph="{...}" />
-            <marker date="1555356884238" expanded="true" signature="432:672" ph="{...}" />
-            <marker date="1555356884238" expanded="true" signature="810:1512" ph="{...}" />
-            <marker date="1555356884238" expanded="true" signature="881:1484" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <marker date="1555353065468" expanded="true" signature="51:1261" ph="{...}" />
-            <marker date="1555353065468" expanded="true" signature="58:147" ph="/// Class to store the enabled notes in a set scale. ... " />
-            <marker date="1555353065468" expanded="true" signature="276:1259" ph="{...}" />
-            <marker date="1555353065468" expanded="true" signature="346:412" ph="{...}" />
-            <marker date="1555353065468" expanded="true" signature="422:502" ph="/// Set individual values in scale ... " />
-            <marker date="1555353065468" expanded="true" signature="555:684" ph="{...}" />
-            <marker date="1555353065468" expanded="true" signature="694:904" ph="/// Set a range of values in scale. If input array is larger or smaller than scale array, scale will be filled as ... " />
-            <marker date="1555353065468" expanded="true" signature="950:1253" ph="{...}" />
+            <marker date="1555440098850" expanded="false" signature="6:83" ph="..." />
+            <marker date="1555440098850" expanded="true" signature="98:5162" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="174:5160" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="978:1139" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1218:1296" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1345:1397" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1420:1571" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1470:1561" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1599:2438" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="1799:2428" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="2208:2414" ph="{...}" />
+            <marker date="1555440098850" expanded="false" signature="2598:2891" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="2710:2855" ph="{...}" />
+            <marker date="1555440098850" expanded="false" signature="3056:3669" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="3268:3659" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="3329:3645" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="3861:4032" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="4269:4360" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="4514:4615" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="4727:4777" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="4892:4944" ph="{...}" />
+            <marker date="1555440098850" expanded="true" signature="5089:5154" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="336">
           <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
           <folding>
-            <marker date="1555358883990" expanded="true" signature="6:78" ph="..." />
+            <marker date="1555358883990" expanded="false" signature="6:78" ph="..." />
             <marker date="1555358883990" expanded="true" signature="111:1131" ph="{...}" />
             <marker date="1555358883990" expanded="true" signature="354:1129" ph="{...}" />
             <marker date="1555358883990" expanded="true" signature="393:470" ph="{...}" />
@@ -561,27 +505,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="12" column="97" selection-start-line="12" selection-start-column="97" selection-end-line="12" selection-end-column="97" />
+          <folding>
+            <marker date="1555438416403" expanded="true" signature="51:1873" ph="{...}" />
+            <marker date="1555438416403" expanded="true" signature="58:147" ph="/// Class to store the enabled notes in a set scale. ... " />
+            <marker date="1555438416403" expanded="true" signature="276:1871" ph="{...}" />
+            <marker date="1555438416403" expanded="true" signature="563:629" ph="{...}" />
+            <marker date="1555438416403" expanded="true" signature="639:719" ph="/// Set individual values in scale. ... " />
+            <marker date="1555438416403" expanded="true" signature="772:901" ph="{...}" />
+            <marker date="1555438416403" expanded="true" signature="952:1296" ph="{...}" />
+            <marker date="1555438416403" expanded="true" signature="975:1212" ph="/* A4 = 440hz ... */" />
+            <marker date="1555438416403" expanded="true" signature="1306:1516" ph="/// Set a range of values in scale. If input array is larger or smaller than scale array, scale will be filled as ... " />
+            <marker date="1555438416403" expanded="true" signature="1562:1865" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+        <state relative-caret-position="338">
+          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
           <folding>
-            <marker date="1555350003324" expanded="true" signature="6:103" ph="..." />
-            <marker date="1555350003324" expanded="true" signature="163:3663" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="377:433" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="458:1516" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="588:1431" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="726:1334" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="1099:1287" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="1534:1570" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="1684:1696" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="1808:2563" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="1850:2557" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="2036:2124" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="2421:2547" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="2584:3661" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="3010:3613" ph="{...}" />
-            <marker date="1555350003324" expanded="true" signature="3230:3559" ph="{...}" />
+            <marker date="1555440521931" expanded="false" signature="6:103" ph="..." />
+            <marker date="1555440521931" expanded="true" signature="163:3887" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="377:433" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="458:1516" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="588:1431" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="726:1334" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="1099:1287" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="1534:1570" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="1684:1696" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="1808:2563" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="1850:2557" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="2036:2124" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="2421:2547" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="2584:3885" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="3092:3837" ph="{...}" />
+            <marker date="1555440521931" expanded="true" signature="3455:3783" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/Editor/ScaleEditor.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <marker date="1555438424672" expanded="false" signature="6:126" ph="..." />
+            <marker date="1555438424672" expanded="true" signature="191:1514" ph="{...}" />
+            <marker date="1555438424672" expanded="true" signature="235:764" ph="{...}" />
+            <marker date="1555438424672" expanded="true" signature="432:672" ph="{...}" />
+            <marker date="1555438424672" expanded="true" signature="810:1512" ph="{...}" />
+            <marker date="1555438424672" expanded="true" signature="881:1484" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="33" column="93" selection-start-line="33" selection-start-column="93" selection-end-line="33" selection-end-column="93" />
+          <folding>
+            <marker date="1555441153335" expanded="true" signature="43:1189" ph="{...}" />
+            <marker date="1555441153335" expanded="false" signature="56:136" ph="..." />
+            <marker date="1555441153335" expanded="true" signature="188:1187" ph="{...}" />
+            <marker date="1555441153335" expanded="true" signature="281:534" ph="{...}" />
+            <marker date="1555441153335" expanded="true" signature="389:498" ph="{...}" />
+            <marker date="1555441153335" expanded="true" signature="636:1181" ph="{...}" />
+            <marker date="1555441153335" expanded="true" signature="964:1145" ph="{...}" />
           </folding>
         </state>
       </provider>

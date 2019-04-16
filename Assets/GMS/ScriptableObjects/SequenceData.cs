@@ -12,7 +12,8 @@ namespace GMS.ScriptableObjects
         {
             Solo,
             Chords,
-            Legacy
+            Legacy,
+            Simple
         };
 
         public SequenceMode sequenceMode = SequenceMode.Legacy;

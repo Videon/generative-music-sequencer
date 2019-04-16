@@ -10,6 +10,10 @@ namespace GMS.ScriptableObjects
     {
         public bool[] scaleActiveNotes;
 
+        //TODO Change calculation method to use double values in order to improve pitch precision
+        private const float rootPitch = 0.625f;
+        private float _pitchInterval = Mathf.Pow(2.0f, 1.0f / 12.0f);
+
         public Scale()
         {
             scaleActiveNotes = new bool[128];
@@ -22,6 +26,15 @@ namespace GMS.ScriptableObjects
         {
             if (posX > 0 && posX < scaleActiveNotes.Length)
                 scaleActiveNotes[posX] = pValue;
+        }
+
+        public float CalculateFrequency(int note)
+        {
+            //A4 = 440hz
+            //Increment factor for 12 semi-tones: 12th root(2) per semitone
+            //For calculating tone pitch: interval*increment factor
+            //C0 = 0.0625 (pitch factor) / C1=0.125 / C2=0.25 / C3 = 0.5 / C4 =1
+            return (rootPitch * Mathf.Pow(_pitchInterval, note)) / 10.0f;
         }
 
         /// <summary>

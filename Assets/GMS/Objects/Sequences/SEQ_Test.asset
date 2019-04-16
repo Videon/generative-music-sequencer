@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
   m_Name: SEQ_Test
   m_EditorClassIdentifier: 
-  sequenceMode: 2
+  sequenceMode: 3
   sound: {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
+  dontRepeatLast: 0
   useGlobalScale: 1
   globalPitchVar: 0

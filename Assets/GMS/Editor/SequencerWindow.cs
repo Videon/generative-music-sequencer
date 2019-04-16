@@ -71,7 +71,7 @@ class SequencerWindow : EditorWindow
 
             if (GUILayout.Button("Set Sequencer"))
             {
-                musicSequencer.InitSequences(bars, layers);
+                musicSequencer.InitSequencer(bars, layers);
             }
 
             musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
@@ -91,6 +91,7 @@ class SequencerWindow : EditorWindow
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.BeginVertical();
         EditorGUILayout.LabelField("", GUILayout.Width(50f)); //Dummy Label to offset table
+        EditorGUILayout.LabelField("Scales", GUILayout.Width(50f)); //Scale label
         for (int y = 0; y < layers; y++)
             EditorGUILayout.LabelField("Layer " + (y + 1), GUILayout.Width(50f));
         EditorGUILayout.EndVertical();
@@ -99,13 +100,15 @@ class SequencerWindow : EditorWindow
         {
             EditorGUILayout.BeginVertical();
             EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
+            musicSequencer.SetScale(x,
+                (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
-                musicSequencer.InitMusicSequences
+                musicSequencer.SetMusicSequence
                 (x, y,
                     (SequenceData) EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y),
-                        typeof(SequenceData), true));
+                        typeof(SequenceData), false));
             }
 
             EditorGUILayout.EndVertical();

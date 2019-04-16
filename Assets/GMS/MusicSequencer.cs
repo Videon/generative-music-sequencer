@@ -23,6 +23,7 @@ namespace GMS
         AudioSource _audioSource;
 
         [SerializeField] private SequenceData[] musicSequences;
+        [SerializeField] private Scale[] scales;
 
         [SerializeField] private Vector2Int
             musicSequencesDimensions =
@@ -81,7 +82,7 @@ namespace GMS
             }
         }
 
-        ///<summary>Returns a new Note sequence based on the input SequenceData</summary>
+        ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
         private Note[] GenerateSequence(SequenceData pSequenceData)
         {
             var mode = pSequenceData.sequenceMode.ToString();
@@ -90,6 +91,8 @@ namespace GMS
             {
                 case "Legacy":
                     return SequenceGenerator.GenerateLegacy(pSequenceData, barSteps);
+                case "Simple":
+                    return SequenceGenerator.GenerateSimple(pSequenceData, scales[_currentBar], barSteps);
             }
 
             return null;
@@ -114,31 +117,40 @@ namespace GMS
             }
         }
 
-        /// <summary>
-        /// Initialize sequences array
-        /// </summary>\
-        public void InitSequences(int x, int y)
+        /// <summary> Initialize sequences array and all other arrays that are dependant on the dimensions of bars(y) and layers(y)</summary>\
+        public void InitSequencer(int x, int y)
         {
             musicSequences = new SequenceData[x * y];
             musicSequencesDimensions = new Vector2Int(x, y);
+
+            scales = new Scale[x];
         }
 
-        /// <summary>
-        /// Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array
-        /// </summary>
+        /// <summary> Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array. </summary>
         public SequenceData GetMusicSequence(int x, int y)
         {
             return musicSequences[y * musicSequencesDimensions.x + x];
         }
 
-        public void InitMusicSequences(int x, int y, SequenceData musicSequence)
+        /// <summary> Sets the music sequence at given index. </summary>
+        public void SetMusicSequence(int x, int y, SequenceData pMusicSequence)
         {
-            musicSequences[y * musicSequencesDimensions.x + x] = musicSequence;
+            musicSequences[y * musicSequencesDimensions.x + x] = pMusicSequence;
         }
 
-        ///<summary>
-        /// Return the size of the 1D array as a 2D representation
-        /// </summary>
+        /// <summary> Returns the scale object at given index. </summary>
+        public Scale GetScale(int x)
+        {
+            return scales[x];
+        }
+
+        /// <summary> Sets the scale at given index. </summary>
+        public void SetScale(int x, Scale pScale)
+        {
+            scales[x] = pScale;
+        }
+
+        ///<summary> Return the size of the 1D array as a 2D representation. </summary>
         public Vector2Int GetMusicSequencesDimensions()
         {
             return musicSequencesDimensions;
