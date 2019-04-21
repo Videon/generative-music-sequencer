@@ -19,8 +19,7 @@ namespace GMS
 
         public int currentStep = 0;
 
-        private static AudioSource[] _audioSources;
-        AudioSource _audioSource;
+        private AudioSourceManager _audioSourceManager;
 
         [SerializeField] private SequenceData[] musicSequences;
         [SerializeField] private Scale[] scales;
@@ -34,14 +33,12 @@ namespace GMS
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            for (int i = 0; i < 256; i++)
-                gameObject.AddComponent<AudioSource>();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            _audioSources = GetComponents<AudioSource>();
+            _audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
         }
 
         public void SetDspTime(double pDspTime)
@@ -109,9 +106,8 @@ namespace GMS
             {
                 if (pSequenceNotes[i] != null)
                 {
-                    _audioSources[i].PlayScheduled((currentDspTime) + (stepLength * i));
-                    _audioSources[i].clip = pSequenceData.sound.sounds[0];
-                    _audioSources[i].pitch = pSequenceNotes[i].pitch;
+                    _audioSourceManager.ScheduleAudioSource(currentDspTime + (stepLength * i),
+                        pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
                     print("scheduling " + i);
                 }
             }
@@ -154,6 +150,14 @@ namespace GMS
         public Vector2Int GetMusicSequencesDimensions()
         {
             return musicSequencesDimensions;
+        }
+
+
+        //Get run-time information methods
+
+        public int GetCurrentBar()
+        {
+            return _currentBar;
         }
     }
 }

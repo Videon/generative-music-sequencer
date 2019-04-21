@@ -11,6 +11,8 @@ class SequencerWindow : EditorWindow
 
     Object source;
 
+    GUIStyle _style = new GUIStyle(EditorStyles.label);
+
     int bars = 1;
     int layers = 1;
 
@@ -99,7 +101,13 @@ class SequencerWindow : EditorWindow
         for (int x = 0; x < musicSequencer.GetMusicSequencesDimensions().x; x++)
         {
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
+            //Set color of bar label to green if bar is currently active, else set to default black color
+            if (musicSequencer.GetCurrentBar() == x)
+                _style.normal.textColor = Color.green;
+            else
+                _style.normal.textColor = Color.black;
+            
+            EditorGUILayout.LabelField("Bar " + (x + 1), _style, GUILayout.Width(50f));
             musicSequencer.SetScale(x,
                 (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)

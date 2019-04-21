@@ -8,7 +8,9 @@ namespace GMS.ScriptableObjects
     [CreateAssetMenu(fileName = "SCL_", menuName = "MusicGenerator/Scale", order = 1)]
     public class Scale : ScriptableObject
     {
+        public bool isWeighted;
         public bool[] scaleActiveNotes;
+        public float[] noteWeight;
 
         //TODO Change calculation method to use double values in order to improve pitch precision
         private const float rootPitch = 0.625f;

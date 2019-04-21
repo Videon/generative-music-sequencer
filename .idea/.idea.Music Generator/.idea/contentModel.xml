@@ -30,7 +30,6 @@
             <e p="SequenceData.cs" t="Include" />
           </e>
           <e p="SequenceGenerator.cs" t="Include" />
-          <e p="SequencePlayer.cs" t="Include" />
         </e>
         <e p="Plugins" t="Include">
           <e p="GitHub" t="Include">
