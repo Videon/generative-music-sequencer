@@ -288,7 +288,7 @@ internal class Sequencer : SequencerBase
     private float _volumeAfterFade;
 
     /// <summary>
-    /// Curernt percentage of fade progress.
+    /// Current percentage of fade progress.
     /// </summary>
     private float _fadeProgress = 1;
 

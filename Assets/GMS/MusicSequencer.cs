@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 using GMS.ScriptableObjects;
@@ -55,11 +56,8 @@ namespace GMS
             }
         }
 
-        public void Tick()
+        void Tick()
         {
-            print("BAR> " + (_currentBar + 1));
-            print("STEP> " + (currentStep + 1));
-
             if (currentStep < barSteps - 1)
                 currentStep++;
             else
@@ -70,11 +68,13 @@ namespace GMS
                     _currentBar = 0;
                 currentStep = 0;
 
+                double currentDspTime = dspTime;
+
                 //Generate and schedule next sequence at the beginning of the current bar
                 for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
                 {
-                    ScheduleSequence(GenerateSequence(GetMusicSequence(_currentBar, currentLayer)),
-                        GetMusicSequence(_currentBar, currentLayer));
+                    Note[] generatedSequence = GenerateSequence(GetMusicSequence(_currentBar, currentLayer));
+                    ScheduleSequence(currentDspTime, generatedSequence, GetMusicSequence(_currentBar, currentLayer));
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace GMS
         private Note[] GenerateSequence(SequenceData pSequenceData)
         {
             var mode = pSequenceData.sequenceMode.ToString();
-            ;
+
             switch (mode)
             {
                 case "Legacy":
@@ -95,31 +95,55 @@ namespace GMS
             return null;
         }
 
-        ///<summary>Schedule playing sounds for a given schedule</summary>
-        private void ScheduleSequence(Note[] pSequenceNotes, SequenceData pSequenceData)
+        ///<summary>Schedule playing sounds for a given schedule.</summary>
+        private void ScheduleSequence(double pDspTime, Note[] pSequenceNotes, SequenceData pSequenceData)
         {
-            var stepLength = 60.0d / bpm;
-            var barOffset = stepLength * (barSteps - 1);
-            var currentDspTime = dspTime;
-
-            for (var i = 0; i < pSequenceNotes.Length; i++)
+            if (pSequenceNotes.Length > 0)
             {
-                if (pSequenceNotes[i] != null)
+                var stepLength = 60.0d / bpm;
+                var barOffset = stepLength * (barSteps - 1);
+
+                for (var i = 0; i < pSequenceNotes.Length; i++)
                 {
-                    _audioSourceManager.ScheduleAudioSource(currentDspTime + (stepLength * i),
-                        pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
-                    print("scheduling " + i);
+                    if (pSequenceNotes[i] != null)
+                    {
+                        _audioSourceManager.ScheduleAudioSource(pDspTime + 1.0d + (stepLength * i),
+                            pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
+                    }
                 }
             }
         }
 
-        /// <summary> Initialize sequences array and all other arrays that are dependant on the dimensions of bars(y) and layers(y)</summary>\
+        /// <summary>Initialize sequences array and all other arrays that are dependant on the dimensions of bars(y) and layers(y).</summary>
+        /// <param name="x">Number of bars</param>
+        /// <param name="y">Number of layers</param>
         public void InitSequencer(int x, int y)
         {
+            SequenceData[] oldSequences = musicSequences;
+            Scale[] oldScales = scales;
+
+            //Initialize sequences and scale
             musicSequences = new SequenceData[x * y];
             musicSequencesDimensions = new Vector2Int(x, y);
 
             scales = new Scale[x];
+
+            //Fill new size with previous data
+            for (int i = 0; i < oldSequences.Length; i++)
+            {
+                if (i >= musicSequences.Length)
+                    break;
+                musicSequences[i] =
+                    oldSequences
+                        [i]; //TODO Use separate method to account for 2d array representation in editor window. 
+            }
+
+            for (int i = 0; i < oldScales.Length; i++)
+            {
+                if (i >= scales.Length)
+                    break;
+                scales[i] = oldScales[i];
+            }
         }
 
         /// <summary> Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array. </summary>
@@ -153,7 +177,7 @@ namespace GMS
         }
 
 
-        //Get run-time information methods
+        //Methods providing run-time information following
 
         public int GetCurrentBar()
         {

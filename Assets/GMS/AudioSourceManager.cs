@@ -41,7 +41,6 @@ namespace GMS
             audioSource.PlayScheduled(pScheduledTime);
             audioSource.clip = pClip;
             audioSource.pitch = pPitch;
-            print("scheduling " + audioSource);
         }
     }
 }

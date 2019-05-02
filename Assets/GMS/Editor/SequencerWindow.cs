@@ -11,7 +11,7 @@ class SequencerWindow : EditorWindow
 
     Object source;
 
-    GUIStyle _style = new GUIStyle(EditorStyles.label);
+    //GUIStyle _style = new GUIStyle(EditorStyles.label);
 
     int bars = 1;
     int layers = 1;
@@ -20,6 +20,11 @@ class SequencerWindow : EditorWindow
     public static void ShowWindow()
     {
         GetWindow(typeof(SequencerWindow));
+    }
+
+    private void OnInspectorUpdate()
+    {
+        Repaint();
     }
 
     public void Awake()
@@ -79,6 +84,10 @@ class SequencerWindow : EditorWindow
             musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
             musicSequencer.barSteps = EditorGUILayout.IntField("Steps per bar", musicSequencer.barSteps);
 
+            //Realtime song position info
+            EditorGUILayout.LabelField("Current Step: " + musicSequencer.currentStep, GUILayout.Width(100f));
+            EditorGUILayout.LabelField("Current Bar: " + musicSequencer.GetCurrentBar(), GUILayout.Width(100f));
+
             DrawGrid();
 
             if (GUI.GetNameOfFocusedControl().StartsWith("SequenceField"))
@@ -101,13 +110,15 @@ class SequencerWindow : EditorWindow
         for (int x = 0; x < musicSequencer.GetMusicSequencesDimensions().x; x++)
         {
             EditorGUILayout.BeginVertical();
-            //Set color of bar label to green if bar is currently active, else set to default black color
+            /*TODO FIX BAR MARKER TEXT CHANGE AND EDITOR CRASH
+             * //Set color of bar label to green if bar is currently active, else set to default black color
             if (musicSequencer.GetCurrentBar() == x)
                 _style.normal.textColor = Color.green;
             else
                 _style.normal.textColor = Color.black;
-            
-            EditorGUILayout.LabelField("Bar " + (x + 1), _style, GUILayout.Width(50f));
+            */
+            EditorGUILayout.LabelField("Bar " + (x + 1),
+                GUILayout.Width(50f)); //todo don't forget to add back _style here when above fix is implemented
             musicSequencer.SetScale(x,
                 (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
