@@ -37,6 +37,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GMS;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -170,6 +171,11 @@ internal class Sequencer : SequencerBase
 
     #region Variables
 
+    /// <summary>
+    /// MusicSequencer to send timing information to. (GMS Addon)
+    /// </summary>
+    MusicSequencer musicSequencer;
+    
     /// <summary>
     /// Queues events to be fired make sure we are not missing any of them. Only created if the event is used.
     /// </summary>
@@ -336,6 +342,9 @@ internal class Sequencer : SequencerBase
     /// <returns></returns>
     private IEnumerator Init()
     {
+        
+        musicSequencer = GetComponent<MusicSequencer>();
+        
         _audioSource = GetComponent<AudioSource>();
         _initialVolumeValue = _audioSource.volume;
         _volumeAfterFade = _initialVolumeValue;
@@ -693,7 +702,7 @@ internal class Sequencer : SequencerBase
     void OnAudioFilterRead(float[] bufferData, int bufferChannels)
     {
         if (!IsReady || !_isPlaying) return;
-        double samplesPerTick = _sampleRate * 60.0F / bpm * 4.0F / NumberOfSteps;
+        double samplesPerTick = _sampleRate * 60.0F / bpm * 4.0F / NumberOfSteps;    //TODO possible insertion point for pitching
         double sample = AudioSettings.dspTime * _sampleRate;
         if (_newPercentage > -1)
         {
@@ -722,7 +731,14 @@ internal class Sequencer : SequencerBase
                     {
                         _index = -1;
                     }
-                    if (onAnyStep != null) _fireAnyStepEvent++;
+
+                    if (onAnyStep != null)
+                    {
+                        _fireAnyStepEvent++;
+                        if (musicSequencer)
+                            musicSequencer.Tick();
+                    }
+                    
                 }
                 else break;
             }

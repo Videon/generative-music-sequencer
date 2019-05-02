@@ -66,6 +66,7 @@ public class SequencerGroup : SequencerBase
             {
                 if (!_sequencers[i].IsReady) return false;
             }
+
             return true;
         }
     }
@@ -99,6 +100,7 @@ public class SequencerGroup : SequencerBase
         {
             Play();
         }
+
         OnReady();
     }
 
@@ -114,6 +116,7 @@ public class SequencerGroup : SequencerBase
                 _sequencers[i].bpm = bpm;
                 _sequencers[i].Play();
             }
+
             IsPlaying = true;
         }
     }
@@ -141,6 +144,7 @@ public class SequencerGroup : SequencerBase
                 _sequencers[i].bpm = bpm;
                 _sequencers[i].Play(fadeDuration);
             }
+
             IsPlaying = true;
         }
     }
@@ -156,6 +160,7 @@ public class SequencerGroup : SequencerBase
             {
                 _sequencers[i].Stop();
             }
+
             IsPlaying = false;
         }
     }
@@ -172,6 +177,7 @@ public class SequencerGroup : SequencerBase
             {
                 _sequencers[i].Stop(fadeDuration);
             }
+
             IsPlaying = false;
         }
     }
@@ -188,6 +194,7 @@ public class SequencerGroup : SequencerBase
             {
                 _sequencers[i].Pause(isPaused);
             }
+
             IsPlaying = !IsPlaying;
         }
     }
@@ -205,6 +212,7 @@ public class SequencerGroup : SequencerBase
             {
                 _sequencers[i].Pause(isPaused, fadeDuration);
             }
+
             IsPlaying = !IsPlaying;
         }
     }
@@ -219,6 +227,7 @@ public class SequencerGroup : SequencerBase
         {
             _sequencers[i].Mute(isMuted);
         }
+
         this.isMuted = isMuted;
 
 #if UNITY_EDITOR
@@ -237,6 +246,7 @@ public class SequencerGroup : SequencerBase
         {
             _sequencers[i].Mute(isMuted, fadeDuration);
         }
+
         this.isMuted = isMuted;
 
 #if UNITY_EDITOR
@@ -315,6 +325,7 @@ public class SequencerGroup : SequencerBase
                 _isMutedOld = isMuted;
                 Mute(isMuted);
             }
+
             if (_oldBpm != bpm)
             {
                 _oldBpm = bpm;
@@ -348,6 +359,20 @@ public class SequencerGroup : SequencerBase
     #endregion
 
     #region Classes
+
+    #endregion
+
+    #region GenerativeMusicSequencerAddon
+
+    public void SetSequencers()
+    {
+#if UNITY_EDITOR
+        _isMutedOld = isMuted;
+        _oldBpm = bpm;
+#endif
+        _sequencers = GetComponentsInChildren<Sequencer>();
+        StartCoroutine(Init());
+    }
 
     #endregion
 }

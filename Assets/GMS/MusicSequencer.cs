@@ -6,9 +6,12 @@ using GMS.ScriptableObjects;
 
 namespace GMS
 {
-    [System.Serializable]
+    [System.Serializable, RequireComponent(typeof(SequencerGroup))]
     public class MusicSequencer : MonoBehaviour
     {
+        private SequencerGroup _sequencerGroup;
+        private Sequencer[] _sequencers;
+
         ///<summary>Tempo of music in BPM (beats per minute)</summary>
         public double bpm = 60;
 
@@ -39,7 +42,16 @@ namespace GMS
         // Start is called before the first frame update
         void Start()
         {
-            _audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
+            _sequencerGroup = GetComponent<SequencerGroup>();
+            _sequencers = new Sequencer[musicSequencesDimensions.y];
+            for (int i = 0; i < musicSequencesDimensions.y; i++)
+            {
+                GameObject.Instantiate(new GameObject("Layer_" + i, typeof(Sequencer)), transform);
+                _sequencers[i] = transform.GetChild(i).GetComponent<Sequencer>();
+            }
+
+            _sequencerGroup.SetSequencers();
+            //_audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
         }
 
         public void SetDspTime(double pDspTime)
@@ -47,16 +59,7 @@ namespace GMS
             dspTime = pDspTime;
         }
 
-        void Update()
-        {
-            if (dspTime != prevDspTime)
-            {
-                prevDspTime = dspTime;
-                Tick();
-            }
-        }
-
-        void Tick()
+        public void Tick()
         {
             if (currentStep < barSteps - 1)
                 currentStep++;
@@ -73,6 +76,8 @@ namespace GMS
                 //Generate and schedule next sequence at the beginning of the current bar
                 for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
                 {
+                    _sequencerGroup.SetSequencers();
+                    _sequencers[currentLayer].SetAudioClip(GetMusicSequence(_currentBar, currentLayer).sound.sounds[0]);
                     Note[] generatedSequence = GenerateSequence(GetMusicSequence(_currentBar, currentLayer));
                     ScheduleSequence(currentDspTime, generatedSequence, GetMusicSequence(_currentBar, currentLayer));
                 }
