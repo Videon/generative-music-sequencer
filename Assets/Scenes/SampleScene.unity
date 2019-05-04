@@ -300,12 +300,10 @@ MonoBehaviour:
   musicSequences:
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
-  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
-  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
   scales:
   - {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
   - {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
-  musicSequencesDimensions: {x: 2, y: 2}
+  musicSequencesDimensions: {x: 2, y: 1}
 --- !u!4 &398498239
 Transform:
   m_ObjectHideFlags: 0

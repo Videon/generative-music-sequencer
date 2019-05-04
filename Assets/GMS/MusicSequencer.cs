@@ -6,11 +6,13 @@ using GMS.ScriptableObjects;
 
 namespace GMS
 {
-    [System.Serializable, RequireComponent(typeof(SequencerGroup))]
+    [System.Serializable]
     public class MusicSequencer : MonoBehaviour
     {
-        private SequencerGroup _sequencerGroup;
-        private Sequencer[] _sequencers;
+        /// <summary>
+        /// The amount of time note scheduling is delayed by to give the system time to load/schedule sounds
+        /// </summary>
+        private double bufferTime = 0.2d;
 
         ///<summary>Tempo of music in BPM (beats per minute)</summary>
         public double bpm = 60;
@@ -42,16 +44,7 @@ namespace GMS
         // Start is called before the first frame update
         void Start()
         {
-            _sequencerGroup = GetComponent<SequencerGroup>();
-            _sequencers = new Sequencer[musicSequencesDimensions.y];
-            for (int i = 0; i < musicSequencesDimensions.y; i++)
-            {
-                GameObject.Instantiate(new GameObject("Layer_" + i, typeof(Sequencer)), transform);
-                _sequencers[i] = transform.GetChild(i).GetComponent<Sequencer>();
-            }
-
-            _sequencerGroup.SetSequencers();
-            //_audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
+            _audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
         }
 
         public void SetDspTime(double pDspTime)
@@ -59,7 +52,16 @@ namespace GMS
             dspTime = pDspTime;
         }
 
-        public void Tick()
+        void Update()
+        {
+            if (dspTime != prevDspTime)
+            {
+                prevDspTime = dspTime;
+                Tick();
+            }
+        }
+
+        void Tick()
         {
             if (currentStep < barSteps - 1)
                 currentStep++;
@@ -76,8 +78,6 @@ namespace GMS
                 //Generate and schedule next sequence at the beginning of the current bar
                 for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
                 {
-                    _sequencerGroup.SetSequencers();
-                    _sequencers[currentLayer].SetAudioClip(GetMusicSequence(_currentBar, currentLayer).sound.sounds[0]);
                     Note[] generatedSequence = GenerateSequence(GetMusicSequence(_currentBar, currentLayer));
                     ScheduleSequence(currentDspTime, generatedSequence, GetMusicSequence(_currentBar, currentLayer));
                 }
@@ -112,7 +112,7 @@ namespace GMS
                 {
                     if (pSequenceNotes[i] != null)
                     {
-                        _audioSourceManager.ScheduleAudioSource(pDspTime + 1.0d + (stepLength * i),
+                        _audioSourceManager.ScheduleAudioSource(pDspTime + (stepLength * i + bufferTime),
                             pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
                     }
                 }

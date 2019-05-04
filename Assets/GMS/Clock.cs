@@ -70,7 +70,7 @@ namespace GMS
                         musicSequencer.SetDspTime(AudioSettings.dspTime);
                 }
 
-                phase += amp * 0.3F;
+                phase += amp * 0.2F;
                 amp *= 0.993F;
                 n++;
             }

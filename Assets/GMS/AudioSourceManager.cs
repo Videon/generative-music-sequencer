@@ -39,6 +39,7 @@ namespace GMS
             _audioSources.Add(audioSource);
 
             audioSource.PlayScheduled(pScheduledTime);
+            audioSource.SetScheduledEndTime(pScheduledTime + 1.0d);
             audioSource.clip = pClip;
             audioSource.pitch = pPitch;
         }

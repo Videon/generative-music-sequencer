@@ -14,6 +14,8 @@
         <e p="GMS" t="Include">
           <e p="AudioPlayer.cs" t="Include" />
           <e p="AudioSourceManager.cs" t="Include" />
+          <e p="Audiotools.cs" t="Include" />
+          <e p="AudioToolsTester.cs" t="Include" />
           <e p="Clock.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="MusicSequencerEditor.cs" t="Include" />
@@ -57,15 +59,12 @@
           </e>
         </e>
       </e>
-      <e p="Library" t="ExcludeRecursive" />
       <e p="Music Generator.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp" t="ExcludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-      </e>
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\bausn\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\bausn\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Music Generator.-1142301340.00" t="ExcludeRecursive" />
+    <e p="C:\Users\bausn\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\bausn\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_Music Generator.-1142301340.00" t="ExcludeRecursive" />
   </component>
 </project>

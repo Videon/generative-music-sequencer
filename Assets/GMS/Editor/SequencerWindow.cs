@@ -85,8 +85,8 @@ class SequencerWindow : EditorWindow
             musicSequencer.barSteps = EditorGUILayout.IntField("Steps per bar", musicSequencer.barSteps);
 
             //Realtime song position info
-            EditorGUILayout.LabelField("Current Step: " + musicSequencer.currentStep, GUILayout.Width(100f));
-            EditorGUILayout.LabelField("Current Bar: " + musicSequencer.GetCurrentBar(), GUILayout.Width(100f));
+            EditorGUILayout.LabelField("Current Step: " + (musicSequencer.currentStep + 1), GUILayout.Width(100f));
+            EditorGUILayout.LabelField("Current Bar: " + (musicSequencer.GetCurrentBar() + 1), GUILayout.Width(100f));
 
             DrawGrid();
 
@@ -110,15 +110,7 @@ class SequencerWindow : EditorWindow
         for (int x = 0; x < musicSequencer.GetMusicSequencesDimensions().x; x++)
         {
             EditorGUILayout.BeginVertical();
-            /*TODO FIX BAR MARKER TEXT CHANGE AND EDITOR CRASH
-             * //Set color of bar label to green if bar is currently active, else set to default black color
-            if (musicSequencer.GetCurrentBar() == x)
-                _style.normal.textColor = Color.green;
-            else
-                _style.normal.textColor = Color.black;
-            */
-            EditorGUILayout.LabelField("Bar " + (x + 1),
-                GUILayout.Width(50f)); //todo don't forget to add back _style here when above fix is implemented
+            EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
             musicSequencer.SetScale(x,
                 (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
