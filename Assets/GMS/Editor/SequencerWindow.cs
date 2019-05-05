@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using GMS;
 using GMS.ScriptableObjects;
+using Object = UnityEngine.Object;
 
 [System.Serializable]
 class SequencerWindow : EditorWindow
@@ -95,6 +97,11 @@ class SequencerWindow : EditorWindow
                 Debug.Log("COOL"); //Insert code here to draw preview window for Sequence Element
             }
         }
+    }
+
+    private void OnValidate()
+    {
+        throw new NotImplementedException();
     }
 
     void DrawGrid()

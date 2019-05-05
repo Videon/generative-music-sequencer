@@ -6,16 +6,60 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Editor" t="Include">
-          <e p="Audio Sequencer" t="Include">
-            <e p="EditorExtension.cs" t="Include" />
+        <e p="Chucktester.cs" t="Include" />
+        <e p="Chunity" t="Include">
+          <e p="1. INSTALL.txt" t="Include" />
+          <e p="2. SETUP and TUTORIALS.txt" t="Include" />
+          <e p="3. REFERENCE.txt" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="Chuck.cs" t="Include" />
+            <e p="ChuckMainInstance.cs" t="Include" />
+            <e p="ChuckSubInstance.cs" t="Include" />
+            <e p="DemoScene" t="Include">
+              <e p="ChunityDemoDescription.cs" t="Include" />
+              <e p="ChunityDemoSwitcher.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="ChuckExecutionOrder.cs" t="Include" />
+            </e>
+            <e p="Examples" t="Include">
+              <e p="ChunityExampleConstructCodeString.cs" t="Include" />
+              <e p="ChunityExampleEditParameterWhileRunning.cs" t="Include" />
+              <e p="ChunityExampleEditParameterWhileRunningUsingClasses.cs" t="Include" />
+              <e p="ChunityExampleGlobalEvent.cs" t="Include" />
+              <e p="ChunityExampleGlobalEventWithHelperComponents.cs" t="Include" />
+              <e p="ChunityExampleGlobalFloatArray.cs" t="Include" />
+              <e p="ChunityExampleGlobalIntArray.cs" t="Include" />
+              <e p="ChunityExampleGlobalString.cs" t="Include" />
+              <e p="ChunityExampleKeyboardInput.cs" t="Include" />
+              <e p="ChunityExampleLogLevel.cs" t="Include" />
+              <e p="ChunityExampleMicrophone.cs" t="Include" />
+              <e p="ChunityExampleMidiInput.cs" t="Include" />
+              <e p="ChunityExampleMouseInput.cs" t="Include" />
+              <e p="ChunityExamplePrintStatements.cs" t="Include" />
+              <e p="ChunityExampleRunCode.cs" t="Include" />
+              <e p="ChunityExampleRunFromFile.cs" t="Include" />
+              <e p="ChunityExampleStopScript.cs" t="Include" />
+              <e p="ChunityExampleTimeAdvancer.cs" t="Include" />
+              <e p="ChunityExampleTimeAdvancerWithHelperComponents.cs" t="Include" />
+            </e>
+            <e p="Utility" t="Include">
+              <e p="ChuckEventListener.cs" t="Include" />
+              <e p="ChuckFloatSyncer.cs" t="Include" />
+              <e p="ChuckIntSyncer.cs" t="Include" />
+              <e p="ChuckStringSyncer.cs" t="Include" />
+              <e p="TheChuck.cs" t="Include" />
+            </e>
           </e>
         </e>
+        <e p="ClockChuck.cs" t="Include" />
         <e p="GMS" t="Include">
           <e p="AudioPlayer.cs" t="Include" />
-          <e p="AudioSourceManager.cs" t="Include" />
           <e p="Audiotools.cs" t="Include" />
           <e p="AudioToolsTester.cs" t="Include" />
+          <e p="ChucK" t="Include">
+            <e p="ChuckScheduler.cs" t="Include" />
+          </e>
           <e p="Clock.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="MusicSequencerEditor.cs" t="Include" />
@@ -43,21 +87,7 @@
             </e>
           </e>
         </e>
-        <e p="Sample" t="Include">
-          <e p="Sample.cs" t="Include" />
-        </e>
-        <e p="Scripts" t="Include">
-          <e p="Audio Sequencer" t="Include">
-            <e p="Helper" t="Include">
-              <e p="BitMaskAttribute.cs" t="Include" />
-              <e p="EnumExtensions.cs" t="Include" />
-            </e>
-            <e p="Sequencer.cs" t="Include" />
-            <e p="SequencerBase.cs" t="Include" />
-            <e p="SequencerDriver.cs" t="Include" />
-            <e p="SequencerGroup.cs" t="Include" />
-          </e>
-        </e>
+        <e p="Sampleplayer.cs" t="Include" />
       </e>
       <e p="Music Generator.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

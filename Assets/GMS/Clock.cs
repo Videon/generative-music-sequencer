@@ -66,8 +66,8 @@ namespace GMS
                         amp *= 2.0F;
                     }
 
-                    if (musicSequencer)
-                        musicSequencer.SetDspTime(AudioSettings.dspTime);
+//                    if (musicSequencer)
+//                        musicSequencer.SetDspTime(AudioSettings.dspTime);
                 }
 
                 phase += amp * 0.2F;

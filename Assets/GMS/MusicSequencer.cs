@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -9,13 +11,14 @@ namespace GMS
     [System.Serializable]
     public class MusicSequencer : MonoBehaviour
     {
+        private ClockChuck _clockChuck;
+        private ChuckSubInstance[] _chuckSubInstances;
+
         /// <summary>
         /// The amount of time note scheduling is delayed by to give the system time to load/schedule sounds
         /// </summary>
-        private double bufferTime = 0.2d;
-
         ///<summary>Tempo of music in BPM (beats per minute)</summary>
-        public double bpm = 60;
+        public double bpm = 120;
 
         ///<summary>The number of all steps in a bar</summary>
         public int barSteps = 16;
@@ -24,8 +27,6 @@ namespace GMS
         int _currentBar = 0;
 
         public int currentStep = 0;
-
-        private AudioSourceManager _audioSourceManager;
 
         [SerializeField] private SequenceData[] musicSequences;
         [SerializeField] private Scale[] scales;
@@ -39,29 +40,26 @@ namespace GMS
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-        }
+            
+            _clockChuck = GameObject.FindGameObjectWithTag("Clock").GetComponent<ClockChuck>();
+            _clockChuck.SetClock((float) bpm);
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            _audioSourceManager = gameObject.GetComponentInChildren<AudioSourceManager>();
-        }
-
-        public void SetDspTime(double pDspTime)
-        {
-            dspTime = pDspTime;
-        }
-
-        void Update()
-        {
-            if (dspTime != prevDspTime)
+            _chuckSubInstances = GetComponentsInChildren<ChuckSubInstance>();
+            /*for (int i = 0; i < GetMusicSequencesDimensions().y; i++)
             {
-                prevDspTime = dspTime;
-                Tick();
-            }
+                GameObject go = GameObject.Instantiate(new GameObject(),transform);
+                go.AddComponent<ChuckSubInstance>();
+                ChuckSubInstance csi = go.GetComponent<ChuckSubInstance>();
+                
+                
+                go.name = "Layer_" + (i + 1);
+
+                csi.chuckMainInstance = GetComponentInChildren<ChuckMainInstance>();
+                _chuckSubInstances.Add(csi);
+            }*/
         }
 
-        void Tick()
+        public void Tick()
         {
             if (currentStep < barSteps - 1)
                 currentStep++;
@@ -79,7 +77,8 @@ namespace GMS
                 for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
                 {
                     Note[] generatedSequence = GenerateSequence(GetMusicSequence(_currentBar, currentLayer));
-                    ScheduleSequence(currentDspTime, generatedSequence, GetMusicSequence(_currentBar, currentLayer));
+                    ScheduleSequence(currentLayer, currentDspTime, generatedSequence,
+                        GetMusicSequence(_currentBar, currentLayer));
                 }
             }
         }
@@ -101,7 +100,7 @@ namespace GMS
         }
 
         ///<summary>Schedule playing sounds for a given schedule.</summary>
-        private void ScheduleSequence(double pDspTime, Note[] pSequenceNotes, SequenceData pSequenceData)
+        private void ScheduleSequence(int layer, double pDspTime, Note[] pSequenceNotes, SequenceData pSequenceData)
         {
             if (pSequenceNotes.Length > 0)
             {
@@ -112,7 +111,7 @@ namespace GMS
                 {
                     if (pSequenceNotes[i] != null)
                     {
-                        _audioSourceManager.ScheduleAudioSource(pDspTime + (stepLength * i + bufferTime),
+                        ChuckScheduler.ScheduleSound(_chuckSubInstances[layer], pDspTime + (stepLength * i),
                             pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
                     }
                 }
