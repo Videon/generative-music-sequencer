@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SND_TestSound
   m_EditorClassIdentifier: 
   polyphony: 1
-  sounds:
-  - {fileID: 8300000, guid: 244d2277e84ec9644bb97fae2d7f2864, type: 3}
+  fileName: B4
   multisample: 0
   pitchOffset: 0
   minPitchVar: 0

@@ -112,7 +112,7 @@ namespace GMS
                     if (pSequenceNotes[i] != null)
                     {
                         ChuckScheduler.ScheduleSound(_chuckSubInstances[layer], pDspTime + (stepLength * i),
-                            pSequenceData.sound.sounds[0], pSequenceNotes[i].pitch);
+                            pSequenceData.sound.fileName, pSequenceNotes[i].pitch);
                     }
                 }
             }

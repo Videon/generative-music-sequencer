@@ -10,7 +10,7 @@ namespace GMS.ScriptableObjects
         [SerializeField, Tooltip("Maximum number of notes that can be played simultaneously")]
         public int polyphony = 1;
 
-        [SerializeField] public AudioClip[] sounds;
+        [SerializeField] public string fileName;    //The filename of the assigned sound
 
         [SerializeField]
         bool multisample; //Indicates whether sound consists of one sample that is pitched or one sample per note.
