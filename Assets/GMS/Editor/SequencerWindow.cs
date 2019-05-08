@@ -18,6 +18,8 @@ class SequencerWindow : EditorWindow
     int bars = 1;
     int layers = 1;
 
+    Editor objectEditor = null;
+
     [MenuItem("Window/MusicGenerator/SequencerWindow")]
     public static void ShowWindow()
     {
@@ -51,7 +53,7 @@ class SequencerWindow : EditorWindow
                     layers = musicSequencer.GetMusicSequencesDimensions().y;
                 }
 
-                RenderWindow();
+                RenderWindowSequencer();
             }
             else
                 EditorGUILayout.LabelField("Select Sequencer first");
@@ -62,7 +64,12 @@ class SequencerWindow : EditorWindow
 
     void OnGUI()
     {
-        RenderWindow();
+        if (musicSequencer != null)
+        {
+            RenderWindowGeneralSettings();
+            RenderWindowSequencer();
+            RenderWindowItemInspector();
+        }
     }
 
     ///<summary>Function to update the displayed values in this editor script.</summary>
@@ -70,42 +77,35 @@ class SequencerWindow : EditorWindow
     {
     }
 
-    ///<summary>Function to display the values in this editor script window.</summary>
-    void RenderWindow()
+    void RenderWindowGeneralSettings()
     {
-        if (musicSequencer != null)
+        EditorGUILayout.BeginVertical();
+        bars = EditorGUILayout.IntField("Bars", bars);
+        layers = EditorGUILayout.IntField("Layers", layers);
+
+        if (GUILayout.Button("Set Sequencer"))
         {
-            bars = EditorGUILayout.IntField("Bars", bars);
-            layers = EditorGUILayout.IntField("Layers", layers);
-
-            if (GUILayout.Button("Set Sequencer"))
-            {
-                musicSequencer.InitSequencer(bars, layers);
-            }
-
-            musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
-            musicSequencer.barSteps = EditorGUILayout.IntField("Steps per bar", musicSequencer.barSteps);
-
-            //Realtime song position info
-            EditorGUILayout.LabelField("Current Step: " + (musicSequencer.currentStep + 1), GUILayout.Width(100f));
-            EditorGUILayout.LabelField("Current Bar: " + (musicSequencer.GetCurrentBar() + 1), GUILayout.Width(100f));
-
-            DrawGrid();
-
-            if (GUI.GetNameOfFocusedControl().StartsWith("SequenceField"))
-            {
-                Debug.Log("COOL"); //Insert code here to draw preview window for Sequence Element
-            }
+            musicSequencer.InitSequencer(bars, layers);
         }
+
+        EditorGUILayout.BeginHorizontal();
+        musicSequencer.bpm = EditorGUILayout.DoubleField("BPM", musicSequencer.bpm);
+        musicSequencer.barSteps = EditorGUILayout.IntField("Steps per bar", musicSequencer.barSteps);
+        EditorGUILayout.EndHorizontal();
+
+        //Realtime song position info
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Current Bar: " + (musicSequencer.GetCurrentBar() + 1), GUILayout.Width(100f));
+        EditorGUILayout.LabelField("Current Step: " + (musicSequencer.currentStep + 1), GUILayout.Width(100f));
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.EndVertical();
     }
 
-    private void OnValidate()
+    ///<summary>Function to display the values in this editor script window.</summary>
+    void RenderWindowSequencer()
     {
-        throw new NotImplementedException();
-    }
-
-    void DrawGrid()
-    {
+        GUI.SetNextControlName("");
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.BeginVertical();
         EditorGUILayout.LabelField("", GUILayout.Width(50f)); //Dummy Label to offset table
@@ -118,20 +118,66 @@ class SequencerWindow : EditorWindow
         {
             EditorGUILayout.BeginVertical();
             EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
+            GUI.SetNextControlName("ScaleField_" + x + ",0");
             musicSequencer.SetScale(x,
                 (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
-                musicSequencer.SetMusicSequence
-                (x, y,
-                    (SequenceData) EditorGUILayout.ObjectField(musicSequencer.GetMusicSequence(x, y),
-                        typeof(SequenceData), false));
+                musicSequencer.SetMusicSequence(x, y, (SequenceData) EditorGUILayout.ObjectField(
+                    musicSequencer.GetMusicSequence(x, y),
+                    typeof(SequenceData), false));
             }
 
             EditorGUILayout.EndVertical();
         }
 
         EditorGUILayout.EndHorizontal();
+    }
+
+    ///<summary>Draws the content of the selected object in the sequencer.</summary>
+    void RenderWindowItemInspector()
+    {
+        GUI.SetNextControlName("");
+        Debug.Log(Selection.activeObject);
+        string focusedControl = GUI.GetNameOfFocusedControl();
+        if (!string.IsNullOrEmpty(focusedControl))
+        {
+            int typeSeparatorIndex = GetStringSplitterCharIndex(focusedControl, '_');
+            int coordSeparatorIndex = GetStringSplitterCharIndex(focusedControl, ',');
+
+
+            int x = int.Parse(focusedControl.Substring(typeSeparatorIndex + 1,
+                coordSeparatorIndex - (typeSeparatorIndex + 1)));
+            int y = int.Parse(focusedControl.Substring(coordSeparatorIndex + 1,
+                focusedControl.Length - (coordSeparatorIndex + 1)));
+
+            string objectType = focusedControl.Substring(0, typeSeparatorIndex);
+            switch (objectType)
+            {
+                case "ScaleField":
+                    if (x > -1)
+                        objectEditor = Editor.CreateEditor(musicSequencer.GetScale(x), typeof(ScaleEditor));
+                    break;
+                case "SequenceField":
+                    if (x > -1 && y > -1)
+                        objectEditor = Editor.CreateEditor(musicSequencer.GetMusicSequence(x, y));
+                    break;
+            }
+        }
+
+        if (objectEditor != null)
+            objectEditor.DrawDefaultInspector();
+    }
+
+    private int GetStringSplitterCharIndex(string pString, char pSplitterChar)
+    {
+        for (int i = 0; i < pString.Length; i++)
+            if (pString[i].Equals(pSplitterChar))
+            {
+                return i;
+            }
+
+        return -1;
     }
 }

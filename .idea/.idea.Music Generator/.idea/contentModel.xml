@@ -6,6 +6,7 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="AppQuitter.cs" t="Include" />
         <e p="Chunity" t="Include">
           <e p="1. INSTALL.txt" t="Include" />
           <e p="2. SETUP and TUTORIALS.txt" t="Include" />
@@ -52,7 +53,6 @@
           </e>
         </e>
         <e p="GMS" t="Include">
-          <e p="AudioPlayer.cs" t="Include" />
           <e p="Audiotools.cs" t="Include" />
           <e p="AudioToolsTester.cs" t="Include" />
           <e p="ChucK" t="Include">
@@ -71,6 +71,7 @@
           <e p="Note.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="MGSound.cs" t="Include" />
+            <e p="Rhythm.cs" t="Include" />
             <e p="Scale.cs" t="Include" />
             <e p="SequenceData.cs" t="Include" />
           </e>
