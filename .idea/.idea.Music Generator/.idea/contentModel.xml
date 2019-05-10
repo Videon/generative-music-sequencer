@@ -69,6 +69,7 @@
           <e p="GMSLayer.cs" t="Include" />
           <e p="MusicSequencer.cs" t="Include" />
           <e p="Note.cs" t="Include" />
+          <e p="RhythmGenerator.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="MGSound.cs" t="Include" />
             <e p="Rhythm.cs" t="Include" />

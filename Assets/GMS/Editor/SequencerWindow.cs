@@ -18,7 +18,7 @@ class SequencerWindow : EditorWindow
     int bars = 1;
     int layers = 1;
 
-    Editor objectEditor = null;
+    private Editor _itemEditor;
 
     [MenuItem("Window/MusicGenerator/SequencerWindow")]
     public static void ShowWindow()
@@ -98,7 +98,7 @@ class SequencerWindow : EditorWindow
         EditorGUILayout.LabelField("Current Bar: " + (musicSequencer.GetCurrentBar() + 1), GUILayout.Width(100f));
         EditorGUILayout.LabelField("Current Step: " + (musicSequencer.currentStep + 1), GUILayout.Width(100f));
         EditorGUILayout.EndHorizontal();
-
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.EndVertical();
     }
 
@@ -109,6 +109,7 @@ class SequencerWindow : EditorWindow
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.BeginVertical();
         EditorGUILayout.LabelField("", GUILayout.Width(50f)); //Dummy Label to offset table
+        EditorGUILayout.LabelField("Rhythm", GUILayout.Width(50f)); //Rhythm label
         EditorGUILayout.LabelField("Scales", GUILayout.Width(50f)); //Scale label
         for (int y = 0; y < layers; y++)
             EditorGUILayout.LabelField("Layer " + (y + 1), GUILayout.Width(50f));
@@ -118,9 +119,19 @@ class SequencerWindow : EditorWindow
         {
             EditorGUILayout.BeginVertical();
             EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
+
+            //Draw rhythm object fields
+            GUI.SetNextControlName(("RhythmField_" + x +
+                                    ",0")); //",0" -> 0 is a dummy value to feed parameters. //todo check if overloading methods is an option.
+            musicSequencer.SetRhythm(x,
+                (Rhythm) EditorGUILayout.ObjectField(musicSequencer.GetRhythm(x), typeof(Rhythm), false));
+
+            //Draw scale object fields
             GUI.SetNextControlName("ScaleField_" + x + ",0");
             musicSequencer.SetScale(x,
                 (Scale) EditorGUILayout.ObjectField(musicSequencer.GetScale(x), typeof(Scale), false));
+
+            //Draw sequence object fields
             for (int y = 0; y < musicSequencer.GetMusicSequencesDimensions().y; y++)
             {
                 GUI.SetNextControlName("SequenceField_" + x + "," + y);
@@ -133,14 +144,18 @@ class SequencerWindow : EditorWindow
         }
 
         EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginVertical();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.EndVertical();
     }
 
     ///<summary>Draws the content of the selected object in the sequencer.</summary>
     void RenderWindowItemInspector()
     {
         GUI.SetNextControlName("");
-        Debug.Log(Selection.activeObject);
         string focusedControl = GUI.GetNameOfFocusedControl();
+        //Debug.Log(GUI.GetNameOfFocusedControl());
+
         if (!string.IsNullOrEmpty(focusedControl))
         {
             int typeSeparatorIndex = GetStringSplitterCharIndex(focusedControl, '_');
@@ -155,19 +170,36 @@ class SequencerWindow : EditorWindow
             string objectType = focusedControl.Substring(0, typeSeparatorIndex);
             switch (objectType)
             {
+                case "RhythmField":
+                    if (x > -1)
+                    {
+                        _itemEditor = Editor.CreateEditor(musicSequencer.GetRhythm(x));
+                    }
+
+                    break;
+
                 case "ScaleField":
                     if (x > -1)
-                        objectEditor = Editor.CreateEditor(musicSequencer.GetScale(x), typeof(ScaleEditor));
+                    {
+                        _itemEditor =
+                            (ScaleEditor) Editor.CreateEditor(musicSequencer.GetScale(x), typeof(ScaleEditor));
+                    }
+
                     break;
                 case "SequenceField":
                     if (x > -1 && y > -1)
-                        objectEditor = Editor.CreateEditor(musicSequencer.GetMusicSequence(x, y));
+                    {
+                        _itemEditor = Editor.CreateEditor(musicSequencer.GetMusicSequence(x, y));
+                    }
+
                     break;
             }
         }
 
-        if (objectEditor != null)
-            objectEditor.DrawDefaultInspector();
+        if (_itemEditor != null)
+        {
+            _itemEditor.OnInspectorGUI();
+        }
     }
 
     private int GetStringSplitterCharIndex(string pString, char pSplitterChar)

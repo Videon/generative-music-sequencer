@@ -6,11 +6,25 @@ namespace GMS
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class SequenceGenerator : MonoBehaviour
+    public static class SequenceGenerator
     {
-        public static Note[] GenerateLegacy(SequenceData pSequenceData, int pBarSteps)
+        public static Note[] GenerateSequence(int pNoteCount, Scale pScale, SequenceData pSequenceData)
         {
-            Note[] note = new Note[pBarSteps];
+            SequenceData.SequenceMode sequenceMode = pSequenceData.sequenceMode;
+            switch (sequenceMode)
+            {
+                case SequenceData.SequenceMode.Legacy:
+                    return GenerateLegacy(pNoteCount, pSequenceData);
+                case SequenceData.SequenceMode.Simple:
+                    return GenerateSimple(pNoteCount, pScale, pSequenceData);
+            }
+
+            return null;
+        }
+
+        public static Note[] GenerateLegacy(int pNoteCount, SequenceData pSequenceData)
+        {
+            Note[] note = new Note[pNoteCount];
 
             for (int i = 0; i < note.Length; i++)
             {
@@ -20,9 +34,9 @@ namespace GMS
             return note;
         }
 
-        public static Note[] GenerateSimple(SequenceData pSequenceData, Scale pScale, int pBarSteps)
+        public static Note[] GenerateSimple(int pNoteCount, Scale pScale, SequenceData pSequenceData)
         {
-            Note[] note = new Note[pBarSteps];
+            Note[] note = new Note[pNoteCount];
             List<int> enabledNotes = new List<int>();
             for (int i = 0; i < pScale.scaleActiveNotes.Length; i++)
                 if (pScale.scaleActiveNotes[i] == true)

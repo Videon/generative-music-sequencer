@@ -12,17 +12,26 @@ public class ScaleEditor : Editor
         Scale scale = (Scale) target;
         bool[] activeNotes = scale.scaleActiveNotes;
 
+        EditorGUILayout.BeginHorizontal();
+        int row = 0;
         EditorGUILayout.BeginVertical();
-        for (int i = activeNotes.Length - 1; i >= 0; i--)
+        for (int i = 0; i < activeNotes.Length; i++)
         {
-            EditorGUILayout.BeginHorizontal();
-            //TODO STUFF
-            activeNotes[i] = EditorGUILayout.Toggle((NoteToName(i) + (int) (i / 12)), activeNotes[i]);
-            EditorGUILayout.EndHorizontal();
+            if (row != i / 12)
+            {
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.BeginVertical();
+                row = i / 12;
+            }
+
+            activeNotes[i] =
+                EditorGUILayout.ToggleLeft((NoteToName(i) + (int) (i / 12)), activeNotes[i], GUILayout.Width(50f));
         }
 
-        scale.scaleActiveNotes = activeNotes;
         EditorGUILayout.EndVertical();
+        EditorGUILayout.EndHorizontal();
+
+        scale.scaleActiveNotes = activeNotes;
     }
 
     private string NoteToName(int noteIndex)

@@ -20,12 +20,14 @@ namespace GMS.ScriptableObjects
 
         [SerializeField] public MGSound sound;
 
-        [SerializeField] public Note[] notes = new Note[16];
+        [SerializeField] public Note[] notes;
 
-        public int dontRepeatLast;    //Amount of last played notes that are not considered for the generation of a new sequence
+        public int
+            dontRepeatLast; //Amount of last played notes that are not considered for the generation of a new sequence
 
         //public bool quantize;    //Indicates whether notes are only generated on steps
-        public Scale customScale;    //If not empty, custom scale will be used for sequence generation
+        public Scale localScale; //If not empty, custom scale will be used for sequence generation
+        public Rhythm localRhythm;
 
         public bool
             globalPitchVar; //Chord mode: Indicates whether the same pitch variation is applied to all notes or per note

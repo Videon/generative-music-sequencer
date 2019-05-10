@@ -15,5 +15,6 @@ MonoBehaviour:
   sequenceMode: 3
   sound: {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
   dontRepeatLast: 0
-  customScale: {fileID: 0}
+  localScale: {fileID: 11400000, guid: 5d8c4a760c971d64882b94316d0939fd, type: 2}
+  localRhythm: {fileID: 11400000, guid: d88db524b7cea124cb6e43a7b8c6236d, type: 2}
   globalPitchVar: 0

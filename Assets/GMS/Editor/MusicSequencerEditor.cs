@@ -13,7 +13,7 @@ public class MusicSequencerEditor : Editor
 
         if (GUILayout.Button("Open Sequencer Window"))
         {
-            EditorWindow sequencerWindow = EditorWindow.GetWindow(typeof(SequencerWindow), false, "Sequencer");
+            EditorWindow sequencerWindow = EditorWindow.GetWindow(typeof(SequencerWindow), false, "SequencerWindow");
         }
     }
 }

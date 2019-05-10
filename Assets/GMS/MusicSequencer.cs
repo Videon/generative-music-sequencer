@@ -29,6 +29,7 @@ namespace GMS
         public int currentStep = 0;
 
         [SerializeField] private SequenceData[] musicSequences;
+        [SerializeField] private Rhythm[] rhythms;
         [SerializeField] private Scale[] scales;
 
         ///<summary>Store "dimensions" of MusicSequences array to make it usable like a 2D array.</summary>
@@ -53,7 +54,7 @@ namespace GMS
 
         #endregion
 
-        
+
         //Setting up the sequencer and routing the layers
 
         #region Sequencer Initialization
@@ -64,12 +65,14 @@ namespace GMS
         public void InitSequencer(int x, int y)
         {
             SequenceData[] oldSequences = musicSequences;
+            Rhythm[] oldRhythms = rhythms;
             Scale[] oldScales = scales;
 
             //Initialize sequences and scale
             musicSequences = new SequenceData[x * y];
             musicSequencesDimensions = new Vector2Int(x, y);
 
+            rhythms = new Rhythm[x];
             scales = new Scale[x];
 
             //Fill new size with previous data
@@ -114,9 +117,10 @@ namespace GMS
                 csi.chuckMainInstance = GetComponentInChildren<ChuckMainInstance>();
                 chuckSubInstances[i] = csi;
             }
+
             AssignMixerChannels();
         }
-        
+
         void AssignMixerChannels()
         {
             for (int i = 0; i < chuckSubInstances.Length; i++)
@@ -133,17 +137,18 @@ namespace GMS
 
         #region Setter and getter methods for sequencing information
 
-        /// <summary> Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array. </summary>
-        public SequenceData GetMusicSequence(int x, int y)
+        /// <summary> Returns the rhythm at given index. </summary>
+        public Rhythm GetRhythm(int x)
         {
-            return musicSequences[y * musicSequencesDimensions.x + x];
+            return rhythms[x];
         }
 
-        /// <summary> Sets the music sequence at given index. </summary>
-        public void SetMusicSequence(int x, int y, SequenceData pMusicSequence)
+        /// <summary> Sets the rhythm at given index. </summary>
+        public void SetRhythm(int x, Rhythm pRhythm)
         {
-            musicSequences[y * musicSequencesDimensions.x + x] = pMusicSequence;
+            rhythms[x] = pRhythm;
         }
+
 
         /// <summary> Returns the scale object at given index. </summary>
         public Scale GetScale(int x)
@@ -157,10 +162,28 @@ namespace GMS
             scales[x] = pScale;
         }
 
+        /// <summary> Returns the music sequence at the given x y position in the visible grid. Converts input x y into a 1d coordinate for lookup in original array. </summary>
+        public SequenceData GetMusicSequence(int x, int y)
+        {
+            return musicSequences[y * musicSequencesDimensions.x + x];
+        }
+
+        /// <summary> Sets the music sequence at given index. </summary>
+        public void SetMusicSequence(int x, int y, SequenceData pMusicSequence)
+        {
+            musicSequences[y * musicSequencesDimensions.x + x] = pMusicSequence;
+        }
+
         ///<summary> Return the size of the 1D array as a 2D representation. </summary>
         public Vector2Int GetMusicSequencesDimensions()
         {
             return musicSequencesDimensions;
+        }
+
+        ///<summary>Returns index of current bar.</summary>
+        public int GetCurrentBar()
+        {
+            return _currentBar;
         }
 
         #endregion
@@ -182,44 +205,55 @@ namespace GMS
                     _currentBar = 0;
                 currentStep = 0;
 
+
+                int layerCount = GetMusicSequencesDimensions().y;
+
                 //Generate and schedule next sequence at the beginning of the current bar
-                for (var currentLayer = 0; currentLayer < GetMusicSequencesDimensions().y; currentLayer++)
+                for (var currentLayer = 0; currentLayer < layerCount; currentLayer++)
                 {
-                    Note[] generatedSequence = GenerateSequence(GetMusicSequence(_currentBar, currentLayer));
-                    ScheduleSequence(currentLayer, generatedSequence, GetMusicSequence(_currentBar, currentLayer));
+                    double[] generatedRhythm = GenerateRhythm(GetMusicSequence(_currentBar, currentLayer));
+
+                    if (generatedRhythm.Length > 0)
+                    {
+                        Note[] generatedSequence =
+                            GenerateSequence(generatedRhythm.Length, GetMusicSequence(_currentBar, currentLayer));
+                        ScheduleSequence(currentLayer, generatedRhythm, generatedSequence,
+                            GetMusicSequence(_currentBar, currentLayer));
+                    }
                 }
             }
         }
 
-        ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
-        private Note[] GenerateSequence(SequenceData pSequenceData)
+        private double[] GenerateRhythm(SequenceData pSequenceData)
         {
-            var mode = pSequenceData.sequenceMode.ToString();
+            Rhythm rhythm = pSequenceData.localRhythm ? pSequenceData.localRhythm : rhythms[_currentBar];
 
-            switch (mode)
-            {
-                case "Legacy":
-                    return SequenceGenerator.GenerateLegacy(pSequenceData, barSteps);
-                case "Simple":
-                    return SequenceGenerator.GenerateSimple(pSequenceData, scales[_currentBar], barSteps);
-            }
+            if (rhythm)
+                return RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
+            else return null;
+        }
 
-            return null;
+        ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
+        private Note[] GenerateSequence(int pNoteCount, SequenceData pSequenceData)
+        {
+            Scale scale;
+
+            scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
+
+            return SequenceGenerator.GenerateSequence(pNoteCount, scales[_currentBar], pSequenceData);
         }
 
         ///<summary>Schedule playing sounds for a given schedule.</summary>
-        private void ScheduleSequence(int layer, Note[] pSequenceNotes, SequenceData pSequenceData)
+        private void ScheduleSequence(int layer, double[] triggerTimes, Note[] pSequenceNotes,
+            SequenceData pSequenceData)
         {
             if (pSequenceNotes.Length > 0)
             {
-                var stepLength = 60.0d / bpm;
-                var barOffset = stepLength * (barSteps - 1);
-
-                for (var i = 0; i < pSequenceNotes.Length; i++)
+                for (int i = 0; i < pSequenceNotes.Length; i++)
                 {
                     if (pSequenceNotes[i] != null)
                     {
-                        ChuckScheduler.ScheduleSound(chuckSubInstances[layer], (stepLength * i),
+                        ChuckScheduler.ScheduleSound(chuckSubInstances[layer], triggerTimes[i],
                             pSequenceData.sound.fileName, pSequenceNotes[i].pitch);
                     }
                 }
@@ -227,17 +261,5 @@ namespace GMS
         }
 
         #endregion
-
-
-        //Methods providing run-time information tracking
-
-        /// <summary>
-        /// Returns index of current bar.
-        /// </summary>
-        /// <returns></returns>
-        public int GetCurrentBar()
-        {
-            return _currentBar;
-        }
     }
 }
