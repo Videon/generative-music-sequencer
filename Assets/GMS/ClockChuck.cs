@@ -39,11 +39,9 @@ public class ClockChuck : MonoBehaviour
     {
         SetClock(bpm);
         currentInt = _chuckIntSyncer.GetCurrentValue();
-        if (currentInt != previousInt)
-        {
-            _musicSequencer.Tick();
-            previousInt = currentInt;
-        }
+        if (currentInt == previousInt) return;
+        _musicSequencer.Tick();
+        previousInt = currentInt;
     }
 
     void RunClock()

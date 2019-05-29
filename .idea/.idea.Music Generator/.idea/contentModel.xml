@@ -53,8 +53,6 @@
           </e>
         </e>
         <e p="GMS" t="Include">
-          <e p="Audiotools.cs" t="Include" />
-          <e p="AudioToolsTester.cs" t="Include" />
           <e p="ChucK" t="Include">
             <e p="ChuckScheduler.cs" t="Include" />
           </e>
@@ -62,7 +60,7 @@
           <e p="ClockChuck.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="MusicSequencerEditor.cs" t="Include" />
-            <e p="ParameterDrawer.cs" t="Include" />
+            <e p="ParamInterfacerEditor.cs" t="Include" />
             <e p="ScaleEditor.cs" t="Include" />
             <e p="SequencerWindow.cs" t="Include" />
           </e>
@@ -70,6 +68,7 @@
           <e p="GMSLayer.cs" t="Include" />
           <e p="MusicSequencer.cs" t="Include" />
           <e p="Note.cs" t="Include" />
+          <e p="Parameter.cs" t="Include" />
           <e p="ParamInterfacer.cs" t="Include" />
           <e p="RhythmGenerator.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">

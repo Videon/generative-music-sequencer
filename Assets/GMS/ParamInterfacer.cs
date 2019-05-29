@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,49 +7,41 @@ namespace GMS
 {
     public class ParamInterfacer : MonoBehaviour
     {
-        public Parameter[] parameters;
+        public int paramCount;
+        [SerializeField] public List<Parameter> parameters;
 
-        // Start is called before the first frame update
-        void Start()
+        public void SetParameters(int pParamCount)
         {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
+            if (pParamCount < 0 || pParamCount > 64 || pParamCount == paramCount) return;
+            if (pParamCount > paramCount)
+                for (int i = paramCount; i < pParamCount; i++)
+                    parameters.Add(new Parameter());
+            else
+                parameters.RemoveRange(pParamCount, paramCount - pParamCount);
+            paramCount = pParamCount;
         }
 
         public float GetParamValue(string paramName)
         {
-            for (int i = 0; i < parameters.Length; i++)
+            Parameter tempParam = NameToParam(paramName);
+            return tempParam?.GetOutputVal() ?? 0.0f; //Is tempParam null? yes = return 0.0f; no = return GetOutputVal
+        }
+
+        public void SetParamValue(string paramName, float inputVal)
+        {
+            Parameter tempParam = NameToParam(paramName);
+            tempParam?.SetValue(inputVal);
+        }
+
+        private Parameter NameToParam(string paramName)
+        {
+            for (int i = 0; i < parameters.Count; i++)
             {
-                if (paramName == parameters[i].name)
-                    return parameters[i].GetValue();
+                if (paramName == parameters[i].paramName)
+                    return parameters[i];
             }
 
-            return 0.0f;
-        }
-    }
-
-    public class Parameter : PropertyAttribute
-    {
-        [TextArea(1, 1)] public string name;
-        private float _value;
-        public float minNormal, maxNormal;
-
-        public void SetValue(float inputVal)
-        {
-            _value = inputVal;
-        }
-
-        public void SetValueNormalize(float inputVal)
-        {
-            _value = (inputVal - minNormal) / (maxNormal - minNormal);
-        }
-
-        public float GetValue()
-        {
-            return _value;
+            return null;
         }
     }
 }

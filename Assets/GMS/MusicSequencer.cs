@@ -9,15 +9,16 @@ using UnityEngine.Audio;
 
 namespace GMS
 {
-    //[System.Serializable]
+    [RequireComponent(typeof(ParamInterfacer))]
     public class MusicSequencer : MonoBehaviour
     {
         private ClockChuck _clockChuck;
 
         [SerializeField] private ChuckSubInstance[] chuckSubInstances;
 
-
         [SerializeField] private SequencerState workingState, tempState;
+
+        private ParamInterfacer _paramInterfacer;
 
         public bool useWorkingCopy = true; /*If true, a copy of the working state will be created
                                             and used during run-time. Changes to the copied state will be discarded.*/
@@ -50,6 +51,7 @@ namespace GMS
             _clockChuck.SetClock(bpm);
 
             chuckSubInstances = GetComponentsInChildren<ChuckSubInstance>();
+            _paramInterfacer = GetComponent<ParamInterfacer>();
         }
 
         private void Start()
