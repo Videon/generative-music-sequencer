@@ -10,13 +10,13 @@ public static class ChuckScheduler
     /// <param name="pFilename">The filename of the clip that will be played at the scheduled time.</param>
     /// <param name="pPitch">The pitch of the sample that will be played at the scheduled time.</param>
     public static void ScheduleSound(ChuckSubInstance chuckSubInstance, double pScheduledTime, string pFilename,
-        float pPitch)
+        float pPitch, float pGain)
     {
-        PlayScheduled(chuckSubInstance, pScheduledTime, pPitch, pFilename);
+        PlayScheduled(chuckSubInstance, pScheduledTime, pPitch, pFilename, pGain);
     }
 
     public static void PlayScheduled(ChuckSubInstance chuckSubInstance, double scheduledTime, float pitch,
-        string fileName)
+        string fileName, float gain)
     {
         //PARAMETERS: {0} = scheduledTime, {1} = pitch, {2} = clipFile
         chuckSubInstance.RunCode(string.Format(@"
@@ -38,13 +38,13 @@ public static class ChuckScheduler
     		{1} => sndBuf.rate;
     
     		// set gain: least intense is quiet, most intense is loud; range 0.05 to 1
-    		0.05 + 0.95 => sndBuf.gain;
+    		{3} => sndBuf.gain;
     
 			
 
     		// pass time so that the file plays
 			sndBuf.length() / sndBuf.rate() => now;
     
-    	", scheduledTime, pitch, fileName));
+    	", scheduledTime, pitch, fileName, gain));
     }
 }

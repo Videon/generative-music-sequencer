@@ -13,6 +13,8 @@ class SequencerWindow : EditorWindow
 
     Object source;
 
+    [SerializeField] private GameObject selection;
+
     //GUIStyle _style = new GUIStyle(EditorStyles.label);
 
     int bars = 1;
@@ -33,30 +35,32 @@ class SequencerWindow : EditorWindow
 
     public void Awake()
     {
-        GameObject selection = (GameObject) Selection.activeObject;
+        selection = (GameObject) Selection.activeObject;
 
-        if (selection.GetType() == typeof(GameObject))
+        if (selection != null)
         {
-            selection = (GameObject) Selection.activeObject;
-
-            if (selection.GetComponent<MusicSequencer>() != null)
+            if (selection.GetType() == typeof(GameObject))
             {
-                musicSequencer = selection.GetComponent<MusicSequencer>();
-
-                var serializedMusicSequencer = new SerializedObject(musicSequencer);
-                serializedMusicSequencer.Update();
-
-                if (musicSequencer.GetMusicSequencesDimensions().x > 0 &&
-                    musicSequencer.GetMusicSequencesDimensions().y > 0)
+                if (selection.GetComponent<MusicSequencer>() != null)
                 {
-                    bars = musicSequencer.GetMusicSequencesDimensions().x;
-                    layers = musicSequencer.GetMusicSequencesDimensions().y;
-                }
+                    musicSequencer = selection.GetComponent<MusicSequencer>();
 
-                RenderWindowSequencer();
+                    var serializedMusicSequencer = new SerializedObject(musicSequencer);
+                    serializedMusicSequencer.Update();
+
+                    if (musicSequencer.GetMusicSequencesDimensions().x > 0 &&
+                        musicSequencer.GetMusicSequencesDimensions().y > 0)
+                    {
+                        bars = musicSequencer.GetMusicSequencesDimensions().x;
+                        layers = musicSequencer.GetMusicSequencesDimensions().y;
+                    }
+
+                    //musicSequencer.LoadStateValues();
+                    RenderWindowSequencer();
+                }
+                else
+                    EditorGUILayout.LabelField("Select Sequencer first");
             }
-            else
-                EditorGUILayout.LabelField("Select Sequencer first");
         }
         else
             EditorGUILayout.LabelField("Select Sequencer first");
@@ -66,20 +70,44 @@ class SequencerWindow : EditorWindow
     {
         if (musicSequencer != null)
         {
-            RenderWindowGeneralSettings();
-            RenderWindowSequencer();
-            RenderWindowItemInspector();
+            RenderWindowStateSettings();
+            if (musicSequencer.GetWorkingState() != null)
+            {
+                RenderWindowGeneralSettings();
+                RenderWindowSequencer();
+                RenderWindowItemInspector();
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Select working state first");
+            }
+        }
+
+        if (GUI.changed)
+        {
+            musicSequencer.SaveStateValues();
+            EditorUtility.SetDirty(musicSequencer);
         }
     }
 
-    ///<summary>Function to update the displayed values in this editor script.</summary>
-    void UpdateValues()
+    void RenderWindowStateSettings()
     {
+        EditorGUILayout.BeginVertical();
+        EditorGUILayout.BeginHorizontal();
+        musicSequencer.SetWorkingState((SequencerState) EditorGUILayout.ObjectField(musicSequencer.GetWorkingState(),
+            typeof(SequencerState), false, GUILayout.Width(150f)));
+        musicSequencer.useWorkingCopy =
+            EditorGUILayout.ToggleLeft("Don't save runtime changes", musicSequencer.useWorkingCopy,
+                GUILayout.Width(250f));
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        EditorGUILayout.EndVertical();
     }
 
     void RenderWindowGeneralSettings()
     {
         EditorGUILayout.BeginVertical();
+
         bars = EditorGUILayout.IntField("Bars", bars);
         layers = EditorGUILayout.IntField("Layers", layers);
 

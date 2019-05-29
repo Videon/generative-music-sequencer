@@ -1,4 +1,5 @@
-﻿using GMS.ScriptableObjects;
+﻿using System;
+using GMS.ScriptableObjects;
 
 namespace GMS
 {
@@ -16,7 +17,7 @@ namespace GMS
                 case Rhythm.RhythmMode.AutomaticFixed:
                     return GenerateAutomaticFixed(pBpm, pBarSteps, pRhythm);
                 case Rhythm.RhythmMode.Manual:
-                    return null; //todo not implemented yet!
+                    throw new NotImplementedException();
             }
 
             return null;
@@ -30,8 +31,9 @@ namespace GMS
         private static double[] GenerateAutomaticFixed(double pBpm, int pBarSteps, Rhythm pRhythm)
         {
             double[] rhythmOutput = new double[pRhythm.steps];
+            double stepLength = ((60d / pBpm) * pBarSteps) / (rhythmOutput.Length);
             for (int i = 0; i < rhythmOutput.Length; i++)
-                rhythmOutput[i] = (((60d / pBpm) * pBarSteps) / pRhythm.steps) * i;
+                rhythmOutput[i] = i * stepLength;
             return rhythmOutput;
         }
     }

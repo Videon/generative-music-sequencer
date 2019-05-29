@@ -8,9 +8,9 @@ namespace GMS.ScriptableObjects
     [System.Serializable, CreateAssetMenu(fileName = "RTH_", menuName = "MusicGenerator/Rhythm", order = 1)]
     public class Rhythm : ScriptableObject
     {
-        public int steps = 16;
-        public int divider = 4;
-        
+        [SerializeField] public int steps = 16;
+        [SerializeField] public int divider = 4;
+
         public enum RhythmMode
         {
             AutomaticFixed,
@@ -18,7 +18,5 @@ namespace GMS.ScriptableObjects
         };
 
         public RhythmMode rhythmMode = RhythmMode.AutomaticFixed;
-
-        
     }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
+  m_Name: SEQ_snow
+  m_EditorClassIdentifier: 
+  generatorMode: 3
+  sound: {fileID: 11400000, guid: 956df833879955348acf9769c7e0d6bf, type: 2}
+  dontRepeatLast: 0
+  localScale: {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
+  localRhythm: {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
+  globalPitchVar: 0

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429daec927b8af84cb9253947fe533fb, type: 3}
-  m_Name: RTH_first 1
+  m_Script: {fileID: 11500000, guid: e15760b8ab650ad418f5a7480bd23f7d, type: 3}
+  m_Name: SST_working
   m_EditorClassIdentifier: 
-  steps: 6
-  divider: 16
-  rhythmMode: 0
+  bpm: 80
+  barSteps: 16
+  musicSequences: []
+  rhythms: []
+  scales: []

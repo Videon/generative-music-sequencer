@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   polyphony: 1
   fileName: B4
+  gain: 1
   multisample: 0
   pitchOffset: 0
   minPitchVar: 0

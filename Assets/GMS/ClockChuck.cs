@@ -11,8 +11,7 @@ public class ClockChuck : MonoBehaviour
     public double bpm = 120.0d;
     private int currentInt, previousInt;
 
-    [SerializeField]
-    private MusicSequencer _musicSequencer;
+    [SerializeField] private MusicSequencer _musicSequencer;
 
     private void Awake()
     {
@@ -22,7 +21,6 @@ public class ClockChuck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         _chuckIntSyncer = gameObject.AddComponent<ChuckIntSyncer>();
         _chuckIntSyncer.SyncInt(_chuckSubInstance, "intCallback");
 
@@ -31,8 +29,9 @@ public class ClockChuck : MonoBehaviour
         RunClock();
     }
 
-    public void SetClock(double bpm)
+    public void SetClock(double pBpm)
     {
+        bpm = pBpm;
         _chuckSubInstance.SetFloat("bpm", bpm);
     }
 

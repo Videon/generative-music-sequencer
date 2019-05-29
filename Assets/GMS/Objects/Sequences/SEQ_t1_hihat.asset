@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
+  m_Name: SEQ_t1_hihat
+  m_EditorClassIdentifier: 
+  sequenceMode: 2
+  sound: {fileID: 11400000, guid: 5dd228495b0408e4d8a7d381ef4e9a45, type: 2}
+  dontRepeatLast: 0
+  localScale: {fileID: 11400000, guid: 6dec3491f06a0704ca94824469c716ee, type: 2}
+  localRhythm: {fileID: 11400000, guid: c4d75bcc5a0fa2b4692433c2978edc85, type: 2}
+  globalPitchVar: 0

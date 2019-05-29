@@ -8,15 +8,15 @@ namespace GMS.ScriptableObjects
     [System.Serializable, CreateAssetMenu(fileName = "SEQ_", menuName = "MusicGenerator/Sequence Data", order = 1)]
     public class SequenceData : ScriptableObject
     {
-        public enum SequenceMode
+        public enum GeneratorMode
         {
-            Solo,
+            WeightedScale,
             Chords,
             Legacy,
             Simple
         };
 
-        public SequenceMode sequenceMode = SequenceMode.Legacy;
+        public GeneratorMode generatorMode = GeneratorMode.Legacy;
 
         [SerializeField] public MGSound sound;
 

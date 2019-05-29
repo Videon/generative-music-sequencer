@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 
 namespace GMS
 {
-    [System.Serializable]
+    //[System.Serializable]
     public class MusicSequencer : MonoBehaviour
     {
         private ClockChuck _clockChuck;
@@ -17,11 +17,16 @@ namespace GMS
         [SerializeField] private ChuckSubInstance[] chuckSubInstances;
 
 
+        [SerializeField] private SequencerState workingState, tempState;
+
+        public bool useWorkingCopy = true; /*If true, a copy of the working state will be created
+                                            and used during run-time. Changes to the copied state will be discarded.*/
+
         ///<summary>Tempo of music in BPM (beats per minute)</summary>
-        public double bpm = 120;
+        [SerializeField] public double bpm = 120;
 
         ///<summary>The number of all steps in a bar</summary>
-        public int barSteps = 16;
+        [SerializeField] public int barSteps = 16;
 
         ///<summary>Currently active bar</summary>
         int _currentBar = 0;
@@ -35,21 +40,79 @@ namespace GMS
         ///<summary>Store "dimensions" of MusicSequences array to make it usable like a 2D array.</summary>
         [SerializeField] private Vector2Int musicSequencesDimensions = new Vector2Int(0, 0);
 
-        #region Runtime Initialization
+        #region Runtime Initialization and Exit handling
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
 
             _clockChuck = GameObject.FindGameObjectWithTag("Clock").GetComponent<ClockChuck>();
-            _clockChuck.SetClock((float) bpm);
+            _clockChuck.SetClock(bpm);
 
             chuckSubInstances = GetComponentsInChildren<ChuckSubInstance>();
         }
 
         private void Start()
         {
+            //Make sure that a working copy is always used in game builds.
+#if !UNITY_EDITOR
+            useWorkingCopy = true;
+#endif
+
+            //Set a temporary state to avoid overwriting the working state on runtime.
+            if (useWorkingCopy)
+            {
+                CopyStateValues(tempState, workingState);
+                workingState = tempState;
+            }
+
+            LoadStateValues();
+
             AssignMixerChannels();
+        }
+
+#if UNITY_EDITOR
+        private void OnApplicationQuit()
+        {
+            SaveStateValues();
+        }
+#endif
+
+        #endregion
+
+        #region Sequencer Persistence (state handling)
+
+        /// <summary> Sets targetState variables to originState variables. </summary>
+        /// <param name="pTargetState">The state to be modified.</param>
+        /// <param name="pOriginState">The state that provides data for copying.</param>
+        private void CopyStateValues(SequencerState pTargetState, SequencerState pOriginState)
+        {
+            pTargetState.bpm = pOriginState.bpm;
+            pTargetState.barSteps = pOriginState.barSteps;
+            pTargetState.musicSequences = pOriginState.musicSequences;
+            pTargetState.rhythms = pOriginState.rhythms;
+            pTargetState.scales = pOriginState.scales;
+        }
+
+        /// <summary> Updates the working state with current sequencer values. </summary>
+        public void SaveStateValues()
+        {
+            workingState.bpm = bpm;
+            workingState.barSteps = barSteps;
+
+            workingState.musicSequences = musicSequences;
+            workingState.rhythms = rhythms;
+            workingState.scales = scales;
+        }
+
+        /// <summary> Sets the values in the sequencer to the working state values. </summary>
+        public void LoadStateValues()
+        {
+            bpm = workingState.bpm;
+            barSteps = workingState.barSteps;
+            musicSequences = workingState.musicSequences;
+            rhythms = workingState.rhythms;
+            scales = workingState.scales;
         }
 
         #endregion
@@ -64,6 +127,12 @@ namespace GMS
         /// <param name="y">Number of layers</param>
         public void InitSequencer(int x, int y)
         {
+            //Initialize temp object
+            if (tempState == null)
+            {
+                tempState = ScriptableObject.CreateInstance<SequencerState>();
+            }
+
             SequenceData[] oldSequences = musicSequences;
             Rhythm[] oldRhythms = rhythms;
             Scale[] oldScales = scales;
@@ -137,6 +206,16 @@ namespace GMS
 
         #region Setter and getter methods for sequencing information
 
+        public SequencerState GetWorkingState()
+        {
+            return workingState;
+        }
+
+        public void SetWorkingState(SequencerState pSequencerState)
+        {
+            workingState = pSequencerState;
+        }
+
         /// <summary> Returns the rhythm at given index. </summary>
         public Rhythm GetRhythm(int x)
         {
@@ -195,6 +274,7 @@ namespace GMS
 
         public void Tick()
         {
+            _clockChuck.SetClock(bpm);
             if (currentStep < barSteps - 1)
                 currentStep++;
             else
@@ -213,7 +293,7 @@ namespace GMS
                 {
                     double[] generatedRhythm = GenerateRhythm(GetMusicSequence(_currentBar, currentLayer));
 
-                    if (generatedRhythm.Length > 0)
+                    if (generatedRhythm != null && generatedRhythm.Length > 0)
                     {
                         Note[] generatedSequence =
                             GenerateSequence(generatedRhythm.Length, GetMusicSequence(_currentBar, currentLayer));
@@ -226,21 +306,29 @@ namespace GMS
 
         private double[] GenerateRhythm(SequenceData pSequenceData)
         {
-            Rhythm rhythm = pSequenceData.localRhythm ? pSequenceData.localRhythm : rhythms[_currentBar];
+            if (pSequenceData != null)
+            {
+                Rhythm rhythm = null;
+                if (pSequenceData.localRhythm != null)
+                    rhythm = pSequenceData.localRhythm;
+                else if (rhythms[_currentBar] != null)
+                {
+                    rhythm = rhythms[_currentBar];
+                }
 
-            if (rhythm)
-                return RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
-            else return null;
+                if (rhythm != null)
+                    return RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
+            }
+
+            return null;
         }
 
         ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
         private Note[] GenerateSequence(int pNoteCount, SequenceData pSequenceData)
         {
-            Scale scale;
+            Scale scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
 
-            scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
-
-            return SequenceGenerator.GenerateSequence(pNoteCount, scales[_currentBar], pSequenceData);
+            return SequenceGenerator.GenerateSequence(pNoteCount, scale, pSequenceData);
         }
 
         ///<summary>Schedule playing sounds for a given schedule.</summary>
@@ -254,7 +342,7 @@ namespace GMS
                     if (pSequenceNotes[i] != null)
                     {
                         ChuckScheduler.ScheduleSound(chuckSubInstances[layer], triggerTimes[i],
-                            pSequenceData.sound.fileName, pSequenceNotes[i].pitch);
+                            pSequenceData.sound.fileName, pSequenceNotes[i].pitch, pSequenceData.sound.gain);
                     }
                 }
             }
