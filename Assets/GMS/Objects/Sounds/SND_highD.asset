@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58a9b4c7f33ccf40acc2066a67d0c98, type: 3}
+  m_Name: SND_highD
+  m_EditorClassIdentifier: 
+  polyphony: 1
+  fileName: highD_short
+  gain: 1
+  multisample: 0
+  pitchOffset: 0
+  minPitchVar: 0
+  maxPitchVar: 0

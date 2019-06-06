@@ -434,6 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8819370271241297223}
+  - component: {fileID: 1109497225}
   m_Layer: 0
   m_Name: GMS
   m_TagString: Untagged
@@ -457,6 +458,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1109497225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819370271241297220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f91cfad37aa624da226397868a008b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8819370271276338528
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7eb3bf326c5bf46a5f045eec112102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 120
+  bpm: 80
   _musicSequencer: {fileID: 8819370271777436199}
 --- !u!1 &8819370271541851600
 GameObject:
@@ -948,10 +961,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chuckSubInstances:
-  - {fileID: 8819370270840917226}
-  - {fileID: 8819370271544901759}
-  - {fileID: 8819370271049036666}
-  - {fileID: 8819370271541851603}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   workingState: {fileID: 11400000, guid: 70acff81260a6a74189168830e28d38e, type: 2}
   tempState: {fileID: 0}
   useWorkingCopy: 0
@@ -959,12 +972,12 @@ MonoBehaviour:
   barSteps: 16
   currentStep: 0
   musicSequences:
-  - {fileID: 11400000, guid: e68688e4274c89c498e207af385d51d4, type: 2}
-  - {fileID: 11400000, guid: e68688e4274c89c498e207af385d51d4, type: 2}
-  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
-  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
+  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   rhythms:
@@ -986,25 +999,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6ba3eb7e897384c81237ac28fb759e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramCount: 4
+  paramCount: 3
   parameters:
-  - paramName: manualTest
-    inputVal: 1
-    outputVal: 0.5
-    minNormal: 0
-    maxNormal: 2
-  - paramName: asdf
-    inputVal: 0.5
-    outputVal: 0.25
-    minNormal: 0
-    maxNormal: 2
   - paramName: 
-    inputVal: 1
+    inputVal: 0
     outputVal: 0
     minNormal: 0
-    maxNormal: 1
+    maxNormal: 0
   - paramName: 
-    inputVal: 2
+    inputVal: 0
+    outputVal: 0
+    minNormal: 0
+    maxNormal: 0
+  - paramName: 
+    inputVal: 0
     outputVal: 0
     minNormal: 0
     maxNormal: 0

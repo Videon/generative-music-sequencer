@@ -23,6 +23,10 @@ namespace GMS.ScriptableObjects
 
         [SerializeField] public Note[] notes;
 
+        [SerializeField]
+        public bool
+            useExternalParams; //Indicates whether external parameters (Linkedparameter input) will be considered for sequence generation
+
         [SerializeField] public LinkedParameter[] inputs;
 
         [SerializeField] public AnimationCurve curve;

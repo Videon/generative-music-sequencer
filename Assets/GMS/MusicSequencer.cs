@@ -45,8 +45,6 @@ namespace GMS
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-
             _clockChuck = GameObject.FindGameObjectWithTag("Clock").GetComponent<ClockChuck>();
             _clockChuck.SetClock(bpm);
 

@@ -13,44 +13,49 @@ MonoBehaviour:
   m_Name: SEQ_t1_hiMel
   m_EditorClassIdentifier: 
   generatorMode: 1
-  sound: {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
+  sound: {fileID: 11400000, guid: 3864676cfc7ee24438f6779f1508d0f0, type: 2}
+  useExternalParams: 1
   inputs:
-  - paramName: manualTest
+  - paramName: posX
+    paramVal: 0
+  - paramName: posY
+    paramVal: 0
+  - paramName: posZ
     paramVal: 0
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -1.6100385
-      outSlope: -1.6100385
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.19498074
+      time: 0.33333334
+      value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6666667
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 1.6100385
-      outSlope: 1.6100385
-      tangentMode: 34
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   dontRepeatLast: 0
-  localScale: {fileID: 11400000, guid: a542568b34ddc4a4b938ad63c31fe140, type: 2}
+  localScale: {fileID: 11400000, guid: 5d8c4a760c971d64882b94316d0939fd, type: 2}
   localRhythm: {fileID: 11400000, guid: c4d75bcc5a0fa2b4692433c2978edc85, type: 2}
   globalPitchVar: 0

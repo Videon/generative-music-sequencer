@@ -49,6 +49,10 @@ namespace GMS
         {
             Note[] note = new Note[pGeneratedRhythm.Length];
 
+            if (pSequenceData.useExternalParams)
+                UpdateCurve(pSequenceData);
+
+
             for (int i = 0; i < note.Length; i++)
             {
                 note[i] = new Note(Note.Modes.Single,
@@ -56,6 +60,19 @@ namespace GMS
             }
 
             return note;
+        }
+
+        /// <summary>Update local curve of sequence when using external inputs.</summary>
+        private static void UpdateCurve(SequenceData pSequenceData)
+        {
+            Keyframe[] keyframes = new Keyframe[pSequenceData.inputs.Length];
+            for (int i = 1; i <= keyframes.Length; i++)
+            {
+                keyframes[i - 1].time = (1.0f / keyframes.Length) * i;
+                keyframes[i - 1].value = pSequenceData.inputs[i - 1].paramVal;
+            }
+
+            pSequenceData.curve.keys = keyframes;
         }
 
 
@@ -69,12 +86,12 @@ namespace GMS
                     enabledNotes.Add(i);
 
 
-            float curveValue = pSequenceData.curve.Evaluate((float) GetNormalizedTime(pBpm, pBarSteps, noteTime));
-            int currentNote = (enabledNotes[Mathf.RoundToInt(enabledNotes.Count * curveValue)]);
+            float curveValue =
+                Mathf.Clamp(pSequenceData.curve.Evaluate((float) GetNormalizedTime(pBpm, pBarSteps, noteTime)),
+                    0.0f, 1.0f);
+            int currentNote = (enabledNotes[Mathf.RoundToInt((enabledNotes.Count - 1) * curveValue)]);
             return pScale.CalculateFrequency(currentNote);
         }
-
-        #endregion
 
         /// <summary> Normalizes absolute note time to relative note time (value range 0 to 1) </summary>
         /// <param name="pBpm"></param>
@@ -86,6 +103,8 @@ namespace GMS
             double barLength = (60d / pBpm) * pBarSteps;
             return noteTime / barLength;
         }
+
+        #endregion
 
 
         private static Note[] GenerateSimple(int pNoteCount, Scale pScale, SequenceData pSequenceData)
