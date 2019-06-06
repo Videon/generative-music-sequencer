@@ -10,7 +10,7 @@ namespace GMS
         public int paramCount;
         [SerializeField] public List<Parameter> parameters;
 
-        public void SetParameters(int pParamCount)
+        public void InitParameters(int pParamCount)
         {
             if (pParamCount < 0 || pParamCount > 64 || pParamCount == paramCount) return;
             if (pParamCount > paramCount)
@@ -29,8 +29,8 @@ namespace GMS
 
         public void SetParamValue(string paramName, float inputVal)
         {
-            Parameter tempParam = NameToParam(paramName);
-            tempParam?.SetValue(inputVal);
+            if (NameToParam(paramName) != null)
+                NameToParam(paramName).SetValueNormalize(inputVal);
         }
 
         private Parameter NameToParam(string paramName)

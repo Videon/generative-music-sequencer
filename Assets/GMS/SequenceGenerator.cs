@@ -9,17 +9,20 @@ namespace GMS
 
     public static class SequenceGenerator
     {
-        public static Note[] GenerateSequence(int pNoteCount, Scale pScale, SequenceData pSequenceData)
+        public static Note[] GenerateSequence(double pBpm, int pBarSteps, double[] pGeneratedRhythm, Scale pScale,
+            SequenceData pSequenceData)
         {
             SequenceData.GeneratorMode generatorMode = pSequenceData.generatorMode;
             switch (generatorMode)
             {
                 case SequenceData.GeneratorMode.Legacy:
-                    return GenerateLegacy(pNoteCount, pSequenceData);
+                    return GenerateLegacy(pGeneratedRhythm.Length, pSequenceData);
                 case SequenceData.GeneratorMode.Simple:
-                    return GenerateSimple(pNoteCount, pScale, pSequenceData);
+                    return GenerateSimple(pGeneratedRhythm.Length, pScale, pSequenceData);
                 case SequenceData.GeneratorMode.WeightedScale:
-                    return GenerateWeightedScale(pNoteCount, pScale, pSequenceData);
+                    return GenerateWeightedScale(pGeneratedRhythm.Length, pScale, pSequenceData);
+                case SequenceData.GeneratorMode.Curve:
+                    return GenerateCurve(pBpm, pBarSteps, pGeneratedRhythm, pScale, pSequenceData);
                 case SequenceData.GeneratorMode.Chords:
                     throw new NotImplementedException();
             }
@@ -39,14 +42,60 @@ namespace GMS
             return note;
         }
 
-        public static Note[] GenerateSimple(int pNoteCount, Scale pScale, SequenceData pSequenceData)
+        #region Curve Generation Mode
+
+        public static Note[] GenerateCurve(double pBpm, int pBarSteps, double[] pGeneratedRhythm, Scale pScale,
+            SequenceData pSequenceData)
+        {
+            Note[] note = new Note[pGeneratedRhythm.Length];
+
+            for (int i = 0; i < note.Length; i++)
+            {
+                note[i] = new Note(Note.Modes.Single,
+                    TimeToPitch(pBpm, pBarSteps, pGeneratedRhythm[i], pScale, pSequenceData));
+            }
+
+            return note;
+        }
+
+
+        private static float TimeToPitch(double pBpm, int pBarSteps, double noteTime, Scale pScale,
+            SequenceData pSequenceData)
+        {
+            List<int> enabledNotes = new List<int>();
+            //This is adding all enabled notes from the list, sorted from lowest to highest
+            for (int i = 0; i < pScale.scaleActiveNotes.Length; i++)
+                if (pScale.scaleActiveNotes[i])
+                    enabledNotes.Add(i);
+
+
+            float curveValue = pSequenceData.curve.Evaluate((float) GetNormalizedTime(pBpm, pBarSteps, noteTime));
+            int currentNote = (enabledNotes[Mathf.RoundToInt(enabledNotes.Count * curveValue)]);
+            return pScale.CalculateFrequency(currentNote);
+        }
+
+        #endregion
+
+        /// <summary> Normalizes absolute note time to relative note time (value range 0 to 1) </summary>
+        /// <param name="pBpm"></param>
+        /// <param name="pBarSteps"></param>
+        /// <param name="noteTime"></param>
+        /// <returns></returns>
+        private static double GetNormalizedTime(double pBpm, int pBarSteps, double noteTime)
+        {
+            double barLength = (60d / pBpm) * pBarSteps;
+            return noteTime / barLength;
+        }
+
+
+        private static Note[] GenerateSimple(int pNoteCount, Scale pScale, SequenceData pSequenceData)
         {
             Note[] note = new Note[pNoteCount];
             List<int> enabledNotes = new List<int>();
 
             //This is adding all enabled notes from the list, sorted from lowest to highest
             for (int i = 0; i < pScale.scaleActiveNotes.Length; i++)
-                if (pScale.scaleActiveNotes[i] == true)
+                if (pScale.scaleActiveNotes[i])
                     enabledNotes.Add(i);
 
             for (int i = 0; i < note.Length; i++)
@@ -58,7 +107,10 @@ namespace GMS
             return note;
         }
 
-        public static Note[] GenerateWeightedScale(int pNoteCount, Scale pScale, SequenceData pSequenceData)
+
+        #region Weighted Scale Generation Mode
+
+        private static Note[] GenerateWeightedScale(int pNoteCount, Scale pScale, SequenceData pSequenceData)
         {
             Note[] note = new Note[pNoteCount];
             List<int> enabledNotes = new List<int>();
@@ -70,7 +122,15 @@ namespace GMS
                     enabledNotes.Add(i);
 
 
-            float[] noteWeights = CalcNoteWeights(enabledNotes.ToArray());
+            LinkedParameter input;
+            if (pSequenceData.inputs[0] != null)
+                input = pSequenceData.inputs[0];
+            else
+            {
+                input = null;
+            }
+
+            float[] noteWeights = CalcNoteWeights(enabledNotes.ToArray(), input);
 
             for (int i = 0; i < note.Length; i++)
             {
@@ -81,12 +141,10 @@ namespace GMS
             return note;
         }
 
-        public static float[] CalcNoteWeights(int[] pEnabledNotes)
+        private static float[] CalcNoteWeights(int[] pEnabledNotes, LinkedParameter input)
         {
             float[] noteWeights = new float[pEnabledNotes.Length]; //Array for storing note weights
-
-            float input = 0.5f; //todo change into globally accessible parameter
-            int weightCenter = Mathf.RoundToInt(input * pEnabledNotes.Length);
+            int weightCenter = Mathf.RoundToInt(input.paramVal * pEnabledNotes.Length);
 
             float width = 10.0f;
 
@@ -100,7 +158,10 @@ namespace GMS
             return noteWeights;
         }
 
-        public static int CalcWeightedRandomVal(float[] pNoteWeights)
+        /// <summary>Returns a weighted random position based on passed weights.</summary>
+        /// <param name="pNoteWeights"></param>
+        /// <returns></returns>
+        private static int CalcWeightedRandomVal(float[] pNoteWeights)
         {
             float total = 0;
             for (int i = 0; i < pNoteWeights.Length; i++)
@@ -118,5 +179,7 @@ namespace GMS
 
             return 0;
         }
+
+        #endregion
     }
 }

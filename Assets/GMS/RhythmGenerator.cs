@@ -16,6 +16,8 @@ namespace GMS
             {
                 case Rhythm.RhythmMode.AutomaticFixed:
                     return GenerateAutomaticFixed(pBpm, pBarSteps, pRhythm);
+                case Rhythm.RhythmMode.RandomMinMax:
+                    return GenerateRandomMinMax(pBpm, pBarSteps, pRhythm);
                 case Rhythm.RhythmMode.Manual:
                     throw new NotImplementedException();
             }
@@ -35,6 +37,23 @@ namespace GMS
             for (int i = 0; i < rhythmOutput.Length; i++)
                 rhythmOutput[i] = i * stepLength;
             return rhythmOutput;
+        }
+
+        private static double[] GenerateRandomMinMax(double pBpm, int pBarSteps, Rhythm pRhythm)
+        {
+            List<double> rhythmOutput = new List<double>();
+            double barLength = (60d / pBpm) * pBarSteps;
+            double currentTime = 0.0d;
+            while (currentTime < barLength)
+            {
+                currentTime += Random.Range(pRhythm.randomMin, pRhythm.randomMax);
+                if (currentTime > barLength)
+                    break;
+
+                rhythmOutput.Add(currentTime);
+            }
+
+            return rhythmOutput.ToArray();
         }
     }
 }

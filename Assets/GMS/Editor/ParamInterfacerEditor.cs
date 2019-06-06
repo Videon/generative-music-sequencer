@@ -18,15 +18,18 @@ public class ParamInterfacerEditor : Editor
     {
         ParamInterfacer paramInterfacer = (ParamInterfacer) target;
 
-        paramInterfacer.SetParameters(EditorGUILayout.IntField("Parameter count", paramInterfacer.parameters.Count));
+        paramInterfacer.InitParameters(EditorGUILayout.IntField("Parameter count", paramInterfacer.parameters.Count));
 
         for (int i = 0; i < paramInterfacer.parameters.Count; i++)
         {
             EditorGUILayout.BeginVertical();
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             paramInterfacer.parameters[i].paramName =
                 EditorGUILayout.TextField("Parameter Name", paramInterfacer.parameters[i].paramName);
+            EditorGUI.BeginChangeCheck();
             paramInterfacer.parameters[i].inputVal =
                 EditorGUILayout.FloatField("Input Value", paramInterfacer.parameters[i].inputVal);
+
 
             EditorGUILayout.LabelField("Normalization parameters");
             paramInterfacer.parameters[i].minNormal =
@@ -34,8 +37,15 @@ public class ParamInterfacerEditor : Editor
             paramInterfacer.parameters[i].maxNormal =
                 EditorGUILayout.FloatField("max", paramInterfacer.parameters[i].maxNormal);
 
+            //Trigger recalculation of normalized output value 
+            if (EditorGUI.EndChangeCheck())
+            {
+                paramInterfacer.SetParamValue(paramInterfacer.parameters[i].paramName,
+                    paramInterfacer.parameters[i].inputVal);
+            }
+
             EditorGUILayout.LabelField("Normalized Output Value: " + paramInterfacer.parameters[i].outputVal);
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
             EditorGUILayout.EndVertical();
         }
     }

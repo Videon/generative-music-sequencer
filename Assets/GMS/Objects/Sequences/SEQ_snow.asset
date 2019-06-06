@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generatorMode: 3
   sound: {fileID: 11400000, guid: 956df833879955348acf9769c7e0d6bf, type: 2}
+  inputs: []
   dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
   localRhythm: {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}

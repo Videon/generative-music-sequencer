@@ -66,6 +66,7 @@
           </e>
           <e p="GMSBar.cs" t="Include" />
           <e p="GMSLayer.cs" t="Include" />
+          <e p="LinkedParameter.cs" t="Include" />
           <e p="MusicSequencer.cs" t="Include" />
           <e p="Note.cs" t="Include" />
           <e p="Parameter.cs" t="Include" />
@@ -90,6 +91,7 @@
             </e>
           </e>
         </e>
+        <e p="PosToCurve.cs" t="Include" />
       </e>
       <e p="Music Generator.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

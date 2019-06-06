@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,13 @@ public class Parameter
 
     public void SetValue(float pInputVal)
     {
-        inputVal = inputVal;
+        inputVal = pInputVal;
     }
 
     public void SetValueNormalize(float pInputVal)
     {
-        inputVal = (inputVal - minNormal) / (maxNormal - minNormal);
+        if (Math.Abs(minNormal - maxNormal) > 0)
+            outputVal = (inputVal - minNormal) / (maxNormal - minNormal);
     }
 
     public float GetOutputVal()

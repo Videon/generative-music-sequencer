@@ -120,6 +120,27 @@ namespace GMS
         #endregion
 
 
+        //Parameter handling
+
+        #region Parameter Handling
+
+        /// <summary> Update all parameters for current bar </summary>
+        void UpdateParameters()
+        {
+            for (int i = 0; i < musicSequencesDimensions.y; i++)
+            {
+                if (GetMusicSequence(_currentBar, i) != null)
+                {
+                    var seqData = GetMusicSequence(_currentBar, i);
+                    for (int k = 0; k < seqData.inputs.Length; k++)
+                        seqData.inputs[k].paramVal = _paramInterfacer.GetParamValue(seqData.inputs[k].paramName);
+                }
+            }
+        }
+
+        #endregion
+
+
         //Setting up the sequencer and routing the layers
 
         #region Sequencer Initialization
@@ -290,6 +311,7 @@ namespace GMS
 
                 int layerCount = GetMusicSequencesDimensions().y;
 
+                UpdateParameters(); //Update parameters before generating sequence
                 //Generate and schedule next sequence at the beginning of the current bar
                 for (var currentLayer = 0; currentLayer < layerCount; currentLayer++)
                 {
@@ -298,7 +320,7 @@ namespace GMS
                     if (generatedRhythm != null && generatedRhythm.Length > 0)
                     {
                         Note[] generatedSequence =
-                            GenerateSequence(generatedRhythm.Length, GetMusicSequence(_currentBar, currentLayer));
+                            GenerateSequence(generatedRhythm, GetMusicSequence(_currentBar, currentLayer));
                         ScheduleSequence(currentLayer, generatedRhythm, generatedSequence,
                             GetMusicSequence(_currentBar, currentLayer));
                     }
@@ -326,11 +348,11 @@ namespace GMS
         }
 
         ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
-        private Note[] GenerateSequence(int pNoteCount, SequenceData pSequenceData)
+        private Note[] GenerateSequence(double[] pGeneratedRhythm, SequenceData pSequenceData)
         {
             Scale scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
 
-            return SequenceGenerator.GenerateSequence(pNoteCount, scale, pSequenceData);
+            return SequenceGenerator.GenerateSequence(bpm, barSteps, pGeneratedRhythm, scale, pSequenceData);
         }
 
         ///<summary>Schedule playing sounds for a given schedule.</summary>

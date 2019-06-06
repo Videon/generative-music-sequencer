@@ -11,9 +11,13 @@ namespace GMS.ScriptableObjects
         [SerializeField] public int steps = 16;
         [SerializeField] public int divider = 4;
 
+        [SerializeField] public float randomMin = 0.0f;
+        [SerializeField] public float randomMax = 0.0f;
+
         public enum RhythmMode
         {
             AutomaticFixed,
+            RandomMinMax,
             Manual
         };
 

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steps: 4
   divider: 16
+  randomMin: 0
+  randomMax: 4
   rhythmMode: 0

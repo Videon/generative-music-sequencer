@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
   m_Name: SEQ_t1_tom
   m_EditorClassIdentifier: 
-  generatorMode: 2
+  generatorMode: 4
   sound: {fileID: 11400000, guid: 67ed2bdeb58215443b307556080e21ef, type: 2}
+  inputs: []
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: 6718585e543eb6b4dbf070c5bce93f3a, type: 2}
   localRhythm: {fileID: 11400000, guid: 9eb72d4b0c853cb419c1dc05b73323a0, type: 2}
