@@ -10,6 +10,7 @@
       <Path>.git</Path>
       <Path>.idea</Path>
       <Path>Library</Path>
+      <Path>Temp</Path>
       <Path>lfs</Path>
       <Path>obj</Path>
     </explicitExcludes>

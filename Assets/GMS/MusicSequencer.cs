@@ -103,6 +103,10 @@ namespace GMS
             workingState.musicSequences = musicSequences;
             workingState.rhythms = rhythms;
             workingState.scales = scales;
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(workingState);
+#endif
         }
 
         /// <summary> Sets the values in the sequencer to the working state values. </summary>
