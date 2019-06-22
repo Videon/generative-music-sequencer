@@ -38,7 +38,6 @@ namespace GMS.ScriptableObjects
         public Scale localScale; //If not empty, custom scale will be used for sequence generation
         public Rhythm localRhythm;
 
-        public bool
-            globalPitchVar; //Chord mode: Indicates whether the same pitch variation is applied to all notes or per note
+        //public bool globalPitchVar; //Chord mode: Indicates whether the same pitch variation is applied to all notes or per note
     }
 }

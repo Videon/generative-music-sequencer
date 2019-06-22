@@ -24,8 +24,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   rhythms:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
+  - {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
   scales:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
+  - {fileID: 11400000, guid: 5d8c4a760c971d64882b94316d0939fd, type: 2}
