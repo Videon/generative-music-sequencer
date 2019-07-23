@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generatorMode: 4
   sound: {fileID: 11400000, guid: 67ed2bdeb58215443b307556080e21ef, type: 2}
+  useExternalParams: 0
   inputs: []
   curve:
     serializedVersion: 2
@@ -23,5 +24,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: 6718585e543eb6b4dbf070c5bce93f3a, type: 2}
-  localRhythm: {fileID: 11400000, guid: 9eb72d4b0c853cb419c1dc05b73323a0, type: 2}
-  globalPitchVar: 0
+  localRhythm: {fileID: 11400000, guid: f9a7958d93f9ce746ba1b7c75f1c0dfe, type: 2}

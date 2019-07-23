@@ -13,19 +13,31 @@ MonoBehaviour:
   m_Name: SST_working
   m_EditorClassIdentifier: 
   bpm: 80
-  barSteps: 16
+  barSteps: 8
   musicSequences:
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
   - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   rhythms:
-  - {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
-  - {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   scales:
-  - {fileID: 11400000, guid: 96a82913b675eff4e8d8eae488f1cff9, type: 2}
-  - {fileID: 11400000, guid: 5d8c4a760c971d64882b94316d0939fd, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

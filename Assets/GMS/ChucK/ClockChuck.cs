@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using GMS;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ public class ClockChuck : MonoBehaviour
         //_musicSequencer = GetComponentInParent<MusicSequencer>();
 
         RunClock();
+        RunReaderThread();
     }
 
     public void SetClock(double pBpm)
@@ -39,7 +41,7 @@ public class ClockChuck : MonoBehaviour
     {
         SetClock(bpm);
         currentInt = _chuckIntSyncer.GetCurrentValue();
-        if (currentInt == previousInt) return;
+        if (currentInt == previousInt) return; //TODO: Use proper ChucK callback function here
         _musicSequencer.Tick();
         previousInt = currentInt;
     }
@@ -49,7 +51,7 @@ public class ClockChuck : MonoBehaviour
         _chuckSubInstance.RunCode(@"
 			global float bpm;
             global int intCallback;
-            120=>bpm;
+            60=>bpm;
             Impulse imp => dac;
 
             1::minute/bpm => dur metrotime;
@@ -78,5 +80,26 @@ public class ClockChuck : MonoBehaviour
 
             }
 		");
+    }
+
+    void RunReaderThread()
+    {
+        ChuckReader chuckReader = new ChuckReader();
+
+        Thread chuckReaderThread = new Thread(new ThreadStart(chuckReader.ReaderThread));
+        chuckReaderThread.Start();
+    }
+}
+
+
+public class ChuckReader
+{
+    public void ReaderThread()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            Debug.Log("Thread running");
+            Thread.Sleep(1);
+        }
     }
 }

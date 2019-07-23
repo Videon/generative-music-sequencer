@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
   m_Name: SEQ_Stinger
   m_EditorClassIdentifier: 
-  generatorMode: 3
+  generatorMode: 4
   sound: {fileID: 11400000, guid: 478b80deae4db36419b90a662108b1d7, type: 2}
+  useExternalParams: 0
+  inputs: []
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: a542568b34ddc4a4b938ad63c31fe140, type: 2}
   localRhythm: {fileID: 11400000, guid: db8a5ea25f1a422499b9740d4e6c53c4, type: 2}
-  globalPitchVar: 0

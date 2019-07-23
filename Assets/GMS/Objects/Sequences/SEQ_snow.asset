@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b98f940b9cbc54ba6bc61ad9dda602, type: 3}
   m_Name: SEQ_snow
   m_EditorClassIdentifier: 
-  generatorMode: 4
+  generatorMode: 0
   sound: {fileID: 11400000, guid: 956df833879955348acf9769c7e0d6bf, type: 2}
   useExternalParams: 0
-  inputs: []
+  inputs:
+  - paramName: testParameter
+    paramVal: 1
   curve:
     serializedVersion: 2
     m_Curve: []

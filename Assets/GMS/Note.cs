@@ -16,6 +16,8 @@
         Sixteenth
     };
 
+    public double barPos;    //Position of current note in bar. Value between 0 and 1.
+
     public Modes Mode;
     public Length length;
     public float pitch;

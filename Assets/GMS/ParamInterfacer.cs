@@ -7,9 +7,10 @@ namespace GMS
 {
     public class ParamInterfacer : MonoBehaviour
     {
-        [SerializeField] public int paramCount;
+        //[SerializeField] public int paramCount;
         [SerializeField] public List<Parameter> parameters;
 
+        /*
         public void InitParameters(int pParamCount)
         {
             if (pParamCount < 0 || pParamCount > 64 || pParamCount == parameters.Count) return;
@@ -19,6 +20,7 @@ namespace GMS
             else
                 parameters.RemoveRange(pParamCount, parameters.Count - pParamCount);
         }
+        */
 
         public float GetParamValue(string paramName)
         {

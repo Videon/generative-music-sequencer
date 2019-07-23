@@ -31,8 +31,7 @@ namespace GMS.ScriptableObjects
 
         [SerializeField] public AnimationCurve curve;
 
-        public int
-            dontRepeatLast; //Amount of last played notes that are not considered for the generation of a new sequence
+        //public int dontRepeatLast; //Amount of last played notes that are not considered for the generation of a new sequence
 
         //public bool quantize;     //Indicates whether notes are only generated on steps
         public Scale localScale; //If not empty, custom scale will be used for sequence generation

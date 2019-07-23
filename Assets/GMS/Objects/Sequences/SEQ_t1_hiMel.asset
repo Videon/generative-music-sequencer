@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: SEQ_t1_hiMel
   m_EditorClassIdentifier: 
   generatorMode: 1
-  sound: {fileID: 11400000, guid: 3864676cfc7ee24438f6779f1508d0f0, type: 2}
+  sound: {fileID: 11400000, guid: 0f60e9f4c88ee1f448211f6214451e9c, type: 2}
   useExternalParams: 1
   inputs:
   - paramName: posX
-    paramVal: 0
+    paramVal: 0.7576
   - paramName: posY
-    paramVal: 0
+    paramVal: 0.431
   - paramName: posZ
-    paramVal: 0
+    paramVal: 0.96
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0.33333334
-      value: 0
+      value: 0.7576
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.6666667
-      value: 0
+      value: 0.431
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 0.96
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -55,7 +55,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: 5d8c4a760c971d64882b94316d0939fd, type: 2}
-  localRhythm: {fileID: 11400000, guid: c4d75bcc5a0fa2b4692433c2978edc85, type: 2}
-  globalPitchVar: 0
+  localRhythm: {fileID: 11400000, guid: deeef45d913feda4c96ee9642b06d713, type: 2}

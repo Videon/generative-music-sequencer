@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8819370269735043094}
   - component: {fileID: 8819370269735043080}
   - component: {fileID: 8819370269735043081}
+  - component: {fileID: 154786518}
   m_Layer: 0
   m_Name: ChuckMain
   m_TagString: Untagged
@@ -141,6 +142,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   microphoneIdentifier: 
+--- !u!114 &154786518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819370269735043095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44887418978244fea00d1ae6aa8703a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8819370270840917225
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b409d6d9706b41988cd9e32bd055751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chuckMainInstance: {fileID: 8819370269735043081}
+  chuckMainInstance: {fileID: 0}
   spatialize: 0
 --- !u!1 &8819370271049036665
 GameObject:
@@ -423,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b409d6d9706b41988cd9e32bd055751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chuckMainInstance: {fileID: 8819370269735043081}
+  chuckMainInstance: {fileID: 0}
   spatialize: 0
 --- !u!1 &8819370271241297220
 GameObject:
@@ -767,7 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b409d6d9706b41988cd9e32bd055751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chuckMainInstance: {fileID: 8819370269735043081}
+  chuckMainInstance: {fileID: 0}
   spatialize: 0
 --- !u!1 &8819370271544901754
 GameObject:
@@ -909,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b409d6d9706b41988cd9e32bd055751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chuckMainInstance: {fileID: 8819370269735043081}
+  chuckMainInstance: {fileID: 0}
   spatialize: 0
 --- !u!1 &8819370271777436196
 GameObject:
@@ -969,24 +982,36 @@ MonoBehaviour:
   tempState: {fileID: 0}
   useWorkingCopy: 0
   bpm: 80
-  barSteps: 16
+  barSteps: 8
   currentStep: 0
   musicSequences:
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
   - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
   - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   rhythms:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   scales:
   - {fileID: 0}
   - {fileID: 0}
-  musicSequencesDimensions: {x: 2, y: 4}
+  - {fileID: 0}
+  - {fileID: 0}
+  musicSequencesDimensions: {x: 4, y: 4}
 --- !u!114 &8819370271777436249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,20 +1024,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6ba3eb7e897384c81237ac28fb759e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramCount: 3
   parameters:
-  - paramName: 
-    inputVal: 0
+  - paramName: posX
+    inputVal: 75.76
     outputVal: 0
     minNormal: 0
-    maxNormal: 0
-  - paramName: 
-    inputVal: 0
+    maxNormal: 100
+  - paramName: posY
+    inputVal: 43.1
     outputVal: 0
     minNormal: 0
-    maxNormal: 0
-  - paramName: 
-    inputVal: 0
+    maxNormal: 100
+  - paramName: posZ
+    inputVal: 96
     outputVal: 0
     minNormal: 0
-    maxNormal: 0
+    maxNormal: 100

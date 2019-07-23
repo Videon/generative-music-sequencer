@@ -15,6 +15,7 @@ namespace GMS
         private ClockChuck _clockChuck;
 
         [SerializeField] private ChuckSubInstance[] chuckSubInstances;
+        [SerializeField] private ChuckScheduler[] _chuckSchedulers;
 
         [SerializeField] private SequencerState workingState, tempState;
 
@@ -49,6 +50,8 @@ namespace GMS
             _clockChuck.SetClock(bpm);
 
             chuckSubInstances = GetComponentsInChildren<ChuckSubInstance>();
+            _chuckSchedulers = new ChuckScheduler[chuckSubInstances.Length];
+
             _paramInterfacer = GetComponent<ParamInterfacer>();
         }
 
@@ -69,6 +72,20 @@ namespace GMS
             LoadStateValues();
 
             AssignMixerChannels();
+
+            InitSchedulers();
+
+            //Set to last step in last bar to have music playback start immediately from first bar
+            _currentBar = GetMusicSequencesDimensions().x - 1;
+            currentStep = barSteps;
+        }
+
+        void InitSchedulers()
+        {
+            for (int i = 0; i < _chuckSchedulers.Length; i++)
+            {
+                _chuckSchedulers[i] = new ChuckScheduler();
+            }
         }
 
 #if UNITY_EDITOR
@@ -293,7 +310,7 @@ namespace GMS
         #endregion
 
 
-        //Methods that are run during game mode
+        //Methods that are run during game mode, i.e. Rhythm and Sequence generation
 
         #region Run-time methods
 
@@ -343,7 +360,10 @@ namespace GMS
                 }
 
                 if (rhythm != null)
-                    return RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
+                {
+                    double[] rhythmOut = RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
+                    return rhythmOut;
+                }
             }
 
             return null;
@@ -354,7 +374,8 @@ namespace GMS
         {
             Scale scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
 
-            return SequenceGenerator.GenerateSequence(bpm, barSteps, pGeneratedRhythm, scale, pSequenceData);
+            Note[] noteOut = SequenceGenerator.GenerateSequence(bpm, barSteps, pGeneratedRhythm, scale, pSequenceData);
+            return noteOut;
         }
 
         ///<summary>Schedule playing sounds for a given schedule.</summary>
@@ -367,7 +388,7 @@ namespace GMS
                 {
                     if (pSequenceNotes[i] != null)
                     {
-                        ChuckScheduler.ScheduleSound(chuckSubInstances[layer], triggerTimes[i],
+                        _chuckSchedulers[layer].ScheduleSound(chuckSubInstances[layer], triggerTimes[i],
                             pSequenceData.sound.fileName, pSequenceNotes[i].pitch, pSequenceData.sound.gain);
                     }
                 }
