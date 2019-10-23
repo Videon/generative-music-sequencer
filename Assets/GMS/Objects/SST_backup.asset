@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e15760b8ab650ad418f5a7480bd23f7d, type: 3}
-  m_Name: SST_working
+  m_Name: SST_backup
   m_EditorClassIdentifier: 
   bpm: 80
   barSteps: 8
   musicSequences:
+  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
+  - {fileID: 11400000, guid: cc541e06f7d012d44985912e93575cbb, type: 2}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
+  - {fileID: 11400000, guid: b8b8e5f32e7fa03468389ee9817202ba, type: 2}
   - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
-  - {fileID: 11400000, guid: a92e846faf7f32a4495e3758946a8237, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
+  - {fileID: 11400000, guid: 1977a4fb81dc94e499de78d76345f67a, type: 2}
   rhythms:
   - {fileID: 0}
   - {fileID: 0}

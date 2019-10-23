@@ -16,7 +16,7 @@
         Sixteenth
     };
 
-    public double barPos;    //Position of current note in bar. Value between 0 and 1.
+    public double barPos; //Position of current note in bar. Value between 0 and 1.
 
     public Modes Mode;
     public Length length;
@@ -35,5 +35,10 @@
     {
         Mode = p_mode;
         pitch = p_pitch;
+    }
+
+    public Note(double pPos)
+    {
+        barPos = pPos;
     }
 }

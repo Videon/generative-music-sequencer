@@ -8,9 +8,13 @@ using UnityEngine;
 public class ClockChuck : MonoBehaviour
 {
     private ChuckSubInstance _chuckSubInstance;
-    private ChuckIntSyncer _chuckIntSyncer;
+    //private ChuckIntSyncer _chuckIntSyncer;
     public double bpm = 120.0d;
     private int currentInt, previousInt;
+
+    private ChuckReader _chuckReader;
+
+    private Thread readerThread;
 
     [SerializeField] private MusicSequencer _musicSequencer;
 
@@ -22,12 +26,10 @@ public class ClockChuck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _chuckIntSyncer = gameObject.AddComponent<ChuckIntSyncer>();
-        _chuckIntSyncer.SyncInt(_chuckSubInstance, "intCallback");
+        //_chuckIntSyncer = gameObject.AddComponent<ChuckIntSyncer>();
+        //_chuckIntSyncer.SyncInt(_chuckSubInstance, "intCallback");
 
-        //_musicSequencer = GetComponentInParent<MusicSequencer>();
-
-        RunClock();
+        //RunClock();
         RunReaderThread();
     }
 
@@ -39,10 +41,7 @@ public class ClockChuck : MonoBehaviour
 
     private void Update()
     {
-        SetClock(bpm);
-        currentInt = _chuckIntSyncer.GetCurrentValue();
-        if (currentInt == previousInt) return; //TODO: Use proper ChucK callback function here
-        _musicSequencer.Tick();
+        //currentInt = _chuckIntSyncer.GetCurrentValue();
         previousInt = currentInt;
     }
 
@@ -50,6 +49,7 @@ public class ClockChuck : MonoBehaviour
     {
         _chuckSubInstance.RunCode(@"
 			global float bpm;
+            global float msTime;
             global int intCallback;
             60=>bpm;
             Impulse imp => dac;
@@ -84,22 +84,59 @@ public class ClockChuck : MonoBehaviour
 
     void RunReaderThread()
     {
-        ChuckReader chuckReader = new ChuckReader();
+        _chuckReader = new ChuckReader(_chuckSubInstance, _musicSequencer);
 
-        Thread chuckReaderThread = new Thread(new ThreadStart(chuckReader.ReaderThread));
-        chuckReaderThread.Start();
+        readerThread = new Thread(_chuckReader.ReaderThread);
+        readerThread.Start();
+    }
+
+    private void OnApplicationQuit()
+    {
+        _chuckReader.keepRunning = false;
     }
 }
 
 
 public class ChuckReader
 {
+    //private ChuckSubInstance _chuckSubInstance;
+    //private Chuck.FloatCallback _chuckFloatCallback;
+
+    private MusicSequencer _musicSequencer;
+
+    public bool keepRunning = true;
+
+    public ChuckReader(ChuckSubInstance pChuckSubInstance, MusicSequencer pMusicSequencer)
+    {
+        //_chuckSubInstance = pChuckSubInstance;
+        _musicSequencer = pMusicSequencer;
+        //_chuckFloatCallback = _chuckSubInstance.CreateGetFloatCallback(_musicSequencer.Tick);
+    }
+
+    public void _ReaderThread()
+    {
+        while (keepRunning)
+        {
+            //_chuckSubInstance.GetFloat("msTime", _chuckFloatCallback);
+            _musicSequencer.Tick(0.001d * (_musicSequencer.bpm / 60.0d));
+            Thread.Sleep(1);
+        }
+
+        Debug.Log("stopping thread");
+    }
+
     public void ReaderThread()
     {
-        for (int i = 0; i < 1000; i++)
+        //Catch and report any exceptions here, 
+        //so that Unity doesn't crash!
+        try
         {
-            Debug.Log("Thread running");
-            Thread.Sleep(1);
+            _ReaderThread();
+        }
+        catch (Exception e)
+        {
+            if (!(e is ThreadAbortException))
+                Debug.LogError("Unexpected Death: " + e.ToString());
         }
     }
 }

@@ -21,19 +21,23 @@ namespace GMS
 
         private ParamInterfacer _paramInterfacer;
 
-        public bool useWorkingCopy = true; /*If true, a copy of the working state will be created
-                                            and used during run-time. Changes to the copied state will be discarded.*/
+        /// <summary>If true, a copy of the working state will be created and used during run-time. Changes to the copied state will be discarded.</summary>
+        public bool useWorkingCopy = true;
 
-        ///<summary>Tempo of music in BPM (beats per minute)</summary>
+        ///<summary>Tempo of music in BPM (beats per minute).</summary>
         [SerializeField] public double bpm = 120;
 
-        ///<summary>The number of all steps in a bar</summary>
+        ///<summary>The number of all steps in a bar.</summary>
         [SerializeField] public int barSteps = 16;
 
-        ///<summary>Currently active bar</summary>
+        ///<summary>Currently active bar.</summary>
         int _currentBar = 0;
 
-        public int currentStep = 0;
+        /// <summary>Playback position of current bar.</summary>
+        private double _currentBarTime;
+
+        /// <summary>Array of int indexes corresponding with layer count, indicating last index of note played in layer.</summary>
+        private int[] _lastPlayedNoteIndexes;
 
         [SerializeField] private SequenceData[] musicSequences;
         [SerializeField] private Rhythm[] rhythms;
@@ -41,6 +45,12 @@ namespace GMS
 
         ///<summary>Store "dimensions" of MusicSequences array to make it usable like a 2D array.</summary>
         [SerializeField] private Vector2Int musicSequencesDimensions = new Vector2Int(0, 0);
+
+
+        //---Following are the additions that are part of the sequencer overhaul
+
+        /// <summary>Array of generated note arrays based on the SequenceData in the respective position.</summary>
+        private Note[,][] barNotes;
 
         #region Runtime Initialization and Exit handling
 
@@ -53,6 +63,11 @@ namespace GMS
             _chuckSchedulers = new ChuckScheduler[chuckSubInstances.Length];
 
             _paramInterfacer = GetComponent<ParamInterfacer>();
+
+            _lastPlayedNoteIndexes = new int[musicSequencesDimensions.y];
+            _currentBarTime = barSteps + 2;
+
+            barNotes = new Note[musicSequencesDimensions.x, musicSequencesDimensions.y][];
         }
 
         private void Start()
@@ -77,7 +92,6 @@ namespace GMS
 
             //Set to last step in last bar to have music playback start immediately from first bar
             _currentBar = GetMusicSequencesDimensions().x - 1;
-            currentStep = barSteps;
         }
 
         void InitSchedulers()
@@ -307,6 +321,12 @@ namespace GMS
             return _currentBar;
         }
 
+        ///<summary>Converts and returns the current bar time for display as a float value.</summary>
+        public float GetCurrentBarTimeFloat()
+        {
+            return (float) _currentBarTime;
+        }
+
         #endregion
 
 
@@ -314,40 +334,45 @@ namespace GMS
 
         #region Run-time methods
 
-        public void Tick()
+        public void Tick(double pElapsedTime)
         {
-            _clockChuck.SetClock(bpm);
-            if (currentStep < barSteps - 1)
-                currentStep++;
-            else
+            lock (this)    //TODO: Check if locking is used correctly here and preventing crashes as intended.
             {
-                if (_currentBar < GetMusicSequencesDimensions().x - 1)
-                    _currentBar++;
-                else
-                    _currentBar = 0;
-                currentStep = 0;
+                _clockChuck.SetClock(bpm);
+                _currentBarTime += pElapsedTime * (bpm / 60.0d);
 
-
-                int layerCount = GetMusicSequencesDimensions().y;
-
-                UpdateParameters(); //Update parameters before generating sequence
-                //Generate and schedule next sequence at the beginning of the current bar
-                for (var currentLayer = 0; currentLayer < layerCount; currentLayer++)
+                if (_currentBarTime >= barSteps)
                 {
-                    double[] generatedRhythm = GenerateRhythm(GetMusicSequence(_currentBar, currentLayer));
+                    PlayNotesRemaining(_currentBar);
 
-                    if (generatedRhythm != null && generatedRhythm.Length > 0)
+                    if (_currentBar < GetMusicSequencesDimensions().x - 1)
+                        _currentBar++;
+                    else
+                        _currentBar = 0;
+                    _currentBarTime = 0.0d;
+
+                    int layerCount = GetMusicSequencesDimensions().y;
+
+                    UpdateParameters(); //Update parameters before generating sequence
+
+                    //Generate and schedule next sequence at the beginning of the current bar
+                    for (var currentLayer = 0; currentLayer < layerCount; currentLayer++)
                     {
-                        Note[] generatedSequence =
-                            GenerateSequence(generatedRhythm, GetMusicSequence(_currentBar, currentLayer));
-                        ScheduleSequence(currentLayer, generatedRhythm, generatedSequence,
-                            GetMusicSequence(_currentBar, currentLayer));
+                        barNotes[_currentBar, currentLayer] =
+                            GenerateRhythm(GetMusicSequence(_currentBar, currentLayer));
+
+                        if (barNotes[_currentBar, currentLayer] != null &&
+                            barNotes[_currentBar, currentLayer].Length > 0)
+                            barNotes[_currentBar, currentLayer] = GenerateSequence(barNotes[_currentBar, currentLayer],
+                                GetMusicSequence(_currentBar, currentLayer));
                     }
                 }
+
+                PlayNotes(_currentBarTime, _currentBar);
             }
         }
 
-        private double[] GenerateRhythm(SequenceData pSequenceData)
+        private Note[] GenerateRhythm(SequenceData pSequenceData)
         {
             if (pSequenceData != null)
             {
@@ -361,7 +386,7 @@ namespace GMS
 
                 if (rhythm != null)
                 {
-                    double[] rhythmOut = RhythmGenerator.GenerateRhythm(bpm, barSteps, rhythm);
+                    Note[] rhythmOut = RhythmGenerator.GenerateRhythm(barSteps, rhythm);
                     return rhythmOut;
                 }
             }
@@ -370,28 +395,56 @@ namespace GMS
         }
 
         ///<summary>Returns a new Note sequence based on the input SequenceData.</summary>
-        private Note[] GenerateSequence(double[] pGeneratedRhythm, SequenceData pSequenceData)
+        private Note[] GenerateSequence(Note[] pGeneratedRhythm, SequenceData pSequenceData)
         {
             Scale scale = pSequenceData.localScale ? pSequenceData.localScale : scales[_currentBar];
 
-            Note[] noteOut = SequenceGenerator.GenerateSequence(bpm, barSteps, pGeneratedRhythm, scale, pSequenceData);
+            Note[] noteOut = SequenceGenerator.GenerateSequence(barSteps, pGeneratedRhythm, scale, pSequenceData);
             return noteOut;
         }
 
-        ///<summary>Schedule playing sounds for a given schedule.</summary>
-        private void ScheduleSequence(int layer, double[] triggerTimes, Note[] pSequenceNotes,
-            SequenceData pSequenceData)
+        private void PlayNotes(double pCurrentBarTime, int pBar)
         {
-            if (pSequenceNotes.Length > 0)
+            
+            for (int layer = 0; layer < musicSequencesDimensions.y; layer++)
             {
-                for (int i = 0; i < pSequenceNotes.Length; i++)
+                for (;
+                    _lastPlayedNoteIndexes[layer] < barNotes[pBar, layer].Length;
+                    _lastPlayedNoteIndexes[layer]++)
                 {
-                    if (pSequenceNotes[i] != null)
+                    if (barNotes[pBar, layer][_lastPlayedNoteIndexes[layer]].barPos <= _currentBarTime)
                     {
-                        _chuckSchedulers[layer].ScheduleSound(chuckSubInstances[layer], triggerTimes[i],
-                            pSequenceData.sound.fileName, pSequenceNotes[i].pitch, pSequenceData.sound.gain);
+                        SequenceData currentSequence = GetMusicSequence(pBar, layer);
+                        _chuckSchedulers[layer].PlaySound(chuckSubInstances[layer],
+                            currentSequence.sound.fileName, barNotes[pBar, layer][_lastPlayedNoteIndexes[layer]].pitch,
+                            currentSequence.sound.gain);
+                        _lastPlayedNoteIndexes[layer] += 1;
+                        Debug.Log(pCurrentBarTime);
+                    }
+                    else return;
+                }
+            }
+        }
+
+        /// <summary>Plays all remaining notes in the bar and resets indexes.</summary>
+        private void PlayNotesRemaining(int pBar)
+        {
+            for (int layer = 0; layer < musicSequencesDimensions.y; layer++)
+            {
+                if (barNotes[pBar, layer] != null)
+                {
+                    for (;
+                        _lastPlayedNoteIndexes[layer] < barNotes[pBar, layer].Length;
+                        _lastPlayedNoteIndexes[layer]++)
+                    {
+                        SequenceData currentSequence = GetMusicSequence(pBar, layer);
+                        _chuckSchedulers[layer].PlaySound(chuckSubInstances[layer],
+                            currentSequence.sound.fileName, barNotes[pBar, layer][_lastPlayedNoteIndexes[layer]].pitch,
+                            currentSequence.sound.gain);
                     }
                 }
+
+                _lastPlayedNoteIndexes[layer] = 0;
             }
         }
 

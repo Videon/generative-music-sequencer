@@ -9,20 +9,20 @@ namespace GMS
 
     public static class SequenceGenerator
     {
-        public static Note[] GenerateSequence(double pBpm, int pBarSteps, double[] pGeneratedRhythm, Scale pScale,
+        public static Note[] GenerateSequence(int pBarSteps, Note[] pGeneratedRhythm, Scale pScale,
             SequenceData pSequenceData)
         {
             SequenceData.GeneratorMode generatorMode = pSequenceData.generatorMode;
             switch (generatorMode)
             {
                 case SequenceData.GeneratorMode.Legacy:
-                    return GenerateLegacy(pGeneratedRhythm.Length, pSequenceData);
+                    return GenerateLegacy(pGeneratedRhythm, pSequenceData);
                 case SequenceData.GeneratorMode.Simple:
                     return GenerateSimple(pGeneratedRhythm.Length, pScale, pSequenceData);
                 case SequenceData.GeneratorMode.WeightedScale:
                     return GenerateWeightedScale(pGeneratedRhythm.Length, pScale, pSequenceData);
                 case SequenceData.GeneratorMode.Curve:
-                    return GenerateCurve(pBpm, pBarSteps, pGeneratedRhythm, pScale, pSequenceData);
+                    return GenerateCurve(pBarSteps, pGeneratedRhythm, pScale, pSequenceData);
                 case SequenceData.GeneratorMode.Chords:
                     throw new NotImplementedException();
             }
@@ -30,21 +30,22 @@ namespace GMS
             return null;
         }
 
-        public static Note[] GenerateLegacy(int pNoteCount, SequenceData pSequenceData)
+        public static Note[] GenerateLegacy(Note[] pGeneratedRhythm, SequenceData pSequenceData)
         {
-            Note[] note = new Note[pNoteCount];
-
-            for (int i = 0; i < note.Length; i++)
+            Tools tools = new Tools();
+            System.Random rand = new System.Random();
+            for (int i = 0; i < pGeneratedRhythm.Length; i++)
             {
-                note[i] = new Note(Note.Modes.Single, Random.Range(0.5f, 2.0f));
+                pGeneratedRhythm[i].Mode = Note.Modes.Single;
+                pGeneratedRhythm[i].pitch = (float) tools.RandomDoubleMinMax(0.5d, 2.0d);
             }
 
-            return note;
+            return pGeneratedRhythm;
         }
 
         #region Curve Generation Mode
 
-        public static Note[] GenerateCurve(double pBpm, int pBarSteps, double[] pGeneratedRhythm, Scale pScale,
+        public static Note[] GenerateCurve(int pBarSteps, Note[] pGeneratedRhythm, Scale pScale,
             SequenceData pSequenceData)
         {
             Note[] note = new Note[pGeneratedRhythm.Length];
@@ -56,7 +57,7 @@ namespace GMS
             for (int i = 0; i < note.Length; i++)
             {
                 note[i] = new Note(Note.Modes.Single,
-                    TimeToPitch(pBpm, pBarSteps, pGeneratedRhythm[i], pScale, pSequenceData));
+                    TimeToPitch(pBarSteps, pGeneratedRhythm[i].barPos, pScale, pSequenceData));
             }
 
             return note;
@@ -76,8 +77,7 @@ namespace GMS
         }
 
 
-        private static float TimeToPitch(double pBpm, int pBarSteps, double noteTime, Scale pScale,
-            SequenceData pSequenceData)
+        private static float TimeToPitch(int pBarSteps, double noteTime, Scale pScale, SequenceData pSequenceData)
         {
             List<int> enabledNotes = new List<int>();
             //This is adding all enabled notes from the list, sorted from lowest to highest
@@ -87,21 +87,9 @@ namespace GMS
 
 
             float curveValue =
-                Mathf.Clamp(pSequenceData.curve.Evaluate((float) GetNormalizedTime(pBpm, pBarSteps, noteTime)),
-                    0.0f, 1.0f);
+                Mathf.Clamp(pSequenceData.curve.Evaluate((float) noteTime / pBarSteps), 0.0f, 1.0f);
             int currentNote = (enabledNotes[Mathf.RoundToInt((enabledNotes.Count - 1) * curveValue)]);
             return pScale.CalculateFrequency(currentNote);
-        }
-
-        /// <summary> Normalizes absolute note time to relative note time (value range 0 to 1) </summary>
-        /// <param name="pBpm"></param>
-        /// <param name="pBarSteps"></param>
-        /// <param name="noteTime"></param>
-        /// <returns></returns>
-        private static double GetNormalizedTime(double pBpm, int pBarSteps, double noteTime)
-        {
-            double barLength = (60d / pBpm) * pBarSteps;
-            return noteTime / barLength;
         }
 
         #endregion
@@ -117,10 +105,12 @@ namespace GMS
                 if (pScale.scaleActiveNotes[i])
                     enabledNotes.Add(i);
 
+            System.Random rand = new System.Random();
+
             for (int i = 0; i < note.Length; i++)
             {
                 note[i] = new Note(Note.Modes.Single,
-                    pScale.CalculateFrequency(enabledNotes[Random.Range(0, enabledNotes.Count)]));
+                    pScale.CalculateFrequency(enabledNotes[rand.Next(0, enabledNotes.Count)]));
             }
 
             return note;

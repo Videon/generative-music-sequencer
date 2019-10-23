@@ -40,6 +40,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dontRepeatLast: 0
   localScale: {fileID: 11400000, guid: 6dec3491f06a0704ca94824469c716ee, type: 2}
-  localRhythm: {fileID: 11400000, guid: 9eb72d4b0c853cb419c1dc05b73323a0, type: 2}
+  localRhythm: {fileID: 11400000, guid: c4d75bcc5a0fa2b4692433c2978edc85, type: 2}

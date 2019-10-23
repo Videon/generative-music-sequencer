@@ -9,15 +9,15 @@ namespace GMS
 
     public static class RhythmGenerator
     {
-        public static double[] GenerateRhythm(double pBpm, int pBarSteps, Rhythm pRhythm)
+        public static Note[] GenerateRhythm(int pBarSteps, Rhythm pRhythm)
         {
             Rhythm.RhythmMode rhythmMode = pRhythm.rhythmMode;
             switch (rhythmMode)
             {
                 case Rhythm.RhythmMode.AutomaticFixed:
-                    return GenerateAutomaticFixed(pBpm, pBarSteps, pRhythm);
+                    return GenerateAutomaticFixed(pBarSteps, pRhythm);
                 case Rhythm.RhythmMode.RandomMinMax:
-                    return GenerateRandomMinMax(pBpm, pBarSteps, pRhythm);
+                    return GenerateRandomMinMax(pBarSteps, pRhythm);
                 case Rhythm.RhythmMode.Manual:
                     throw new NotImplementedException();
             }
@@ -30,27 +30,26 @@ namespace GMS
         /// <param name="pBarSteps">Current global steps per bar.</param>
         /// <param name="pRhythm">Input generation parameters.</param>
         /// <returns></returns>
-        private static double[] GenerateAutomaticFixed(double pBpm, int pBarSteps, Rhythm pRhythm)
+        private static Note[] GenerateAutomaticFixed(int pBarSteps, Rhythm pRhythm)
         {
-            double[] rhythmOutput = new double[pRhythm.steps];
-            double stepLength = ((60d / pBpm) * pBarSteps) / (rhythmOutput.Length);
+            Note[] rhythmOutput = new Note[pRhythm.steps];
+            double stepLength = 1.0d / (rhythmOutput.Length);
             for (int i = 0; i < rhythmOutput.Length; i++)
-                rhythmOutput[i] = i * stepLength;
+                rhythmOutput[i] = new Note(i * stepLength);
             return rhythmOutput;
         }
 
-        private static double[] GenerateRandomMinMax(double pBpm, int pBarSteps, Rhythm pRhythm)
+        private static Note[] GenerateRandomMinMax(int pBarSteps, Rhythm pRhythm)
         {
-            List<double> rhythmOutput = new List<double>();
-            double barLength = (60d / pBpm) * pBarSteps;
+            List<Note> rhythmOutput = new List<Note>();
             double currentTime = 0.0d;
-            while (currentTime < barLength)
+            while (currentTime < pBarSteps)
             {
                 currentTime += Random.Range(pRhythm.randomMin, pRhythm.randomMax);
-                if (currentTime > barLength)
+                if (currentTime >= pBarSteps)
                     break;
 
-                rhythmOutput.Add(currentTime);
+                rhythmOutput.Add(new Note(currentTime));
             }
 
             return rhythmOutput.ToArray();

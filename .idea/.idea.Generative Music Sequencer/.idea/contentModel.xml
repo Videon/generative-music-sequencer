@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\PROJECTS\Unity\Generative Music Sequencer" t="IncludeRecursive">
+    <e p="C:\Users\bausn\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\bausn\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Generative Music Sequencer.-641818451.00" t="ExcludeRecursive" />
+    <e p="D:\PROJECTS\Unity\Generative Music Sequencer" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -79,6 +81,7 @@
             <e p="SequencerState.cs" t="Include" />
           </e>
           <e p="SequenceGenerator.cs" t="Include" />
+          <e p="Tools.cs" t="Include" />
         </e>
         <e p="Plugins" t="Include">
           <e p="GitHub" t="Include">
@@ -96,7 +99,5 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\bausn\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\bausn\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_Generative Music Sequencer.-1508870676.00" t="ExcludeRecursive" />
   </component>
 </project>

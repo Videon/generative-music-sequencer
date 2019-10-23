@@ -4,47 +4,38 @@ using UnityEngine;
 
 public class ChuckScheduler
 {
-    /// <summary> Assign, move to back, configure  and schedule AudioSource to be used for sound playback.</summary>
+    /// <summary>Plays a given sound through ChucK.</summary>
     /// <param name="chuckSubInstance">The ChuckSubInstance that is used to schedule and play the sound</param>
-    /// <param name="pScheduledTime">The absolute time when the sound is scheduled to be played.</param>
     /// <param name="pFilename">The filename of the clip that will be played at the scheduled time.</param>
     /// <param name="pPitch">The pitch of the sample that will be played at the scheduled time.</param>
-    public void ScheduleSound(ChuckSubInstance chuckSubInstance, double pScheduledTime, string pFilename,
+    public void PlaySound(ChuckSubInstance chuckSubInstance, string pFilename,
         float pPitch, float pGain)
     {
-        PlayScheduled(chuckSubInstance, pScheduledTime, pPitch, pFilename, pGain);
+        PlayScheduled(chuckSubInstance, pPitch, pFilename, pGain);
     }
 
-    public void PlayScheduled(ChuckSubInstance chuckSubInstance, double scheduledTime, float pitch,
+    public void PlayScheduled(ChuckSubInstance chuckSubInstance, float pitch,
         string fileName, float gain)
     {
-        //PARAMETERS: {0} = scheduledTime, {1} = pitch, {2} = clipFile
+        //PARAMETERS: {0} = scheduledTime, {0} = pitch, {1} = clipFile, {2} = gain
         chuckSubInstance.RunCode(string.Format(@"
-    		now +{0}::second =>time later;
 			SndBuf sndBuf => dac;
 
-			//Wait a given amount of time
-			while(now<later){{
-				10::ms=>now;
-			}}
-
-			""{2}""=>string filename;
+			""{1}""=>string filename;
     		me.dir() + filename+"".wav""=> sndBuf.read;
     
     		// start at the beginning of the clip
     		0 => sndBuf.pos;  		
 
     		// Use this as pitch. 1=100%, 2= 200%, 0.5 = 50%;
-    		{1} => sndBuf.rate;
+    		{0} => sndBuf.rate;
     
     		// set gain: least intense is quiet, most intense is loud; range 0.05 to 1
-    		{3} => sndBuf.gain;
-    
-			
+    		{2} => sndBuf.gain;
 
     		// pass time so that the file plays
 			sndBuf.length() / sndBuf.rate() => now;
     
-    	", scheduledTime, pitch, fileName, gain));
+    	", pitch, fileName, gain));
     }
 }

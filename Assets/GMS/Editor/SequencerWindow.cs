@@ -124,7 +124,8 @@ class SequencerWindow : EditorWindow
         //Realtime song position info
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Current Bar: " + (musicSequencer.GetCurrentBar() + 1), GUILayout.Width(100f));
-        EditorGUILayout.LabelField("Current Step: " + (musicSequencer.currentStep + 1), GUILayout.Width(100f));
+        EditorGUILayout.LabelField("Current bar time: " + (musicSequencer.GetCurrentBarTimeFloat()),
+            GUILayout.Width(200f));
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         EditorGUILayout.EndVertical();
@@ -146,7 +147,13 @@ class SequencerWindow : EditorWindow
         for (int x = 0; x < musicSequencer.GetMusicSequencesDimensions().x; x++)
         {
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.LabelField("Bar " + (x + 1), GUILayout.Width(50f));
+
+            //Draw progress bar
+            float currentBarTime = 0.0f;
+            if (musicSequencer.GetCurrentBar() == x)
+                currentBarTime = musicSequencer.GetCurrentBarTimeFloat();
+            EditorGUI.ProgressBar(GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none, GUILayout.Height(15.0f)),
+                currentBarTime / musicSequencer.barSteps, "Bar " + (x + 1));
 
             //Draw rhythm object fields
             GUI.SetNextControlName(("RhythmField_" + x +
