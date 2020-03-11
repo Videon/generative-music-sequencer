@@ -26,11 +26,9 @@ public class ClockChuck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_chuckIntSyncer = gameObject.AddComponent<ChuckIntSyncer>();
-        //_chuckIntSyncer.SyncInt(_chuckSubInstance, "intCallback");
+        
 
-        //RunClock();
-        RunReaderThread();
+        RunClock();
     }
 
     public void SetClock(double pBpm)

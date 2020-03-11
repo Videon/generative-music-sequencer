@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\bausn\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\bausn\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Generative Music Sequencer.-641818451.00" t="ExcludeRecursive" />
+    <e p="C:\Users\bausn\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\bausn\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Generative Music Sequencer.-641818451.00" t="ExcludeRecursive" />
     <e p="D:\PROJECTS\Unity\Generative Music Sequencer" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
@@ -54,6 +54,11 @@
             </e>
           </e>
         </e>
+        <e p="DefaultPlayables" t="Include">
+          <e p="Editor" t="Include">
+            <e p="TimelinePlayableWizard.cs" t="Include" />
+          </e>
+        </e>
         <e p="GMS" t="Include">
           <e p="ChucK" t="Include">
             <e p="ChuckScheduler.cs" t="Include" />
@@ -65,6 +70,7 @@
             <e p="ScaleEditor.cs" t="Include" />
             <e p="SequencerWindow.cs" t="Include" />
           </e>
+          <e p="GMSampler.cs" t="Include" />
           <e p="GMSBar.cs" t="Include" />
           <e p="GMSLayer.cs" t="Include" />
           <e p="LinkedParameter.cs" t="Include" />
@@ -72,6 +78,11 @@
           <e p="Note.cs" t="Include" />
           <e p="Parameter.cs" t="Include" />
           <e p="ParamInterfacer.cs" t="Include" />
+          <e p="Playables" t="Include">
+            <e p="InstrumentBehaviour.cs" t="Include" />
+            <e p="InstrumentClip.cs" t="Include" />
+            <e p="InstrumentTrack.cs" t="Include" />
+          </e>
           <e p="RhythmGenerator.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="MGSound.cs" t="Include" />
@@ -92,6 +103,15 @@
               <e p="UnityAPIWrapper.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="WizardTest" t="Include">
+          <e p="Editor" t="Include">
+            <e p="WizardTestDrawer.cs" t="Include" />
+          </e>
+          <e p="WizardTestBehaviour.cs" t="Include" />
+          <e p="WizardTestClip.cs" t="Include" />
+          <e p="WizardTestMixerBehaviour.cs" t="Include" />
+          <e p="WizardTestTrack.cs" t="Include" />
         </e>
       </e>
       <e p="Generative Music Sequencer.sln" t="IncludeFlat" />

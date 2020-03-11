@@ -2,32 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10d603e4-2bfa-4c09-bbed-539d58ef8ee4" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/ChucK/ChuckScheduler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleMidiInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/RhythmGenerator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/ChucK/ClockChuck.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/ChuckMainInstance.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/Tools.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/58A34B0A-618D-424B-B5FC-18BB9BCDAC20/98/bddd30e6/PlayableBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Chuck.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleKeyboardInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/Note.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/ChuckSubInstance.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleConstructCodeString.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/RhythmGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.6/Runtime/TrackAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/ChuckMainInstance.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleEditParameterWhileRunning.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Playables/InstrumentBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/GMSampler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/ChuckSubInstance.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/Scale.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleTimeAdvancerWithHelperComponents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Playables/InstrumentTrack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleConstructCodeString.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/ChucK/ClockChuck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Tools.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleMidiInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/WizardTest/Editor/WizardTestDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Editor/SequencerWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Chunity/Scripts/Examples/ChunityExampleKeyboardInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Playables/InstrumentClip.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/ScriptableObjects/SequenceData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/Note.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GMS/ChucK/ChuckScheduler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -40,46 +46,56 @@
         <option value="$PROJECT_DIR$/Assets/GMS/Note.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/Tools.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/SequenceGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/StopwatchTest.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/ChucK/ClockChuck.cs" />
         <option value="$PROJECT_DIR$/Assets/GMS/MusicSequencer.cs" />
-        <option value="$PROJECT_DIR$/Assets/StopwatchTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/TimelineObjects/InstrumentBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Editor/MusicSequencerEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Playables/InstrumentTrack.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Playables/InstrumentClip.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/GMSampler.cs" />
+        <option value="$PROJECT_DIR$/Assets/GMS/Playables/InstrumentBehaviour.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1Qkg9CpuA5z9SbPM0GOwoSB5KMC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
-      <option name="userSelectedPid" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="3348">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="45032">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="3348" />
-      <option name="userSelectedPid" value="false" />
+      <option name="pid" value="45032" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -116,6 +132,12 @@
       <workItem from="1571012349567" duration="2062000" />
       <workItem from="1571087000647" duration="2334000" />
       <workItem from="1571158891045" duration="1489000" />
+      <workItem from="1571869976168" duration="403000" />
+      <workItem from="1571953479356" duration="6676000" />
+      <workItem from="1572092521418" duration="3190000" />
+      <workItem from="1572179718056" duration="1846000" />
+      <workItem from="1583872107262" duration="7456000" />
+      <workItem from="1583938973313" duration="7344000" />
     </task>
     <servers />
   </component>
@@ -124,42 +146,95 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
-  <component name="VcsManagerConfiguration">
-    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="346" key="GridCell.Tab.0.bottom" />
-    <state width="1877" height="346" key="GridCell.Tab.0.bottom/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.0.center" />
-    <state width="1877" height="346" key="GridCell.Tab.0.center/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.0.left" />
-    <state width="1877" height="346" key="GridCell.Tab.0.left/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.0.right" />
-    <state width="1877" height="346" key="GridCell.Tab.0.right/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.1.bottom" />
-    <state width="1877" height="346" key="GridCell.Tab.1.bottom/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.1.center" />
-    <state width="1877" height="346" key="GridCell.Tab.1.center/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.1.left" />
-    <state width="1877" height="346" key="GridCell.Tab.1.left/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.1.right" />
-    <state width="1877" height="346" key="GridCell.Tab.1.right/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.2.bottom" />
-    <state width="1877" height="346" key="GridCell.Tab.2.bottom/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.2.center" />
-    <state width="1877" height="346" key="GridCell.Tab.2.center/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.2.left" />
-    <state width="1877" height="346" key="GridCell.Tab.2.left/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.2.right" />
-    <state width="1877" height="346" key="GridCell.Tab.2.right/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.3.bottom" />
-    <state width="1877" height="346" key="GridCell.Tab.3.bottom/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.3.center" />
-    <state width="1877" height="346" key="GridCell.Tab.3.center/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.3.left" />
-    <state width="1877" height="346" key="GridCell.Tab.3.left/1920.1080" />
-    <state width="1877" height="346" key="GridCell.Tab.3.right" />
-    <state width="1877" height="346" key="GridCell.Tab.3.right/1920.1080" />
+    <state width="471" height="466" key="DebuggerActiveHint" timestamp="1583941334141">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="471" height="466" key="DebuggerActiveHint/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583941334141" />
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.0.center" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.0.center/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.0.center/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.0.left" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.0.left/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.0.left/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.0.right" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.0.right/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.0.right/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.1.center" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.center/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.1.center/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.1.left" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.left/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.1.left/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.1.right" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.right/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.1.right/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.2.bottom" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.2.bottom/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.2.bottom/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.2.center" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.2.center/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.2.center/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.2.left" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.2.left/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.2.left/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.2.right" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.2.right/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.2.right/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.3.bottom" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.3.bottom/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.3.bottom/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.3.center" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.3.center/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.3.center/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.3.left" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.3.left/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.3.left/1920.1080" timestamp="1583872488935" />
+    <state width="1877" height="346" key="GridCell.Tab.3.right" timestamp="1583949958233">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="346" key="GridCell.Tab.3.right/0.0.1920.1040/9.-1080.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583949958233" />
+    <state width="1877" height="346" key="GridCell.Tab.3.right/1920.1080" timestamp="1583872488935" />
+    <state x="-1201" y="195" key="RiderGenerateDialog" timestamp="1583872491703">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1201" y="195" key="RiderGenerateDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583872491703" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
